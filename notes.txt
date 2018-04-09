@@ -1,0 +1,15 @@
+
+
+
+% define personal space of an entity as a circle around the current position of
+the entity.
+into_personal_space(E1, E2) :- 
+
+
+overtake(E1, E2, T) 
+  :- behind(E1, E2, T), on_left(E1, E2, T+1), in_front(E1, E2,T+2).
+
+
+
+
+
