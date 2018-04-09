@@ -1,0 +1,85 @@
+;Scenario 1:1;Scenario 1:2;Scenario 1:3;Scenario 1:4;Scenario 1:5;Scenario 1:6;Scenario 2:1;Scenario 2:2;Scenario 2:3;Scenario 3:1;Scenario 3:2;Scenario 3:3;Scenario 3:4;Nationality;gender
+A;A;B;B;B;B;C;A;A;B;A;B;B;B;Italian;Male
+B;A;B;B;B;A;C;A;A;A;B;B;A;B;Italian;Male
+C;A;C;B;B;C;C;A;A;B;B;B;A;B;Italian;Female
+;A;C;B;B;B;C;A;A;A;A;A;B;B;;
+;A;B;B;B;B;C;A;A;A;B;B;B;B;Italian;Male
+;A;C;B;A;A;C;A;A;A;A;B;B;B;British;Male
+;A;B;B;B;C;C;A;A;A;B;B;C;B;Italian;Male
+;A;C;B;B;C;C;B;A;A;A;A;A;B;German;Male
+;A;B;B;B;B;C;A;A;A;A;B;B;B;Romanian;Male
+;A;B;B;B;B;B;A;B;A;A;B;B;A;Romania;Male
+;A;C;B;B;C;C;A;A;B;A;B;B;B;Italian;Male
+;A;C;B;B;C;C;A;A;A;A;B;B;B;British ;Female
+;A;C;B;B;C;C;B;A;A;B;B;B;B;Italian;Male
+;A;B;B;A;C;C;A;A;A;B;B;B;A;British;Male
+;A;C;B;B;C;B;A;A;A;B;B;B;B;British;Female
+;A;C;B;B;C;C;B;A;A;A;B;B;B;Romanian;Female
+;A;C;B;B;A;C;A;B;A;B;B;B;B;Italian;Female
+;A;B;B;B;B;B;A;A;A;A;B;B;B;Italian;Male
+;A;B;B;B;C;C;A;A;A;B;B;B;B;Italian;Male
+;A;C;B;A;A;C;A;A;A;A;B;B;A;Italian;Male
+;A;C;B;B;C;B;A;A;A;A;B;B;A;Italian;Male
+;A;B;B;B;B;C;A;A;A;B;B;B;B;Italian;Male
+;A;C;B;B;A;C;Other ;Other;A;B;B;B;B;Romanian;Female
+;A;C;B;B;C;C;A;B;B;A;B;B;B;Italian;Male
+;A;C;B;B;C;C;A;A;A;B;B;B;B;Italian;Female
+;A;C;B;A;C;C;B;A;A;A;B;C;A;Italian;Male
+;A;B;B;B;B;C;A;A;A;A;B;B;A;Spanish;Female
+;A;C;A;B;C;B;B;B;B;A;B;B;A;Italian;Female
+;A;B;B;A;B;C;A;A;B;A;B;B;B;Italian;Male
+;A;C;B;B;C;C;B;A;A;B;B;B;B;Italian;Male
+;A;C;B;B;B;B;B;A;A;B;B;B;B;Italian;Male
+;A;A;A;B;A;C;A;B;A;B;B;B;B;Italian;Female
+;A;C;B;B;C;C;B;A;A;A;B;B;B;Italian;Female
+;A;C;B;B;C;C;A;A;A;B;A;B;B;Italian;Female
+;A;B;B;B;B;C;A;A;A;A;A;B;B;Indian;Male
+;A;C;B;A;C;C;A;A;A;B;B;B;A;British;Female
+;A;C;B;B;C;C;A;A;B;B;B;A;B;Italian;Female
+;A;C;B;B;C;C;A;A;B;A;B;B;B;Italian;Male
+;A;C;B;A;B;B;A;A;A;A;B;B;B;;Male
+;A;C;B;B;C;C;A;A;A;A;B;B;B;Italian;Male
+;A;A;B;B;A;B;B;B;A;A;A;B;A;Italian;Female
+;A;C;B;B;B;C;B;B;A;B;B;B;B;Italian;Male
+;A;C;B;B;C;C;B;A;B;A;A;A;A;Spanish;Female
+;A;B;B;A;B;B;A;A;B;B;B;B;A;Italian;Male
+;A;B;B;B;B;C;A;A;A;B;B;B;B;Italian;Male
+;A;C;B;B;C;A;B;A;A;A;B;B;B;Italian;Male
+;A;B;B;B;B;C;A;A;A;B;B;B;B;Egyptian;Female
+;A;C;B;B;B;B;A;A;A;A;B;B;B;Italian;Female
+;A;C;B;B;C;B;B;B;A;A;B;B;B;;
+;A;C;B;A;C;C;A;A;B;B;B;B;B;;Female
+;A;B;B;B;B;B;A;A;B;B;B;B;B;;Male
+;A;C;B;B;C;B;A;B;A;A;B;B;B;;Male
+;A;A;B;B;C;C;A;A;A;B;B;B;B;;Female
+;A;C;B;A;C;B;A;A;A;A;B;B;A;;Male
+;A;C;B;B;C;B;A;A;B;A;A;B;B;;Male
+;A;B;B;B;C;B;A;A;B;A;B;B;B;;Prefer not to say
+;A;C;B;B;C;B;A;A;B;A;B;B;B;;Male
+;A;C;B;B;B;C;A;A;A;B;B;B;A;;Female
+;A;C;B;B;B;B;B;A;B;A;B;B;A;;Male
+;A;B;B;A;B;C;A;A;A;A;B;B;B;;Prefer not to say
+;A;B;B;A;B;C;A;A;A;A;B;B;A;;Female
+;A;C;B;A;C;C;A;A;A;B;A;B;B;;Male
+;A;C;B;A;B;C;A;A;A;A;B;B;B;;Male
+;A;C;B;B;B;B;B;B;A;A;B;A;B;;Male
+;A;C;B;B;B;C;B;A;A;B;B;A;B;;Male
+;A;C;B;A;C;C;A;A;A;B;A;B;B;;Male
+;A;C;B;B;B;C;A;A;B;B;B;B;Move around them;;Male
+;A;C;B;A;C;B;A;A;B;A;B;A;A;;Male
+;B;C;B;A;B;A;A;A;A;B;B;C;A;;Female
+;B;C;B;B;C;B;B;B;A;B;A;B;A;;Male
+;B;C;B;B;C;C;B;A;A;A;B;B;A;;Male
+;B;B;B;B;B;B;A;B;B;B;B;B;B;;Female
+;B;B;B;B;C;C;A;A;A;A;B;B;B;;Female
+;B;C;B;B;C;C;A;A;B;A;B;B;B;;Male
+;B;B;B;B;C;B;A;A;B;A;B;B;B;;Male
+;B;C;B;B;C;C;Other ;Other;B;A;B;A;B;;Male
+;B;B;B;B;B;C;B;A;B;A;A;B;A;;Female
+;B;C;B;B;C;B;A;A;B;A;B;B;B;;Male
+;B;C;B;B;C;B;A;A;B;A;B;B;B;;Male
+;B;C;B;A;B;B;A;A;B;Other;Other;B;B;;Male
+;B;C;B;A;C;C;A;A;A;A;B;B;B;;Male
+;B;C;B;B;C;B;A;A;A;B;B;A;B;;Male
+;C;C;B;B;B;C;A;A;A;B;B;B;B;;Female
+;C;C;B;B;C;C;A;A;A;A;A;A;A;;Male
