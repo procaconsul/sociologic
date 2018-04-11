@@ -1,25 +1,5 @@
 
-%
-% First formalisation in LOAS
-%
-
-%%%%%%% Background knowledge for Scenario 1.4
-%%%% Same direction in narrow alley, space enough for two people
-
-%%%% Environment
-%
-% wall 1
-% ----------------------------------------------
-%        	^
-%        	|
-%        	|-- space for two entities to walk 
-%        	|   side by side
-%        	|
-% wall 2 	v
-% ----------------------------------------------
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% Background Knowledge
 
 % wall 1 
 point(w1_s, 10, 20).
@@ -39,12 +19,6 @@ line(wall2).
 agent(agent1).
 agent(agent2).
 
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%% End of Background Knowledge
-
-%%% person 2 (faster) overtakes person 1.
-#pos(p1, {
-
 pos(agent1, 1, p1_1).
 pos(agent1, 2, p1_2).
 pos(agent1, 3, p1_3).
@@ -59,7 +33,6 @@ pos(agent1, 11, p1_11).
 pos(agent1, 12, p1_12).
 pos(agent1, 13, p1_13).
 
-  % person 1 walks straight
 o_point(p1_1, "40.551", "12.880", 0).
 o_point(p1_2, "41.551", "12.876", 0).
 o_point(p1_3, "42.551", "12.877", 0).
@@ -88,7 +61,6 @@ pos(agent2, 11, p2_11).
 pos(agent2, 12, p2_12).
 pos(agent2, 13, p2_13).
 
-  % person 2 overtakes
 o_point(p2_1, "38.551", "12.880", 0).
 o_point(p2_2, "40.551", "13.876", 2).
 o_point(p2_3, "42.580", "15.002", 0).
@@ -103,11 +75,6 @@ o_point(p2_11, "58.544", "12.879", 0).
 o_point(p2_12, "60.551", "12.879", 0).
 o_point(p2_13, "62.551", "12.879", 0).
 
-},{}).
-
-%%% person 2 (faster) slows down and stays behind person 1
-#pos({}, {}, {
-
 pos(agent1, 1, p1_1).
 pos(agent1, 2, p1_2).
 pos(agent1, 3, p1_3).
@@ -122,7 +89,6 @@ pos(agent1, 11, p1_11).
 pos(agent1, 12, p1_12).
 pos(agent1, 13, p1_13).
 
-  % person 1 walks straight
 o_point(p1_1, "40.551", "12.880", 0).
 o_point(p1_2, "41.551", "12.876", 0).
 o_point(p1_3, "42.551", "12.877", 0).
@@ -151,7 +117,6 @@ pos(agent2, 11, p2_11).
 pos(agent2, 12, p2_12).
 pos(agent2, 13, p2_13).
 
-  % person 2 follows behind 
 o_point(p2_1, "38.551", "12.880", 0).
 o_point(p2_2, "40.551", "12.876", 0).
 o_point(p2_3, "41.551", "12.877", 0).
@@ -166,21 +131,17 @@ o_point(p2_11, "49.544", "12.879", 0).
 o_point(p2_12, "50.551", "12.879", 0).
 o_point(p2_13, "51.551", "12.879", 0).
 
-}).
 
+% constraint on ubiquity
+:- pos(E, T, P1), pos(E, T, P2), P1 != P2.
+
+% from oriented point to point
 point(P, X, Y) :- o_point(P, X, Y, _).
 
+% line segment
 line2d(line(Ent, T), X1, Y1, X2, Y2) :- pos(Ent, T, P1), pos(Ent, T+1, P2), point(P1, X1, Y1), point(P2, X2, Y2).
 
-
-%  p1_T ----- p2_T ====== p2_T+1
-
-
-
-behind(E1, E2, T) :- pos(E1, T, P1), 
-		spatial_system(id(default),orientation(collinear(P1, line(E2, T)), 
-		pos(E2, T,P2), o_point(P1, X1, Y1, O1), 
-		o_point(P2, X2, Y2, O2), @is_behind(X1, Y1, O1, X2, Y2, O2) > 0. 
+behind(E1, E2, T) :- pos(E1, T, P1), pos(E2, T,P2), o_point(P1, X1, Y1, O1), o_point(P2, X2, Y2, O2), @is_behind(X1, Y1, O1, X2, Y2, O2) > 0. 
 		     		
 	
 after(E1, E2, T) :- behind(E2, E1, T).
