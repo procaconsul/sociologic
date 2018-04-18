@@ -8,3 +8,11 @@ ASP -----------------
  - BK as context for examples you have in narrow-passage.las
  - Include full rule for overtake
  - Check whether answer sets produced are correct
+
+
+======================================
+
+- constraints in overtake_rule.lp can be extracted in a common file, as they
+  will act as given general rules.
+- the python script for determining behind and collinear should also be
+  extracted in a common file.
