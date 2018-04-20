@@ -48,6 +48,10 @@ def is_collinear(_x1, _y1, _x2, _y2, _x3, _y3):
     # Using here the Triangle's Area method: if the area
     # of the triangle formed by the three points is 0 then
     # the three points lie on the same line.
+   
+    if DEBUG:
+        print "{}, {} | {}, {} | {}, {}".format(_x1, _y1, _x2, _y2, _x2, _y3)	
+        
 
     x1 = float(_x1.string)
     y1 = float(_y1.string)
