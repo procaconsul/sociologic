@@ -16,3 +16,10 @@ ASP -----------------
   will act as given general rules.
 - the python script for determining behind and collinear should also be
   extracted in a common file.
+
++ results so far: 
+  - narrow_passage_rule.las --> hangs
+  - narrow_passage.las: produce single constraint 
+      :~ overtake(V0, V1, V2).[-1@1,1, V0, V1, V2], as expected.
+
+
