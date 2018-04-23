@@ -1,4 +1,5 @@
 #include "sl-interface.py".
+#include "spatial.lp".
 
 %%%% Same direction in narrow alley, space enough for two people
 
@@ -18,12 +19,12 @@
 
 
 % wall 1 
-wall(w1_s, w1_e).
+wall(w1, w1_s, w1_e).
 point(w1_s, "10", "20").
 point(w1_e, "60", "20").
 
 % wall 2 
-wall(w2_s, w2_e).
+wall(w2, w2_s, w2_e).
 point(w2_s, "10", "10").
 point(w2_e, "60", "10").
 
@@ -181,19 +182,27 @@ behind(E1, E2, T)
 		     		
 in_front(E1, E2, T) :- behind(E2, E1, T).
 
+path(E, T, line(E, T)) :- pos(E, T, _), pos(E, T+1, _).
+
+line2d(line(E, T), X1, Y1, X2, Y2) :- pos(E, T, P1), pos(E, T+1, P2), point(P1, X1, Y1), point(P2, X2, Y2).
+line2d(line(E), X1, Y1, X2, Y2) :- wall(E, P1, P2), point(P1, X1, Y1), point(P2, X2, Y2).
+
+spatial(incidence, L1, L2) :- line2d(L1, _, _, _, _), line2d(L2, _, _, _, _), L1 < L2.
+incidence(INC, L1, L2) :- spatial_system(id(default), incidence(INC, L1, L2)).
+
 %%% Constraints %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % entity cannot be in two places at the same time point
 :- pos(E, T, P1), pos(E, T, P2), P1 != P2.
 
 % entity can be located on a wall
-:- pos(E, _, P1), wall(P2, P3), point(P1, X1, Y1),
-    point(P2, X2, Y2), point(P3, X3, Y3), 
-    @in_bounds(X1, Y1, X2, Y2, X3, Y3) == 0,
-    @is_collinear(X1, Y1, X2, Y2, X3, Y3) == 0.
+% :- pos(E, _, P1), wall(_, P2, P3), point(P1, X1, Y1),
+    % point(P2, X2, Y2), point(P3, X3, Y3), 
+    % @in_bounds(X1, Y1, X2, Y2, X3, Y3) == 0,
+    % @is_collinear(X1, Y1, X2, Y2, X3, Y3) == 0.
 
 % add constraint on intersection between path and wall
-
+:- incidence(intersects, line(W), L), wall(W, _, _), path(_, _, L).
 
 %%% Hypothesis Space %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % overtake(V1, V2, C1) :- behind(V1, V2, C1), in_front(V1, V2, C2), rule(1, C1, C2).
