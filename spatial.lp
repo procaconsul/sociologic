@@ -581,8 +581,8 @@ def distance2d_segment_segment_vals_(x1,y1,x2,y2,x3,y3,x4,y4):
       dx = wx + (sc * ux) - (tc * vx)
       dy = wy + (sc * uy) - (tc * vy)
 
-      % BUG
-      % return dx * dx + dy * dy 
+      # BUG
+      # return dx * dx + dy * dy 
       return math.sqrt(dx * dx + dy * dy)
 
 def distance2d_point_line_(px,py,x1,y1,x2,y2):
