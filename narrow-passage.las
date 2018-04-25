@@ -1,5 +1,4 @@
-#include "sl-interface.py".
-#include "spatial.lp".
+#include "background-knowledge.lp".
 
 %%%% Same direction in narrow alley, space enough for two people
 
@@ -533,53 +532,6 @@ o_point(p2_1, "26.553", "11.910", "180.0").
 o_point(p2_2, "24.000", "11.910", "180.0").
 o_point(p2_3, "22.000", "11.300", "220.0").
 }).
-
-%%% Background %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-% CONSTANTS ##############################
-%                                        #
-% 120cm is the proxemic boundary         #
-% of the personal space                  # 
-#const personal_distance = "1.200".      
-#const squeezing_threshold = "0.100".  
-
-% indicative width of space for          #
-% two people to walk side by side        #
-#const two_people_width = "2.0".                                       
-%#########################################
-
-
-point(P, X, Y) :- o_point(P, X, Y, _).
-point2d(P, X, Y) :- point(P, X, Y).
-
-behind(E1, E2, T) :- E1 != E2, pos(E1, T, P1), pos(E2, T, P2), o_point(P1, X1, Y1, O1), o_point(P2, X2, Y2, O2), pos(E2, T+1, P3), point(P3, X3, Y3), @is_behind(X1, Y1, O1, X2, Y2, O2) == 0, @is_collinear(X1, Y1, X2, Y2, X3, Y3) == 0. 
-
-in_front(E1, E2, T) :- behind(E2, E1, T).
-
-overtake(E1, E2, T1) :- behind(E1, E2, T1), in_front(E1, E2, T2), after(T2, T1).
-
-after(T1, T2) :- pos(_, T1, _), pos(_, T2, _), T1 > T2.
-
-path(E, T, line(E, T)) :- pos(E, T, _), pos(E, T+1, _).
-
-line2d(line(E, T), X1, Y1, X2, Y2) :- pos(E, T, P1), pos(E, T+1, P2), point(P1, X1, Y1), point(P2, X2, Y2).
-line2d(line(E), X1, Y1, X2, Y2) :- wall(E, P1, P2), point(P1, X1, Y1), point(P2, X2, Y2).
-line_ent(L) :- line2d(L, _, _, _, _).
-
-spatial(incidence, L1, L2) :- line_ent(L1), line_ent(L2).
-incidence(INC, L1, L2) :- spatial_system(id(default), incidence(INC, L1, L2)).
-
-% one_person_width(W1, W2) :- line_ent(line(W1)), line_ent(line(W2)), sgn_distance(id(default), D, line(W1), line(W2)), D < two_people_width.
-invades_personal_space(E1, E2, T) :- pos(E1, T, P1), point(P1, X1, Y1), pos(E2, T, P2), point(P2, X2, Y2), @distance2d_(X1, Y1, X2, Y2) < personal_distance. 
-squeeze(E, W, T) :- pos(E, T, P), point(P, X1, Y1), wall(W, P2, P3), point(P2, X2, Y2), point(P3, X3, Y3), @distance2d_point_segment_(X1, Y1, X2, Y2, X3, Y3) < squeezing_threshold.
-
-%%% Constraints %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-% entity cannot be in two places at the same time point
-:- pos(E, T, P1), pos(E, T, P2), P1 != P2.
-
-% entities cannot "go through" walls
-:- incidence(intersects, line(W), L), wall(W, _, _), path(_, _, L).
 
 %%% ORDERINGS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
