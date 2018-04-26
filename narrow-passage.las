@@ -45,6 +45,8 @@ wall(wall2, w2_s, w2_e).
 point(w2_s, "10.0", "10.0").
 point(w2_e, "60.0", "10.0").
 
+corridor(corridor, wall1, wall2).
+
 % Agent 1 overtakes agent 2 on the right, both moving East (<--)
 pos(agent1, 1, p1_1).
 pos(agent1, 2, p1_2).
@@ -108,7 +110,7 @@ wall(wall2, w2_s, w2_e).
 point(w2_s, "10.0", "10.0").
 point(w2_e, "60.0", "10.0").
 
-
+corridor(corridor, wall1, wall2).
 
 % agent 2 (faster) slows down and stays behind agent 1 (respecting ps)
 pos(agent1, 1, p1_1).
@@ -172,6 +174,8 @@ point(w1_e, "60.0", "20.0").
 wall(wall2, w2_s, w2_e).
 point(w2_s, "10.0", "10.0").
 point(w2_e, "60.0", "10.0").
+
+corridor(corridor, wall1, wall2).
 
 % agent 2 (faster) slows down and stays behind agent 1 (respecting ps)
 pos(agent1, 1, p1_1).
@@ -250,6 +254,8 @@ point(w1_e, "30.0", "12.0").
 wall(wall2, w2_s, w2_e).
 point(w2_s, "15.0", "10.0").
 point(w2_e, "30.0", "10.0").
+
+corridor(corridor, wall1, wall2).
 
 wall(wall3, w3_s, w3_e).
 point(w3_e, "30.0", "12.0").
@@ -379,6 +385,8 @@ wall(wall2, w2_s, w2_e).
 point(w2_s, "15.0", "10.0").
 point(w2_e, "30.0", "10.0").
 
+corridor(corridor, wall1, wall2).
+
 wall(wall3, w3_s, w3_e).
 point(w3_e, "30.0", "12.0").
 point(w3_e, "30.0", "17.0").
@@ -507,6 +515,8 @@ point(w1_e, "30.0", "12.0").
 wall(wall2, w2_s, w2_e).
 point(w2_s, "15.0", "10.0").
 point(w2_e, "30.0", "10.0").
+
+corridor(corridor, wall1, wall2).
 
 wall(wall3, w3_s, w3_e).
 point(w3_e, "30.0", "12.0").

@@ -660,7 +660,7 @@ def polygon_area_(vertices):
       result = 0
       j = vcount_(vs) - 1
       
-      for i in range(0, vcount_(vs)):
+      for i in range(vcount_(vs)):
         result += (x_(vs,j) * y_(vs,i)) - (y_(vs,j) * x_(vs,i))
         j = i
       
