@@ -465,8 +465,9 @@ o_point(p2_3, "22.000", "11.300", "220.0").
 % #brave_ordering(p5, p6).
 
 %%% Hypothesis Space %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-#modeo(1, squeeze(var(ent), var(wall), var(time))).
-#maxp(1).
+#modeo(1, squeeze_by_wall(var(ent), var(wall), var(time))).
+#modeo(1, one_person_width(var(wall), var(wall))).
+#maxp(2).
 #weight(1).
 
 

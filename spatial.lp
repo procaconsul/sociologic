@@ -307,9 +307,10 @@ spatial_system(S,topology(tpp, A, B)) :- spatial_system(S,spatial(topology, A, B
 -spatial_system(S,topology(tpp, A, B)) :- spatial_system(S,spatial(topology, A, B)), -spatial_system(S,topology(pp, A, B)).
 -spatial_system(S,topology(tpp, A, B)) :- spatial_system(S,spatial(topology, A, B)), minkowski_sum_diff_distance(S,_,D,A,B), 1 == @not_eq_(D, "0").
 
-spatial_system(S,topology(ntpp, A, B)) :- spatial_system(S,spatial(topology, A, B)), spatial_system(S,topology(pp, A, B)), minkowski_sum_diff_distance(S,_,D,A,B), 1 == @lt_(D, "0").
--spatial_system(S,topology(ntpp, A, B)) :- spatial_system(S,spatial(topology, A, B)), -spatial_system(S,topology(pp, A, B)).
--spatial_system(S,topology(ntpp, A, B)) :- spatial_system(S,spatial(topology, A, B)), minkowski_sum_diff_distance(S,_,D,A,B), 1 == @leq_("0", D).
+spatial_system(S,topology(ntpp, A, B)) :- minkowski_sum_diff_distance(S,_,D,A,B).
+% spatial_system(S,topology(ntpp, A, B)) :- spatial_system(S,spatial(topology, A, B)), spatial_system(S,topology(pp, A, B)), minkowski_sum_diff_distance(S,_,D,A,B), 1 == @lt_(D, "0").
+% -spatial_system(S,topology(ntpp, A, B)) :- spatial_system(S,spatial(topology, A, B)), -spatial_system(S,topology(pp, A, B)).
+% -spatial_system(S,topology(ntpp, A, B)) :- spatial_system(S,spatial(topology, A, B)), minkowski_sum_diff_distance(S,_,D,A,B), 1 == @leq_("0", D).
 
 spatial_system(S,topology(po, A, B)) :- spatial_system(S,spatial(topology, A, B)), spatial_system(S,topology(o, A, B)), minkowski_sum_diff_distance(S,_,D,A,B), 1 == @lt_("0", D).
 
@@ -656,7 +657,7 @@ def polygon_area_(vertices):
       vs = vertices.arguments
       
       if(vcount_(vs) < 3):
-        return 0
+        return str(0)
       result = 0
       j = vcount_(vs) - 1
       
@@ -742,7 +743,9 @@ def point_in_polygon_(px,py,vertices):
                         inside = not inside
         p1x,p1y = p2x,p2y
 
-    return inside
+    if (inside):
+      return str(0)
+    return str(1)
          
 #######         
 ## Minkowski sum for two polygons

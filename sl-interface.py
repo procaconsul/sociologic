@@ -94,4 +94,55 @@ def in_bounds_vals(x1, y1, x2, y2, x3, y3):
 	return 0
     return 1
 
+def mid_point_x(_x1, _x2):
+    x1 = float(_x1.string)
+    x2 = float(_x2.string)
+    return str(mid_point_x_vals(x1, x2))
+
+def mid_point_x_vals(x1, x2):
+    return (x1 + x2) / 2
+
+def mid_point_y(_y1, _y2):
+    y1 = float(_y1.string)
+    y2 = float(_y2.string)
+    return str(mid_point_y_vals(y1, y2))
+
+def mid_point_y_vals(y1, y2):
+    return (y1 + y2) / 2
+
+def point_inside_polygon(_x, _y, vertices):
+    
+    x = float(_x.string)
+    y = float(_y.string)
+
+    vs = vertices.arguments
+    
+    v_xs = map(lambda x: float(x.string), vs[::2])
+    v_ys = map(lambda y: float(y.string), vs[1::2])
+    
+    return point_inside_polygon_vals(x, y, v_xs, v_ys)
+
+def point_inside_polygon_vals(x, y, v_xs, v_ys):
+    
+    assert len(v_xs) == len(v_ys)
+    vs_n = len(v_xs)
+
+    if x < min(v_xs) or x > max(v_xs) or y < min(v_ys) or y > max(v_ys):
+        return 1
+
+    c = False
+    j = vs_n - 1
+
+    for i in range(vs_n):
+        if ((v_ys[i] > y) is not (v_ys[j] > y)) and \
+                (x < (v_xs[j] - v_xs[i]) * (y - v_ys[i]) / (v_ys[j] - v_ys[i]) +
+                        v_xs[i]):
+                    c = not c
+        j = i
+    if c:
+        # inside
+        return 0
+    #outside
+    return 1
+
 #end.
