@@ -1218,11 +1218,7 @@ o_point(p2_12, "21.051", "11.000", "180.0").
 
 %%% ORDERINGS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% #brave_ordering(p1, p2).
-% #brave_ordering(p1, p1_1C_1).
-% #brave_ordering(p2, p1_1C_1).
-
-% % Context 1, scenario 1
+% Context 1, scenario 1
 #brave_ordering(p1_1A_1, p1_1B_1).
 #cautious_ordering(p1_1A_1, p1_1C_1).
 #cautious_ordering(p1_1B_1, p1_1C_1).
@@ -1231,20 +1227,6 @@ o_point(p2_12, "21.051", "11.000", "180.0").
 #brave_ordering(p1_2C_1, p1_2B_1).
 #cautious_ordering(p1_2C_1, p1_2A_1).
 #cautious_ordering(p1_2B_1, p1_2A_1).
-
-#brave_ordering(p1_1A_1, p1_2A_1).
-#brave_ordering(p1_2B_1, p1_1B_1).
-
-% % REINFORCEMENT
-% #brave_ordering(p2_r_1vs2_squeeze, p1_r_1vs2_squeeze).
-
-% #brave_ordering(p1_1A_1, p1_r_1vs2_squeeze).
-% #brave_ordering(p2_r_1vs2_squeeze, p1_1B_1).
-% #brave_ordering(p2_r_1vs2_squeeze, p1_2A_2).
-% #brave_ordering(p2_r_1vs2_squeeze_bis, p1_r_1vs2_squeeze).
-% #brave_ordering(p2_r_1vs2_squeeze, p1_2A_2).
-
-% #brave_ordering(p2_r_1vs2_squeeze, p1_2A_2).
 
 %%% Hypothesis Space %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % #modeo(1, overtake(var(ent), var(ent), var(time))).
