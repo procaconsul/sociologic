@@ -22,4 +22,10 @@ ASP -----------------
   - narrow_passage.las: produce single constraint 
       :~ overtake(V0, V1, V2).[-1@1,1, V0, V1, V2], as expected.
 
+======================================
 
++ results so far: 
+  - first two scenarios of narrow passage produce 
+      :~ squeeze_by_wall(V0, V1, V2).[1@1, 1, V0, V1, V2]
+      :~ past_mid(V0, corridor, V1), step_out_and_wait(V0, V2, corridor, V1).[1@2, 2,
+          V0, V1, V2]
