@@ -29,3 +29,31 @@ ASP -----------------
       :~ squeeze_by_wall(V0, V1, V2).[1@1, 1, V0, V1, V2]
       :~ past_mid(V0, corridor, V1), step_out_and_wait(V0, V2, corridor, V1).[1@2, 2,
           V0, V1, V2]
+
+=====================================
+
++ results separately for:
++ scenario 1:
+  :~ step_out_and_wait(V0, V1, corridor, V2).[-1@1...]
+  :~ past_mid(V0, corridor, V1), step_out_and_wait(V0, V2, corridor, V1).[1@2...]
++ scenario 2:
+  :~ squeeze_by_wall(V0, V1, V2).[1@1, 1 ...]
+  :~ past_mid(V0, corridor, V1), step_out_and_wait(V0, V2, corridor, V1).[1@2 ...]  
++ scenario 3: 
+  :~ give_way(...) [-1@2] 
+
+
+%% Writing the meta-level program to "/tmp/ilasp_iteration_1.lp"
+%% Writing the meta-level program to "/tmp/ilasp_iteration_2.lp"
+%% Writing the meta-level program to "/tmp/ilasp_iteration_3.lp"
+%% Writing the meta-level program to "/tmp/ilasp_iteration_4.lp"
+%% Writing the meta-level program to "/tmp/ilasp_iteration_5.lp"
+%% Writing the meta-level program to "/tmp/ilasp_iteration_6.lp"
+%% Writing the meta-level program to "/tmp/ilasp_iteration_7.lp"
+:~ step_out_and_wait(V0, V1, corridor, V2).[-1@1, 1, V0, V1, V2]
+:~ give_way(V0, V1, V2, corridor).[-1@2, 2, V0, V1, V2]
+:~ past_mid(V0, corridor, V1), step_out_and_wait(V0, V2, corridor, V1).[1@2, 3,
+V0, V1, V2]
+Pre-processing  : 0.436s
+Solve time      : 5894.47s
+Total           : 5894.91s

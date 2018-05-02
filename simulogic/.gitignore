@@ -1,0 +1,13 @@
+
+# idea files
+.idea
+
+# sbt caches
+project/project
+project/target
+target
+
+# Scala out
+*.class
+*.log
+
