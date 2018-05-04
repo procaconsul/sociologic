@@ -35,8 +35,8 @@ point(w2_e, "30.0", "10.0").
 
 corridor(corridor, wall1, wall2).
 
-% agent 2 steps in and reaches the mid of the corridor, 
-% sees agent 1 in, walks out and waits before attempting again
+% focus_agent steps in, sees agent 2 entering on the 
+% other side and steps out waiting
 pos(focus_agent, 1, p1_1).
 pos(focus_agent, 2, p1_2).
 pos(focus_agent, 3, p1_3).
@@ -185,7 +185,7 @@ point(w2_e, "30.0", "10.0").
 
 corridor(corridor, wall1, wall2).
 
-% agent 2 gives way to agent 1
+% focus_agent gives way to agent 2
 pos(focus_agent, 1, p1_1).
 pos(focus_agent, 2, p1_2).
 pos(focus_agent, 3, p1_3).

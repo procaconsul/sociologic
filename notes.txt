@@ -39,7 +39,7 @@ ASP -----------------
   :~ squeeze_by_wall(V0, V1, V2).[1@1, 1 ...]
   :~ past_mid(V0, corridor, V1), step_out_and_wait(V0, V2, corridor, V1).[1@2 ...]  
 + scenario 3: 
-  :~ give_way(...) [-1@2] (if only w/ give_way in the modeo)
+  :~ give_way(focus_agent, V0, V1, corridor).[-1@1, 1, V0, V1] (if cautious ordering. Else, below)
   :~ step_out_and_wait(focus_agent, V0, corridor, V1).[1@1, 1, V0, V1]
  
 
