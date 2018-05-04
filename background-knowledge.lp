@@ -29,7 +29,12 @@ mid_point(mid_p(W), X, Y) :- wall(W, P1, P2),
 point(P, X, Y) :- o_point(P, X, Y, _).
 point2d(P, X, Y) :- point(P, X, Y).
 
-line2d(L, X1, Y1, X2, Y2) :- path(_, _, P1, P2, L), point(P1, X1, Y1), point(P2, X2, Y2).
+line2d(line(E1, E2, T), X1, Y1, X2, Y2) :- pos(E1, T, P1),
+  point(P1, X1, Y1),
+  pos(E2, T, P2),
+  point(P2, X2, Y2).
+
+line2d(line(E, T), X1, Y1, X2, Y2) :- path(E, T, P1, P2, L), point(P1, X1, Y1), point(P2, X2, Y2).
 line2d(line(E), X1, Y1, X2, Y2) :- wall(E, P1, P2), point(P1, X1, Y1), point(P2, X2, Y2).
 
 % s                    e
@@ -113,23 +118,31 @@ squeeze_by_wall(E, W, T) :- pos(E, T, P),
   point(P2, X2, Y2), 
   point(P3, X3, Y3), 
   @distance2d_point_segment_(X1, Y1, X2, Y2, X3, Y3) < squeezing_threshold.
-  
-% push_out(E1, E2, C, T) :- 
-  % step_out_and_wait(E2, E1, C, T).
 
-wait_end_of_talk(E1, E2, E3, T1) :- not talking(E1, _, _),
+squeeze_between_conversation(E1, E2, E3, T1) :- not talking(E1, _, _),
+  not talking(_, E1, _),
+  talking(E2, E3, T1),
+  talking(E2, E3, T1+1),
+  line_ent(line(E2, E3, T1)),
+  line_ent(line(E1, T1)),
+  incidence(intersects, line(E2, E3, T1), line(E1, T1)). 
+
+wait_end_of_talk(E1, E2, E3, T1, T2) :- T1 != T2,
+  not talking(E1, _, _),
   not talking(_, E1, _),
   pos(E1, T1, P1),
   talking(E2, E3, T1), 
-  after(T2, T1), 
-  pos(E1, T2-1, P2),
+  after(T2, T1),
+  pos(E1, T2, P2),
   point(P1, X, Y),
   point(P2, X, Y),  
-  talking(E2, E3, T2-1),
-  pos(E1, T2, P3),
-  not talking(E2, E3, T2),
+  talking(E2, E3, T2),
+  pos(E1, T2+1, P3),
+  not talking(E2, E3, T2+1),
   point(P3, X1, Y1),
   @distance2d_(X, Y, X1, Y1) > "0".
+
+push_out(E1, E2, C, T) :- step_out_and_wait(E2, E1, C, T).
 
 step_out_and_wait(E1, E2, C, T) :- corridor(C, _, _),
   inside(E1, C, T),
@@ -163,7 +176,6 @@ one_person_width(C) :- corridor(C, W1, W2),
   line_ent(line(W1)), 
   line_ent(line(W2)), 
   sgn_distance(id(default), D, line(W1), line(W2)), 
-  @here(D) == 0,
   D < two_people_width, W1 != W2.
 
 % assuming corridors are made of walls of the same length

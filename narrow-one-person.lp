@@ -1,40 +1,43 @@
 #include "background-knowledge.lp".
-agent(agent1).
+
+% Option A
+
+%%%% Agents %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+agent(focus_agent).
 agent(agent2).
-agent(agent3).
 
 % wall 1 
 wall(wall1, w1_s, w1_e).
 point(w1_s, "15.0", "15.0").
-point(w1_e, "20.0", "15.0").
+point(w1_e, "30.0", "15.0").
 
 % wall 2 
 wall(wall2, w2_s, w2_e).
 point(w2_s, "15.0", "10.0").
-point(w2_e, "20.0", "10.0").
+point(w2_e, "30.0", "10.0").
 
 corridor(corridor, wall1, wall2).
 
-talking(agent1, agent2, 1).
-talking(agent1, agent2, 2).
-talking(agent1, agent2, 3).
-talking(agent1, agent2, 4).
-talking(agent1, agent2, 5).
-talking(agent1, agent2, 6).
-
-
-% agent 2 passes the mid and forces agent 1 (just entering)
-% to step out and wait 
-pos(agent1, 1, p1_1).
-pos(agent1, 2, p1_2).
-pos(agent1, 3, p1_3).
-pos(agent1, 4, p1_4).
-pos(agent1, 5, p1_5).
-pos(agent1, 6, p1_6).
-pos(agent1, 7, p1_7).
-pos(agent1, 8, p1_8).
-pos(agent1, 9, p1_9).
-pos(agent1, 10, p1_10).
+% agent 2 steps in and reaches the mid of the corridor, 
+% sees agent 1 in, walks out and waits before attempting again
+pos(focus_agent, 1, p1_1).
+pos(focus_agent, 2, p1_2).
+pos(focus_agent, 3, p1_3).
+pos(focus_agent, 4, p1_4).
+pos(focus_agent, 5, p1_5).
+pos(focus_agent, 6, p1_6).
+pos(focus_agent, 7, p1_7).
+pos(focus_agent, 8, p1_8).
+pos(focus_agent, 9, p1_9).
+pos(focus_agent, 10, p1_10).
+pos(focus_agent, 11, p1_11).
+pos(focus_agent, 12, p1_12).
+pos(focus_agent, 13, p1_13).
+pos(focus_agent, 14, p1_14).
+pos(focus_agent, 15, p1_15).
+pos(focus_agent, 16, p1_16).
+pos(focus_agent, 17, p1_17).
+pos(focus_agent, 18, p1_18).
 
 pos(agent2, 1, p2_1).
 pos(agent2, 2, p2_2).
@@ -46,52 +49,38 @@ pos(agent2, 7, p2_7).
 pos(agent2, 8, p2_8).
 pos(agent2, 9, p2_9).
 pos(agent2, 10, p2_10).
+pos(agent2, 11, p2_11).
+pos(agent2, 12, p2_12).
+pos(agent2, 13, p2_13).
+pos(agent2, 14, p2_14).
+pos(agent2, 15, p2_15).
+pos(agent2, 16, p2_16).
+pos(agent2, 17, p2_17).
+pos(agent2, 18, p2_18).
 
-pos(agent3, 1, p3_1).
-pos(agent3, 2, p3_2).
-pos(agent3, 3, p3_3).
-pos(agent3, 4, p3_4).
-pos(agent3, 5, p3_5).
-pos(agent3, 6, p3_6).
-pos(agent3, 7, p3_7).
-pos(agent3, 8, p3_8).
-pos(agent3, 9, p3_9).
-pos(agent3, 10, p3_10).
+o_point(p1_1,  "14.051", "11.080", "0.0").
+o_point(p1_2,  "15.051", "11.000", "0.0"). 
+o_point(p1_3,  "16.051", "11.000", "0.0").
+o_point(p1_4,  "15.051", "11.000", "180.0"). 
+o_point(p1_5,  "14.051", "11.500", "220.0").
+o_point(p1_6,  "14.051", "12.500", "40.0").
+o_point(p1_7,  "14.051", "12.500", "40.0").
+o_point(p1_8,  "14.051", "12.500", "40.0").
+o_point(p1_9,  "14.051", "12.500", "40.0").
+o_point(p1_10, "14.051", "12.000", "40.0").
+o_point(p1_11, "15.501", "11.000", "0.0").
 
-
-o_point(p1_1, "23.051", "10.900", "90.0").
-o_point(p1_2, "23.051", "10.900", "90.0").
-o_point(p1_3, "23.051", "10.900", "90.0"). 
-o_point(p1_4, "23.051", "10.900", "90.0").
-o_point(p1_5, "23.051", "10.900", "90.0").
-o_point(p1_6, "23.051", "10.900", "90.0").
-o_point(p1_7, "22.051", "11.100", "180.0").
-o_point(p1_8, "21.051", "11.100", "180.0").
-o_point(p1_9, "20.051", "11.100", "180.0").
-o_point(p1_10, "19.051", "11.100", "180.0").
-
-o_point(p2_1, "23.051", "13.900", "270.0").
-o_point(p2_2, "23.051", "13.900", "270.0").
-o_point(p2_3, "23.051", "13.900", "270.0"). 
-o_point(p2_4, "23.051", "13.900", "270.0").
-o_point(p2_5, "23.051", "13.900", "270.0").
-o_point(p2_6, "23.051", "13.900", "270.0").
-o_point(p2_7, "24.051", "13.000", "0.0").
-o_point(p2_8, "25.051", "13.000", "0.0").
-o_point(p2_9, "26.051", "13.000", "0.0").
-o_point(p2_10, "27.051", "13.000", "0.0").
-
-o_point(p3_1, "20.051", "12.000", "0.0").
-o_point(p3_2, "21.051", "12.000", "0.0").
-o_point(p3_3, "21.051", "12.000", "0.0"). 
-o_point(p3_4, "21.051", "12.000", "0.0").
-o_point(p3_5, "21.051", "12.000", "0.0").
-o_point(p3_6, "21.051", "12.000", "0.0").
-o_point(p3_7, "22.051", "12.000", "0.0").
-o_point(p3_8, "23.051", "12.000", "0.0").
-o_point(p3_9, "24.051", "12.000", "0.0").
-o_point(p3_10, "25.051", "12.000", "0.0").
-
+o_point(p2_1,  "33.551", "14.400", "220.0").
+o_point(p2_2,  "31.640", "13.000", "200.0").
+o_point(p2_3,  "29.553", "13.800", "180.0"). 
+o_point(p2_4,  "27.000", "13.000", "180.0").
+o_point(p2_5,  "25.000", "13.000", "180.0").
+o_point(p2_6,  "23.000", "13.000", "180.0").
+o_point(p2_7,  "21.000", "13.000", "180.0").
+o_point(p2_8,  "19.000", "13.000", "180.0").
+o_point(p2_9,  "17.000", "13.000", "180.0").
+o_point(p2_10, "15.000", "13.000", "180.0").
+o_point(p2_11, "13.000", "13.000", "180.0").
 
 %%% Hypothesis Space %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % overtake(V1, V2, C1) :- behind(V1, V2, C1), in_front(V1, V2, C2), rule(1, C1, C2).
@@ -101,24 +90,27 @@ o_point(p3_10, "25.051", "12.000", "0.0").
 % 1 { case(1..2) } 1.
 
 %%% Goal %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-goal :- wait_end_of_talk(agent3, A, B, T).
-:- not goal.
+% goal :- .
+% :- not goal.
 
 
 
 % Hide Scenario Facts from solution
 % #show case/1.
 % #show overtake/3.
-% #show behind/3.
+% #show incidence/3.
+#show behind/3.
 % #show in_front/3.
-#show wait_end_of_talk/4.
-#show talking/3.
+% #show wait_end_of_talk/5.
+% #show squeeze_between_conversation/4.
+% #show talking/3.
 #show one_person_width/1. 
-% #show give_way/3.
+#show give_way/4.
 % #show past_mid/3.
 % #show polygon/2.
 % #show inside/3. 
-% #show step_out_and_wait/4.
+#show step_out_and_wait/4.
+#show push_out/4.
 % #show mid_point/3.
 % #show line_between/5.
-% #show squeeze_by_wall/3.
+#show squeeze_by_wall/3.
