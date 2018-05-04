@@ -34,8 +34,18 @@ line2d(line(E1, E2, T), X1, Y1, X2, Y2) :- pos(E1, T, P1),
   pos(E2, T, P2),
   point(P2, X2, Y2).
 
-line2d(line(E, T), X1, Y1, X2, Y2) :- path(E, T, P1, P2, L), point(P1, X1, Y1), point(P2, X2, Y2).
-line2d(line(E), X1, Y1, X2, Y2) :- wall(E, P1, P2), point(P1, X1, Y1), point(P2, X2, Y2).
+line2d(line(E, P1, P2), X1, Y1, X2, Y2) :- pos(E, _, P1),
+  pos(E, _, P2),
+  point(P1, X1, Y1),
+  point(P2, X2, Y2).
+
+line2d(line(E, T), X1, Y1, X2, Y2) :- path(E, T, P1, P2, L), 
+  point(P1, X1, Y1), 
+  point(P2, X2, Y2).
+
+line2d(line(E), X1, Y1, X2, Y2) :- wall(E, P1, P2), 
+  point(P1, X1, Y1), 
+  point(P2, X2, Y2).
 
 % s                    e
 % +--------------------+
@@ -57,7 +67,9 @@ line2d(line(C, start), X1, Y1, X2, Y2) :- corridor(C, W1, W2),
   point(P1, X1, Y1),
   point(P2, X2, Y2).
 
-line2d(line(P1, P2), X1, Y1, X2, Y2) :- mid_point(P1, X1, Y1), mid_point(P2, X2, Y2).
+line2d(line(P1, P2), X1, Y1, X2, Y2) :- mid_point(P1, X1, Y1), 
+  mid_point(P2, X2, Y2).
+
 line_ent(L) :- line2d(L, _, _, _, _).
 
 spatial(incidence, L1, L2) :- line_ent(L1), line_ent(L2).
@@ -101,6 +113,15 @@ after(T1, T2) :- pos(_, T1, _), pos(_, T2, _), T1 > T2.
 % #############
 % ACTIONS
 % #############
+
+% should I add a constraint on the distance?
+go_behind(E1, E2, T) :- E1 != E2,
+  path(E1, T, P1, _, L), 
+  pos(E2, T, P2),
+  pos(E2, T-1, P3),
+  incidence(intersects, L, line(E2, P2, P3)).
+
+go_in_front(E1, E2, T) :- go_behind(E2, E1, T).
 
 overtake(E1, E2, T1) :- behind(E1, E2, T1), 
   in_front(E1, E2, T2), 
