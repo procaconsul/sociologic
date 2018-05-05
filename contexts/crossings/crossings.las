@@ -24,7 +24,7 @@
 % ModeO scenario 1
 #modeo(1, go_behind(const(ent), var(ent), var(time))).
 #modeo(1, go_in_front(const(ent), var(ent), var(time))).
-#mdoeo(1, pushes_weight(var(ent), var(time))).
+#modeo(1, pushes_object(var(ent), var(time))).
 
 #maxp(2).
 #maxv(4).

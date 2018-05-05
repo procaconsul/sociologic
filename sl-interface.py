@@ -159,6 +159,45 @@ def opposite_directions_vals(o1, o2):
         return 0
     return 1
 
+# PRE: the points are ordered from first to last in the queue
+# IDEA: if path of agent intersects any of the invisible line between two people 
+# queueing, then agent is going through queue
+def intersect_queue(_x1, _y1, _x2, _y2, points_in_queue):
+    x1 = float(_x1.string)
+    y1 = float(_y1.string)
+    x2 = float(_x2.string)
+    y2 = float(_y2.string)
+    
+    pts = points_in_queue.arguments
+    pts_xs = map(lambda x: float(x.string), pts[::2])
+    pts_ys = map(lambda y: float(y.string), pts[1::2])
+
+    return intersect_queue_vals(x1, y1, x2, y2, pts_xs, pts_ys)
+    
+
+def intersect_queue_vals(x1, y1, x2, y2, pts_xs, pts_ys):
+    assert len(pts_xs) == len(pts_ys)
+    n = len(pts_xs)
+
+    for i in range(n-1):
+        if intersects(x1, y1, x2, y2, pts_xs[i], pts_ys[i], pts_xs[i+1],
+                pts_ys[i+1]:
+                return True
+    return False
+
+def counter_clockwise(x1, y1, x2, y2, x3, y3):
+    return (y3 - y1) * (x2 - x1) > (y2 - y1) * (x3 - x1)
+
+# from the idea of Bryce Boe 
+# at http://bryceboe.com/2006/10/23/line-segment-intersection-algorithm/
+def intersects(x_a, y_a, x_b, y_b, x_c, y_c, x_d, y_d):
+    return not is_collinear_vals(x_a, y_a, x_b, y_b, x_c, y_c) or \
+        not is_collinear_vals(x_a, y_a, x_b, y_b, x_d, y_d) or \
+        (counter_clockwise(x_a, y_a, x_c, y_c, x_d, y_d) != \
+            counter_clockwise(x_b, y_b, x_c, y_c, x_d, y_d) and \
+            counter_clockwise(x_a, y_a, x_b, y_b, x_c, y_c) != \
+            counter_clockwise(x_a, y_a, x_b, y_b, x_d, y_d)) 
+
 def here(m):
     print m
     return 0

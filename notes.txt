@@ -57,6 +57,10 @@ ASP -----------------
 + scenario 2: 
   :~ go_in_front(focus_agent, V0, V1).[1@1, 1, V0, V1]
 
+
+
+add rule to avoid collisions ent-ent and ent-obj
+
 ---------------------------------------
 :~ step_out_and_wait(V0, V1, corridor, V2).[-1@1, 1, V0, V1, V2]
 :~ give_way(V0, V1, V2, corridor).[-1@2, 2, V0, V1, V2]

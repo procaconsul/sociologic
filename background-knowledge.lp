@@ -123,15 +123,25 @@ go_behind(E1, E2, T) :- E1 != E2,
 
 go_in_front(E1, E2, T) :- go_behind(E2, E1, T).
 
+% wait(E, T1, T2) :- T1 != T2, 
+  % after(T2, T1),
+  % pos(E, T1, P1),
+  % pos(E, T2-1, P2),
+  % distance(P1, P2, D1),
+  % @eq_(D1, "0") == 1,
+  % pos(E, T2, P3),
+  % distance(P1, P3, D2),
+  % @not_eq_(D2, "0") == 1.
+  
+
 overtake(E1, E2, T1) :- behind(E1, E2, T1), 
   in_front(E1, E2, T2), 
   after(T2, T1).
 
 invades_personal_space(E1, E2, T) :- pos(E1, T, P1), 
-  point(P1, X1, Y1), 
   pos(E2, T, P2), 
-  point(P2, X2, Y2), 
-  @distance2d_(X1, Y1, X2, Y2) < personal_distance.
+  distance(P1, P2, D), 
+  @lt_(D, personal_distance) == 1.
 
 squeeze_by_wall(E, W, T) :- pos(E, T, P), 
   point(P, X1, Y1), 
@@ -161,7 +171,8 @@ wait_end_of_talk(E1, E2, E3, T1, T2) :- T1 != T2,
   pos(E1, T2+1, P3),
   not talking(E2, E3, T2+1),
   point(P3, X1, Y1),
-  @distance2d_(X, Y, X1, Y1) > "0".
+  distance(P2, P3, D),
+  @not_eq_(D, "0") == 1.
 
 push_out(E1, E2, C, T) :- step_out_and_wait(E2, E1, C, T).
 
@@ -197,7 +208,8 @@ one_person_width(C) :- corridor(C, W1, W2),
   line_ent(line(W1)), 
   line_ent(line(W2)), 
   sgn_distance(id(default), D, line(W1), line(W2)), 
-  D < two_people_width, W1 != W2.
+  @lt_(D, two_people_width) == 1,
+  W1 != W2.
 
 % assuming corridors are made of walls of the same length
 past_mid(E, C, T) :- path(E, Tb, _, _, L1),
