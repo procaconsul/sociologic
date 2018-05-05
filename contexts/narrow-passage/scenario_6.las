@@ -35,11 +35,6 @@ point(w2_e, "30.0", "10.0").
 corridor(corridor, wall1, wall2).
 
 talking(agent3, agent2, 1).
-talking(agent3, agent2, 2).
-talking(agent3, agent2, 3).
-talking(agent3, agent2, 4).
-talking(agent3, agent2, 5).
-talking(agent3, agent2, 6).
 
 % focus_agent waits until others finish talking.
 % When they end and start moving, focus_agent resumes
@@ -132,12 +127,7 @@ point(w2_e, "30.0", "10.0").
 
 corridor(corridor, wall1, wall2).
 
-talking(agent3, agent2, 1).
-talking(agent3, agent2, 2).
-talking(agent3, agent2, 3).
-talking(agent3, agent2, 4).
-talking(agent3, agent2, 5).
-talking(agent3, agent2, 6).
+talking(agent3, agent2, 1..6).
 
 % focus_agent walks in between others talking
 pos(focus_agent, 1, p1_1).
@@ -229,12 +219,7 @@ point(w2_e, "30.0", "10.0").
 
 corridor(corridor, wall1, wall2).
 
-talking(agent3, agent2, 1).
-talking(agent3, agent2, 2).
-talking(agent3, agent2, 3).
-talking(agent3, agent2, 4).
-talking(agent3, agent2, 5).
-talking(agent3, agent2, 6).
+talking(agent3, agent2, 1..6).
 
 % focus_agent squeezes by the wall to pass the others
 % talking
