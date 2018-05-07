@@ -94,8 +94,8 @@ behind(E1, E2, T) :- E1 != E2, pos(E1, T, P1),
   o_point(P1, X1, Y1, O1), 
   o_point(P2, X2, Y2, O2), 
   point(P3, X3, Y3), 
-  @is_behind(X1, Y1, O1, X2, Y2, O2) == 0, 
-  @is_collinear(X1, Y1, X2, Y2, X3, Y3) == 0. 
+  @is_behind(X1, Y1, O1, X2, Y2, O2) == 1, 
+  @is_collinear(X1, Y1, X2, Y2, X3, Y3) == 1. 
 
 in_front(E1, E2, T) :- behind(E2, E1, T).
 
@@ -116,12 +116,28 @@ after(T1, T2) :- pos(_, T1, _), pos(_, T2, _), T1 > T2.
 
 % should I add a constraint on the distance?
 go_behind(E1, E2, T) :- E1 != E2,
-  path(E1, T, P1, _, L), 
+  path(E1, T, P1_1, P1_2, L), 
   pos(E2, T, P2),
   pos(E2, T-1, P3),
-  incidence(intersects, L, line(E2, P2, P3)).
+  point(P1_1, X1_1, Y1_1),
+  point(P1_2, X1_2, Y1_2),
+  point(P2, X2, Y2),
+  point(P3, X3, Y3),
+  @intersects(X1_1, Y1_1, X1_2, Y1_2, X2, Y2, X3, Y3) == 1.
 
 go_in_front(E1, E2, T) :- go_behind(E2, E1, T).
+
+go_through(E1, Q, I, T) :- not queue(Q, _, T, E1),
+  queue(Q, I, T, E2),
+  queue(Q, I+1, T, E3),
+  path(E1, T, P1_1, P1_2, _),
+  pos(E2, T, P2),
+  pos(E3, T, P3),
+  point(P1_1, X1_1, Y1_1),
+  point(P1_2, X1_2, Y1_2),
+  point(P2, X2, Y2),
+  point(P3, X3, Y3),
+  @intersects(X1_1, Y1_1, X1_2, Y1_2, X2, Y2, X3, Y3) == 1.
 
 % wait(E, T1, T2) :- T1 != T2, 
   % after(T2, T1),
@@ -133,7 +149,6 @@ go_in_front(E1, E2, T) :- go_behind(E2, E1, T).
   % distance(P1, P3, D2),
   % @not_eq_(D2, "0") == 1.
   
-
 overtake(E1, E2, T1) :- behind(E1, E2, T1), 
   in_front(E1, E2, T2), 
   after(T2, T1).
@@ -159,10 +174,10 @@ squeeze_between_conversation(E1, E2, E3, T1) :- not talking(E1, _, _),
   incidence(intersects, line(E2, E3, T1), line(E1, T1)). 
 
 wait_end_of_talk(E1, E2, E3, T1, T2) :- T1 != T2,
+  talking(E2, E3, T1), 
   not talking(E1, _, _),
   not talking(_, E1, _),
   pos(E1, T1, P1),
-  talking(E2, E3, T1), 
   after(T2, T1),
   pos(E1, T2, P2),
   point(P1, X, Y),
@@ -195,8 +210,8 @@ give_way(E1, E2, T, C) :- corridor(C, _, _),
   pos(E2, T+1, P4), 
   point(P3, X3, Y3),
   point(P4, X4, Y4),
-  @is_collinear(X1, Y1, X2, Y2, X4, Y4) == 0,
-  @is_collinear(X3, Y3, X2, Y2, X4, Y4) == 1.
+  @is_collinear(X1, Y1, X2, Y2, X4, Y4) == 1,
+  @is_collinear(X3, Y3, X2, Y2, X4, Y4) == 0.
 
 % ############
 % OTHERS

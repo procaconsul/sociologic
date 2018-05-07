@@ -27,23 +27,19 @@ def is_behind_vals(x1, y1, o1, x2, y2, o2):
         print "{}, {}, {} | {}, {}, {}".format(x1, y1, o1, x2, y2, o2)	
 
     if (o1 != o2 and o1 not in arange(o2 - ANG_TOLERANCE, o2 + ANG_TOLERANCE)):
-        return 1
+        return False
 
     # I probably need to refine this to avoid presence of incorrect/redundant
     # elements in the solution
     if o1 in range(-45, 45):
-      if (x1 < x2):
-        return 0
+        return (x1 < x2)
     if (o1 in range(45, 135)):
-    	if (y1 < y2):
-  	    return 0
+    	return (y1 < y2)
     if (o1 in range(135, 225)):
-        if (x1 > x2):
-            return 0
+        return (x1 > x2)
     if (o1 in range(225, 315)):
-        if (y1 > y2):
-            return 0
-    return 1
+        return (y1 > y2)
+    return False
 
 def is_collinear(_x1, _y1, _x2, _y2, _x3, _y3):
    
@@ -63,16 +59,12 @@ def is_collinear(_x1, _y1, _x2, _y2, _x3, _y3):
 def is_collinear_vals(x1, y1, x2, y2, x3, y3):
     if x2 == x3 and y2 == y3:
         if x1 == x2 or y1 == y2:
-            return 0
-        return 1
+            return True
+        return False
 
     a = abs((x1 * (y2 - y3) + x2 * (y3 - y1) + x3 * (y1 - y2)) / 2)
     
-    if a == 0:
-        if DEBUG:	
-            print "  Collinear"
-        return 0
-    return 1
+    return a == 0
 
 def in_bounds(_x1, _y1, _x2, _y2, _x3, _y3):
     x1 = float(_x1.string)
@@ -91,8 +83,8 @@ def in_bounds_vals(x1, y1, x2, y2, x3, y3):
     ub_y = max(y2, y3)
     
     if (x1 >= lb_x and x1 <= ub_x and y1 >= lb_y and y1 <= ub_y):
-	return 0
-    return 1
+	return True
+    return False
 
 def mid_point_x(_x1, _x2):
     x1 = float(_x1.string)
@@ -180,23 +172,51 @@ def intersect_queue_vals(x1, y1, x2, y2, pts_xs, pts_ys):
     n = len(pts_xs)
 
     for i in range(n-1):
-        if intersects(x1, y1, x2, y2, pts_xs[i], pts_ys[i], pts_xs[i+1],
-                pts_ys[i+1]:
+        if intersects(x1, y1, x2, y2, pts_xs[i], pts_ys[i], pts_xs[i+1], \
+                pts_ys[i+1]):
                 return True
     return False
 
 def counter_clockwise(x1, y1, x2, y2, x3, y3):
     return (y3 - y1) * (x2 - x1) > (y2 - y1) * (x3 - x1)
 
+def intersects(_x_a, _y_a, _x_b, _y_b, _x_c, _y_c, _x_d, _y_d):
+    x_a = float(_x_a.string)
+    y_a = float(_y_a.string)
+    x_b = float(_x_b.string)
+    y_b = float(_y_b.string)
+    x_c = float(_x_c.string)
+    y_c = float(_y_c.string)
+    x_d = float(_x_d.string)
+    y_d = float(_y_d.string)
+    return intersects_vals(x_a, y_a, x_b, y_b, x_c, y_c, x_d, y_d)
+
 # from the idea of Bryce Boe 
 # at http://bryceboe.com/2006/10/23/line-segment-intersection-algorithm/
-def intersects(x_a, y_a, x_b, y_b, x_c, y_c, x_d, y_d):
-    return not is_collinear_vals(x_a, y_a, x_b, y_b, x_c, y_c) or \
-        not is_collinear_vals(x_a, y_a, x_b, y_b, x_d, y_d) or \
-        (counter_clockwise(x_a, y_a, x_c, y_c, x_d, y_d) != \
+def intersects_vals(x_a, y_a, x_b, y_b, x_c, y_c, x_d, y_d):
+    if (x_a == x_b and y_a == y_b) or \
+            (x_c == x_d and y_c == y_d):
+                #  if DEBUG:
+
+                    # TODO add function for warning messages to print it
+                warning_msg("Degenerate Segment!",\
+                            [x_a, y_a, x_b, y_b, x_c, y_c, x_d, y_d])
+                return False
+
+    if (is_collinear_vals(x_c, y_c, x_a, y_a, x_b, y_b) and
+        in_bounds_vals(x_c, y_c, x_a, y_a, x_b, y_b)) or \
+            (is_collinear_vals(x_d, y_d, x_a, y_a, x_b, y_b) and \
+            in_bounds_vals(x_d, y_d, x_a, y_a, x_b, y_b)):
+                print "coll"
+                return True
+
+    return (counter_clockwise(x_a, y_a, x_c, y_c, x_d, y_d) != \
             counter_clockwise(x_b, y_b, x_c, y_c, x_d, y_d) and \
             counter_clockwise(x_a, y_a, x_b, y_b, x_c, y_c) != \
             counter_clockwise(x_a, y_a, x_b, y_b, x_d, y_d)) 
+
+def warning_msg(msg, vals):
+    print msg + " values: " + str(map(lambda e: "%.3f" % e, vals))  
 
 def here(m):
     print m

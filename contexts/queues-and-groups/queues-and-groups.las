@@ -3,7 +3,7 @@
 
 % Scenarios
 
-% #include "contexts/queues-and-groups/scenario_1.las".
+#include "contexts/queues-and-groups/scenario_1.las".
 % #include "contexts/queues-and-groups/scenario_2.las".
 % #include "contexts/queues-and-groups/scenario_3.las".
 % #include "contexts/queues-and-groups/scenario_4.las".
@@ -11,8 +11,8 @@
 
 %%% ORDERINGS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% Context 1, scenario 1
-% #brave_ordering(p2_1A_1, p2_1B_1).
+% Context 3, scenario 1
+#brave_ordering(p3_1A_1, p3_1B_1).
 
 % Context 1, scenario 2
 % #brave_ordering(p2_2A_1, p2_2B_1).
@@ -23,7 +23,7 @@
 %%% Hypothesis Space %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % ModeO scenario 1
-#modeo(1, go_around(const(ent), const(ent_formation), var(time))).
+#modeo(1, squeeze_by_wall(const(ent), var(wall), var(time))).
 #modeo(1, go_through(const(ent), const(ent_formation), var(time))).
 % #modeo(1, overtake(const(ent), const(ent_formation), var(time))).
 
