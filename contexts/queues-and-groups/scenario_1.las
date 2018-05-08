@@ -33,10 +33,10 @@ wall(wall2, w2_s, w2_e).
 point(w2_s, "20.0", "10.0").
 point(w2_e, "35.0", "10.0").
 
-queue(queue1, 1, 1..14, agent2).
-queue(queue1, 2, 1..14, agent3).
-queue(queue1, 3, 1..14, agent4).
-queue(queue1, 4, 1..14, agent5).
+queue(queue, 1, 1..14, agent2).
+queue(queue, 2, 1..14, agent3).
+queue(queue, 3, 1..14, agent4).
+queue(queue, 4, 1..14, agent5).
 
 % focus_agent goes through the queue.
 pos(focus_agent, 1, p1_1).
@@ -212,10 +212,10 @@ wall(wall2, w2_s, w2_e).
 point(w2_s, "20.0", "10.0").
 point(w2_e, "35.0", "10.0").
 
-queue(queue1, 1, 1..14, agent2).
-queue(queue1, 2, 1..14, agent3).
-queue(queue1, 3, 1..14, agent4).
-queue(queue1, 4, 1..14, agent5).
+queue(queue, 1, 1..14, agent2).
+queue(queue, 2, 1..14, agent3).
+queue(queue, 3, 1..14, agent4).
+queue(queue, 4, 1..14, agent5).
 
 % focus_agent goes through the queue.
 pos(focus_agent, 1, p1_1).

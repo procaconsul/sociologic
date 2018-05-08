@@ -1,4 +1,4 @@
-#include "background-knowledge.lp".
+#include "contexts/crossings/contextual-background-knowledge.lp".
 
 
 % Scenarios
