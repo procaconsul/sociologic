@@ -55,10 +55,6 @@ pos(focus_agent, 7, p1_7).
 pos(focus_agent, 8, p1_8).
 pos(focus_agent, 9, p1_9).
 pos(focus_agent, 10, p1_10).
-pos(focus_agent, 11, p1_11).
-pos(focus_agent, 12, p1_12).
-pos(focus_agent, 13, p1_13).
-pos(focus_agent, 14, p1_14).
 
 pos(agent2, 1, p2_1).
 pos(agent2, 2, p2_2).
@@ -70,10 +66,6 @@ pos(agent2, 7, p2_7).
 pos(agent2, 8, p2_8).
 pos(agent2, 9, p2_9).
 pos(agent2, 10, p2_10).
-pos(agent2, 11, p2_11).
-pos(agent2, 12, p2_12).
-pos(agent2, 13, p2_13).
-pos(agent2, 14, p2_14).
 
 pos(agent3, 1, p3_1).
 pos(agent3, 2, p3_2).
@@ -85,10 +77,6 @@ pos(agent3, 7, p3_7).
 pos(agent3, 8, p3_8).
 pos(agent3, 9, p3_9).
 pos(agent3, 10, p3_10).
-pos(agent3, 11, p3_11).
-pos(agent3, 12, p3_12).
-pos(agent3, 13, p3_13).
-pos(agent3, 14, p3_14).
 
 pos(agent4, 1, p4_1).
 pos(agent4, 2, p4_2).
@@ -100,10 +88,6 @@ pos(agent4, 7, p4_7).
 pos(agent4, 8, p4_8).
 pos(agent4, 9, p4_9).
 pos(agent4, 10, p4_10).
-pos(agent4, 11, p4_11).
-pos(agent4, 12, p4_12).
-pos(agent4, 13, p4_13).
-pos(agent4, 14, p4_14).
 
 pos(agent5, 1, p5_1).
 pos(agent5, 2, p5_2).
@@ -115,10 +99,6 @@ pos(agent5, 7, p5_7).
 pos(agent5, 8, p5_8).
 pos(agent5, 9, p5_9).
 pos(agent5, 10, p5_10).
-pos(agent5, 11, p5_11).
-pos(agent5, 12, p5_12).
-pos(agent5, 13, p5_13).
-pos(agent5, 14, p5_14).
 
 pos(agent6, 1,  p6_1).
 pos(agent6, 2,  p6_2).
@@ -288,10 +268,6 @@ pos(focus_agent, 7, p1_7).
 pos(focus_agent, 8, p1_8).
 pos(focus_agent, 9, p1_9).
 pos(focus_agent, 10, p1_10).
-pos(focus_agent, 11, p1_11).
-pos(focus_agent, 12, p1_12).
-pos(focus_agent, 13, p1_13).
-pos(focus_agent, 14, p1_14).
 
 pos(agent2, 1, p2_1).
 pos(agent2, 2, p2_2).
@@ -303,10 +279,6 @@ pos(agent2, 7, p2_7).
 pos(agent2, 8, p2_8).
 pos(agent2, 9, p2_9).
 pos(agent2, 10, p2_10).
-pos(agent2, 11, p2_11).
-pos(agent2, 12, p2_12).
-pos(agent2, 13, p2_13).
-pos(agent2, 14, p2_14).
 
 pos(agent3, 1, p3_1).
 pos(agent3, 2, p3_2).
@@ -318,10 +290,6 @@ pos(agent3, 7, p3_7).
 pos(agent3, 8, p3_8).
 pos(agent3, 9, p3_9).
 pos(agent3, 10, p3_10).
-pos(agent3, 11, p3_11).
-pos(agent3, 12, p3_12).
-pos(agent3, 13, p3_13).
-pos(agent3, 14, p3_14).
 
 pos(agent4, 1, p4_1).
 pos(agent4, 2, p4_2).
@@ -333,10 +301,6 @@ pos(agent4, 7, p4_7).
 pos(agent4, 8, p4_8).
 pos(agent4, 9, p4_9).
 pos(agent4, 10, p4_10).
-pos(agent4, 11, p4_11).
-pos(agent4, 12, p4_12).
-pos(agent4, 13, p4_13).
-pos(agent4, 14, p4_14).
 
 pos(agent5, 1, p5_1).
 pos(agent5, 2, p5_2).
@@ -348,10 +312,6 @@ pos(agent5, 7, p5_7).
 pos(agent5, 8, p5_8).
 pos(agent5, 9, p5_9).
 pos(agent5, 10, p5_10).
-pos(agent5, 11, p5_11).
-pos(agent5, 12, p5_12).
-pos(agent5, 13, p5_13).
-pos(agent5, 14, p5_14).
 
 pos(agent6, 1,  p6_1).
 pos(agent6, 2,  p6_2).

@@ -1,5 +1,3 @@
-% #include "spatial.lp".
-% #include "sl-interface.py".
 #include "background-knowledge.lp".
 
 %%% Background %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
