@@ -1,4 +1,4 @@
-#include "background-knowledge.lp".
+#include "common/background-knowledge.lp".
 
 %%% Background %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -51,7 +51,7 @@ give_way(E1, E2, T, C) :- corridor(C, _, _),
   pos(E2, T, P2),
   o_point(P1, X1, Y1, O1),
   o_point(P2, X2, Y2, O2),
-  @opposite_directions(O1, O2) == 0,
+  @opposite_directions(O1, O2) == 1,
   pos(E1, T+1, P3), 
   pos(E2, T+1, P4), 
   point(P3, X3, Y3),

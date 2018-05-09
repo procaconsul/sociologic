@@ -71,11 +71,16 @@ ASP -----------------
 + scenario 4:
   :~ go_through_g(focus_agent, group, V0).[1@1, 1, V0]
 
+-----------------
+
++ results whole context 2:
+  :~ go_behind(focus_agent, V0, V1).[-1@1, 1, V0, V1]
 
 
 1. add rule to avoid collisions ent-ent and ent-obj
 2. go_behind/go_in_front are made ad hoc for the crosssing,
   as they work on the intersection between paths of two *moving* entities
+3. difference between cautious and brave 1.3
 ---------------------------------------
 :~ step_out_and_wait(V0, V1, corridor, V2).[-1@1, 1, V0, V1, V2]
 :~ give_way(V0, V1, V2, corridor).[-1@2, 2, V0, V1, V2]

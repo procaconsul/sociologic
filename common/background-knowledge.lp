@@ -1,5 +1,5 @@
-#include "spatial.lp".
-#include "sl-interface.py".
+#include "common/spatial.lp".
+#include "common/sl-interface.py".
 
 %%% Background %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -75,7 +75,7 @@ distance(P1, P2, D) :-  point(P1, X1, Y1),
 inside(E, C, T) :- pos(E, T, P), 
   point(P, X, Y),
   polygon(C, VS),
-  @point_inside_polygon(X, Y, VS) == 0.
+  @point_inside_polygon(X, Y, VS) == 1.
 
 after(T1, T2) :- pos(_, T1, _), pos(_, T2, _), T1 > T2.
 

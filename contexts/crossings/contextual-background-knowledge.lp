@@ -1,4 +1,4 @@
-#include "background-knowledge.lp".
+#include "common/background-knowledge.lp".
 
 %%% Background %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 

@@ -1,9 +1,9 @@
-import backend.{EnvironmentParser, Point, Wall}
+import backend._
 import org.scalatest.{FlatSpec, Matchers}
 
-class EnvironmentParserSpec extends FlatSpec with Matchers {
+class PredicateParserSpec extends FlatSpec with Matchers {
 
-  val environmentParser = new EnvironmentParser
+  import PredicateParser._
 
   "The Environment Parser" should "extract points from a valid list of environment lp lines" in {
     val lines = List(
@@ -20,7 +20,7 @@ class EnvironmentParserSpec extends FlatSpec with Matchers {
       "p3" -> Point(3.3, 3.3)
     )
 
-    val got = environmentParser.parsePoints(lines)
+    val got = parsePoints(lines)
     got shouldEqual expected
   }
 
@@ -29,7 +29,7 @@ class EnvironmentParserSpec extends FlatSpec with Matchers {
 
     val expected = Map()
 
-    val got = environmentParser.parsePoints(lines)
+    val got = parsePoints(lines)
     got shouldEqual expected
   }
 
@@ -50,7 +50,35 @@ class EnvironmentParserSpec extends FlatSpec with Matchers {
 
     val expected = List(Wall("wall1", Point(1.1, 1.1), Point(2.2, 2.2)))
 
-    val got = environmentParser.parseWall(lines, points)
-    got shouldEqual expected
+    val got = parseWall(lines, points)
+    got should contain theSameElementsAs expected
+  }
+
+  it should "extract agents' positions correctly from well-formed lp lines" in {
+    val lines = List(
+      "pos(agent1, 1, p1).",
+      "pos(agent1, 2, p2).",
+      "pos(agent2, 1, p3).",
+      "wall(wall1)."
+    )
+
+    val points = Map("p1" -> OrientedPoint(1.1, 1.1, 10.0),
+      "p2" -> OrientedPoint(2.2, 2.2, 20.0),
+      "p3" -> OrientedPoint(3.3, 3.3, 30.0)
+    )
+
+    val expected = List(
+      Agent("agent1", Map(
+        1 -> OrientedPoint(1.1, 1.1, 10.0),
+        2 -> OrientedPoint(2.2, 2.2, 20.0))
+      ),
+      Agent("agent2", Map(
+        1 -> OrientedPoint(3.3, 3.3, 30.0))
+      )
+    )
+
+    val got = parsePos(lines, points)
+    got should contain theSameElementsAs expected
+
   }
 }
