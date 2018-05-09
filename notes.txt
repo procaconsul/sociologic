@@ -68,7 +68,8 @@ ASP -----------------
 + scenario 3:
   :~ squeeze_by_wall(focus_agent, V0, V1).[-1@1, 1, V0, V1]
   :~ go_through_g(focus_agent, group, V0).[-1@1, 2, V0]
-
++ scenario 4:
+  :~ go_through_g(focus_agent, group, V0).[1@1, 1, V0]
 
 
 
