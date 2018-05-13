@@ -2,7 +2,7 @@ package backend
 
 object FileHandler {
 
-  def bufferSource(filePath: String): Iterator[String] = {
-    io.Source.fromFile(filePath).getLines
+  def bufferSource(filePath: String): List[String] = {
+    io.Source.fromFile(filePath).getLines.toList.filter(_.nonEmpty)
   }
 }

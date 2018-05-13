@@ -73,9 +73,13 @@ ASP -----------------
 
 -----------------
 
+
+
 + results whole context 2:
   :~ go_behind(focus_agent, V0, V1).[-1@1, 1, V0, V1]
 
+
+* Use --simple
 
 1. add rule to avoid collisions ent-ent and ent-obj
 2. go_behind/go_in_front are made ad hoc for the crosssing,
