@@ -2,7 +2,7 @@ package backend
 
 object PredicateParser {
 
-  import PredicateTemplates._
+  import LPTemplates._
 
   def parse(lines: Seq[String]): Seq[Predicate] = {
     lines.flatMap {
@@ -15,13 +15,25 @@ object PredicateParser {
     }
   }
 
-  def parsePartialInterpretations(lines: Seq[String]): Seq[Seq[Predicate]] = {
+  def parseExampleNames(lines: Seq[String]): Seq[String] =
+    lines flatMap  {
+      case partialInterpBeginning(name) => Some(name)
+      case _ => None
+
+    }
+
+
+  /**
+    * @param lines
+    * @return list of lists, each containing the parsed predicates of a partial interpretation
+    */
+  def parsePredicatesInExamples(lines: Seq[String]): Seq[Seq[Predicate]] = {
     if (lines.indexWhere(partialInterpBeginning.pattern.matcher(_).matches) < 0)
       Nil
     else {
       val sliced = lines.drop(lines.indexWhere(partialInterpBeginning.pattern.matcher(_).matches) + 1)
       val partialInterp = sliced.takeWhile(!partialInterpEnd.pattern.matcher(_).matches)
-      parse(partialInterp) :: parsePartialInterpretations(sliced).toList
+      parse(partialInterp) :: parsePredicatesInExamples(sliced).toList
     }
   }
 }

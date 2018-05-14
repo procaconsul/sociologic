@@ -27,26 +27,35 @@ object PredicateProcessor {
   def positionsPerAgent(predicates: Seq[Predicate]): Map[String, Seq[Pos]] = {
     predicates collect {
       case p: Pos => p
-    } groupBy(_.agentName)
+    } groupBy (_.agentName)
   }
 
   def resolveAgentPositions(positions: Map[String, Seq[Pos]],
                             pointsMap: Map[String, OrientedPoint]): Seq[ResolvedAgentPositions] = {
-    positions map { case (agent, positions) =>
+    positions map { case (agent, agentPositions) =>
 
       // check references
-      positions.foreach(pos => checkReferences(pos.id, Seq(pos.pointName), pointsMap))
+      agentPositions.foreach(pos => checkReferences(pos.id, Seq(pos.pointName), pointsMap))
 
-      val points = positions
+      val points = agentPositions
         .sortBy(_.time)
         .map(pos => pointsMap(pos.pointName))
-        ResolvedAgentPositions(agent, points)
+      ResolvedAgentPositions(agent, points)
     } toSeq
   }
 
   def checkReferences(forPredicate: String, refs: Seq[String], refMap: Map[String, Predicate]): Unit = {
     refs foreach { ref =>
       if (refMap.get(ref).isEmpty) throw PredicateResolutionException(forPredicate, ref)
+    }
+  }
+
+  def partialInterpretations(exampleNames: Seq[String],
+                             examplePredicates: Seq[Seq[Predicate]]): Seq[PartialInterpretation] = {
+    exampleNames zip examplePredicates map { case (name, preds) =>
+      val positions = resolveAgentPositions(positionsPerAgent(preds), orientedPoints(preds))
+      val walls = resolveWalls(preds, plainPoints(preds))
+      PartialInterpretation(name, positions, walls)
     }
   }
 

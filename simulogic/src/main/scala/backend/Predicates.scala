@@ -26,5 +26,7 @@ case class Agent(id: String) extends Predicate {
   override def render: String = s"agent($id)"
 }
 
-case class PartialInterpretation(id: String, content: Seq[Predicate])
+case class PartialInterpretation(id: String,
+                                 resolvedPositions: Seq[ResolvedAgentPositions],
+                                 resolvedWalls: Seq[ResolvedWall])
 

@@ -122,8 +122,41 @@ class PredicateProcessorSpec extends FlatSpec with Matchers {
     val posPerAgent = positionsPerAgent(predicates)
 
     a [PredicateResolutionException] should be thrownBy resolveAgentPositions(posPerAgent, points)
-
   }
 
+  it should "create PartialInterpretations from names and predicates" in {
+    val names = Seq("pi1", "pi2")
+    val predicates = Seq(
+      Seq(
+        Wall("wall1", "p1", "p2"),
+        PlainPoint("p1", 1.1, 1.1),
+        PlainPoint("p2", 2.2, 2.2)
+      ),
+      Seq(
+        Wall("wall2", "p4", "p5"),
+        PlainPoint("p4", 4.4, 4.4),
+        PlainPoint("p5", 5.5, 5.5),
+        Agent("smith"),
+        Pos("smith", 1, "p1"),
+        OrientedPoint("p1", 1.1, 1.1, 1.1)
+      )
+    )
+
+    val actual = partialInterpretations(names, predicates)
+    val expected = Seq(
+      PartialInterpretation(
+        "pi1",
+        Seq(),
+        Seq(ResolvedWall("wall1", PlainPoint("p1", 1.1, 1.1), PlainPoint("p2", 2.2, 2.2)))
+      ),
+      PartialInterpretation(
+          "pi2",
+          Seq(ResolvedAgentPositions("smith", Seq(OrientedPoint("p1", 1.1, 1.1, 1.1)))),
+          Seq(ResolvedWall("wall2", PlainPoint("p4", 4.4, 4.4), PlainPoint("p5", 5.5, 5.5)))
+      )
+    )
+
+    actual should contain theSameElementsAs expected
+  }
 
 }

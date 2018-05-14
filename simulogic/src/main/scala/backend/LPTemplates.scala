@@ -1,6 +1,10 @@
 package backend
 
-object PredicateTemplates {
+/**
+  * This object collects the regexes that the parser uses to extract values from the predicates and directives
+  * of ILASP Scenarios.
+  */
+object LPTemplates {
   final val wallPattern  = "wall\\(([A-Za-z0-9_]+)\\,\\s?([A-Za-z0-9_]+)\\,\\s?([A-Za-z0-9_]+)\\)\\.".r
   final val pointPattern = "point\\(([A-Za-z0-9_]+)\\,\\s?\"([0-9]+\\.[0-9]+)\"\\,\\s?\"([0-9]+\\.[0-9]+)\"\\)\\.".r
   final val orientedPointPattern = ("o_point\\(([A-Za-z0-9_]+)\\,\\s?\"([0-9]+\\.[0-9]+)\"\\," +
