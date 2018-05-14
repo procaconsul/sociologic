@@ -66,7 +66,21 @@ class PredicateProcessorSpec extends FlatSpec with Matchers {
     actual should contain theSameElementsAs expected
   }
 
-  it should "associate agents and points in ResolvedWalls" in {
+  it should "throw PredicateResolutionException if point referenced by wall is not present" in {
+    val predicates = Seq(PlainPoint("p1", 1.1, 1.1),
+      Wall("wall1", "p1", "p2"),
+      Wall("wall2", "p4", "p5"),
+      PlainPoint("p4", 4.4, 4.4),
+      PlainPoint("p5", 5.5, 5.5)
+    )
+
+    val points = plainPoints(predicates)
+
+    a [PredicateResolutionException] should be thrownBy resolveWalls(predicates, points)
+
+  }
+
+  it should "associate agents and points in ResolvedAgents" in {
     val predicates = Seq(OrientedPoint("p1", 1.1, 1.1, 1.1),
       OrientedPoint("p2", 2.2, 2.2, 2.2),
       OrientedPoint("p3", 3.3, 3.3, 3.3),
@@ -95,7 +109,21 @@ class PredicateProcessorSpec extends FlatSpec with Matchers {
     actual should contain theSameElementsAs expected
   }
 
+  it should "throw PredicateResolutionException if point referenced by pos is not present" in {
+    val predicates = Seq(OrientedPoint("p1", 1.1, 1.1, 1.1),
+      OrientedPoint("p3", 3.3, 3.3, 3.3),
+      Agent("smith"),
+      Pos("smith", 1, "p1"),
+      Pos("smith", 2, "p2"),
+      PlainPoint("p5", 5.5, 5.5)
+    )
 
+    val points = orientedPoints(predicates)
+    val posPerAgent = positionsPerAgent(predicates)
+
+    a [PredicateResolutionException] should be thrownBy resolveAgentPositions(posPerAgent, points)
+
+  }
 
 
 }
