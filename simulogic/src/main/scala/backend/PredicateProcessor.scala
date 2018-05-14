@@ -57,7 +57,7 @@ object PredicateProcessor {
         val point1Opt = pointsMap.get(pt1)
         val point2Opt = pointsMap.get(pt2)
         checkReferences(wall, Seq(pt1, pt2), pointsMap)
-        ResolvedWall(wall, point1Opt.get.asInstanceOf[PlainPoint], point2Opt.get.asInstanceOf[PlainPoint])
+        ResolvedWall(wall, point1Opt.get, point2Opt.get)
     }
   }
 }

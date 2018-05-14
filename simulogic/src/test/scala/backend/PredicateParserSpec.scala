@@ -54,4 +54,33 @@ class PredicateParserSpec extends FlatSpec with Matchers {
     actual should contain theSameElementsAs expected
   }
 
+  it should "correctly parse partial interpretations in separated lists of predicates" in {
+    val lines = List(
+      "#pos(pi1, {}, {}, {",
+      "wall(wall1, p1, p2).",
+      "point(p1, \"1.1\", \"1.1\").",
+      "point(p2, \"2.2\", \"2.2\").",
+      "}).",
+      " ",
+      "#pos(pi2, {}, {}, {",
+      "wall(wall2, p3, p4).",
+      "point(p3, \"3.3\", \"3.3\").",
+      "point(p4, \"4.4\", \"4.4\").",
+      "})."
+    )
+
+    val actual = parsePartialInterpretations(lines)
+    val expected = List(
+      List(
+        Wall("wall1", "p1", "p2"),
+        PlainPoint("p1", 1.1, 1.1),
+        PlainPoint("p2", 2.2, 2.2)
+      ), List(
+        Wall("wall2", "p3", "p4"),
+        PlainPoint("p3", 3.3, 3.3),
+        PlainPoint("p4", 4.4, 4.4)
+      ))
+
+    actual should contain theSameElementsAs expected
+  }
 }

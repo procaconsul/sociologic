@@ -5,7 +5,6 @@ trait Predicate {
   def render: String
 }
 
-
 case class PlainPoint(id: String, x: Double, y: Double) extends Predicate {
   override def render: String = s"""point($id, \"$x\", \"$y\")"""
 }
@@ -26,4 +25,6 @@ case class Pos(agentName: String, time: Int, pointName: String) extends Predicat
 case class Agent(id: String) extends Predicate {
   override def render: String = s"agent($id)"
 }
+
+case class PartialInterpretation(id: String, content: Seq[Predicate])
 
