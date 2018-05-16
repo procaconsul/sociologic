@@ -3,9 +3,10 @@ package frontend
 import backend.{PlainPoint, ResolvedWall}
 import scalafx.application.JFXApp
 import scalafx.application.JFXApp.PrimaryStage
-import scalafx.geometry.Pos
+import scalafx.collections.ObservableBuffer
+import scalafx.geometry.{Orientation, Pos}
 import scalafx.scene.Scene
-import scalafx.scene.control.{Button, Label}
+import scalafx.scene.control._
 import scalafx.scene.layout.{BorderPane, HBox, Pane}
 import scalafx.scene.paint.Color
 import scalafx.scene.shape.Line
@@ -23,8 +24,16 @@ class UI extends JFXApp {
 
   val bounds = Screen.primary.getBounds
 
-  val pane = new Pane {
+  val pane1 = new Pane {
     children = lines
+  }
+
+  val pane2 = new Pane {
+    children = lines
+  }
+
+  val listView = new ListView[String] {
+    items = new ObservableBuffer[String]()
   }
 
   stage = new PrimaryStage {
@@ -34,22 +43,22 @@ class UI extends JFXApp {
     scene = new Scene(600, 400) {
       fill = Color.White
       root = new BorderPane {
-        top = new Label {
-          text = "<Context name here>"
-          alignmentInParent = Pos.Center
+        center = new SplitPane {
+          orientation = Orientation.Horizontal
+          items.addAll(listView, listView)
         }
-        center = pane
-        bottom = new HBox(10) {
-          children = List(
+        bottom = new ButtonBar {
+          buttons = Seq(
             new Button {
               text = "Play/Pause"
               // onAction = handle { anim.playPause() }
-            })
+            }
+          )
         }
       }
     }
   }
-}
+  g
 
 object Main extends App {
   val ui = new UI
