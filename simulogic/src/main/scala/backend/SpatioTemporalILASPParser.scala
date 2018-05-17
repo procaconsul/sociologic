@@ -7,7 +7,7 @@ object SpatioTemporalILASPParser {
   import SpatioTemporalILASPLanguage._
 
   def parsePredicates(lines: Seq[String]): Seq[Predicate] = {
-    lines.flatMap {
+    lines flatMap {
       case pointPattern(name, x, y)            => Some(Point(name, x.toDouble, y.toDouble))
       case orientedPointPattern(name, x, y, o) => Some(Point(name, x.toDouble, y.toDouble, o.toDouble))
       case agentPattern(name)                  => Some(Agent(name))
@@ -20,9 +20,8 @@ object SpatioTemporalILASPParser {
   def parseMetadata(lines: Seq[String]): Map[String, String] = {
 
     def verifyMetadata(param: String, value: String): Unit = {
-      if (!metadataParams.contains(param)) throw InvalidMetadataException(param, value)
-      if (param.matches("centre[xy]")
-        && !value.matches("\\d+\\.?\\d+")) throw InvalidMetadataException(param, value)
+      if (!metadataParams.keySet.contains(param)) throw InvalidMetadataException(param, value)
+      if (!value.matches(metadataParams(param))) throw InvalidMetadataException(param, value)
     }
 
     lines flatMap {
