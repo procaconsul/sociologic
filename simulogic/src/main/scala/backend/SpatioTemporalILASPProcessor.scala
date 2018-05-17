@@ -13,37 +13,17 @@ case class ResolvedWall(id: String, points: Seq[Point]) extends ResolvedComposit
 
 case class PartialInterpretation(id: String,
                                  entities: Seq[ResolvedCompositePredicate],
-                                 centre: Point) {
-
-  /**
-    * Re-centres all the points of the entities wrt to newCentre
-    * TODO this method could be removed in a more appropriate object
-    * @param newCentre
-    * @return all the entities with points adjusted to the new centre
-    */
-  def recentreEntities(newCentre: Point): Seq[ResolvedCompositePredicate] = {
-    if (centre.x == centre.y && centre.x == 0.0) return entities
-
-    entities map {
-      case entity@ResolvedWall(wall, points) =>
-        val newPoints = entity.points map (_.move(centre, newCentre))
-        ResolvedWall(wall, newPoints)
-      case entity@ResolvedAgentPositions(agent, points) =>
-        val newPoints = entity.points map (_.move(centre, newCentre))
-        ResolvedAgentPositions(agent, newPoints)
-    }
-  }
-}
+                                 centre: Point)
 
 object SpatioTemporalILASPProcessor {
 
+  val DEFAULT_INTERPRETATION_NAME = "UNSPECIFIED_NAME"
+  val DEFAULT_COORD = "0.0"
+
   def idFromMetadata(metadata: Map[String, String]) = {
-    val DEFAULT_INTERPRETATION_NAME = "UNSPECIFIED_NAME"
     metadata.getOrElse("name", DEFAULT_INTERPRETATION_NAME)
   }
-
   def centreFromMetadata(metadata: Map[String, String]) = {
-    val DEFAULT_COORD = "0.0"
     val name = s"centre_of_${idFromMetadata(metadata)}"
     Point(
       name, metadata.getOrElse("centrex", DEFAULT_COORD).toDouble,

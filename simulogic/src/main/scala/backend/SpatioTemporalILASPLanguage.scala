@@ -17,7 +17,7 @@ object SpatioTemporalILASPLanguage {
   // Interpretation Metadata -----------------------------------------------------------------
   final val STRING_FORMAT = "[A-Za-z_\\d]+"
   final val NUMBER_FORMAT = "\\d+\\.?\\d+"
-  final val metadataPattern = s"%\\s?:([a-z]+)=($STRING_FORMAT|$STRING_FORMAT)".r
+  final val metadataPattern = s"%\\s?:([a-z]+)=($STRING_FORMAT|$NUMBER_FORMAT)".r
 
   final val metadataParams = Map(
     "name" -> STRING_FORMAT,
@@ -25,6 +25,8 @@ object SpatioTemporalILASPLanguage {
     "centrey" -> NUMBER_FORMAT
   )
   // -------------------------------------------------------------------------------------------
+
+  final val pointOfView = "focus_agent"
 
   final val partialInterpBeginning = "#pos\\(([A-Za-z0-9_]+)(?:@\\d+)?[\\,\\s?\\{\\}]{0,11}".r
   final val partialInterpEnd = "\\}\\).".r

@@ -53,7 +53,7 @@ object SpatioTemporalILASPParser {
     else {
       val sliced = lines.drop(lines.indexWhere(beginningPattern.pattern.matcher(_).matches) + 1)
       val partialInterp = sliced.takeWhile(!endPattern.pattern.matcher(_).matches)
-      parser(partialInterp) :: parseInterpretations(sliced, beginningPattern, endPattern)(parser).toList
+      parser(partialInterp) +: parseInterpretations(sliced, beginningPattern, endPattern)(parser)
     }
   }
 }
