@@ -13,6 +13,12 @@
 
 #pos(p1_5A_1, {}, {}, {
 
+% METADATA
+% :name=p1_5A_1
+% :centrex=22.5
+% :centrey=11.0
+
+
 % Option A
 
 %%%% Agents %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -118,6 +124,12 @@ o_point(p3_12, "8.051", "11.000", "180.0").
 
 #pos(p1_5B_1, {}, {}, {
 
+% METADATA
+% :name=p1_5B_1
+% :centrex=22.5
+% :centrey=11.0
+
+
 % Option B
 
 %%%% Agents %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -197,6 +209,12 @@ o_point(p3_8, "21.051", "11.000", "180.0").
 }).
 
 #pos(p1_5C_1, {}, {}, {
+
+% METADATA
+% :name=p1_5C_1
+% :centrex=22.5
+% :centrey=11.0
+
 
 % Option C
 
