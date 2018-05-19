@@ -10,20 +10,40 @@ case class ResolvedAgentPositions(agent: String, points: Seq[Point]) extends Res
 
 case class ResolvedWall(id: String, points: Seq[Point]) extends ResolvedCompositePredicate
 
+case class Scenario(id: String, predicates: Seq[ResolvedCompositePredicate], centre: Point) {
+  def retrieve[T <: ResolvedCompositePredicate](): Seq[T] = predicates collect { case p: T => p }
 
-case class PartialInterpretation(id: String,
-                                 entities: Seq[ResolvedCompositePredicate],
-                                 centre: Point)
+  /**
+    * Re-centres all the points of the entities wrt to newCentre
+    * @param newCentre
+    * @return all the entities with points adjusted to the new centre
+    */
+  def recentre(newCentre: Point): Seq[ResolvedCompositePredicate] = {
+    if (centre.x == centre.y &&
+      centre.x == 0.0)
+      return predicates
+
+    predicates map {
+      case ResolvedWall(wall, points) =>
+        val newPoints = points map (_.move(centre, newCentre))
+        ResolvedWall(wall, newPoints)
+      case ResolvedAgentPositions(agent, points) =>
+        val newPoints = points map (_.move(centre, newCentre))
+        ResolvedAgentPositions(agent, newPoints)
+    }
+  }
+}
 
 object SpatioTemporalILASPProcessor {
 
   val DEFAULT_INTERPRETATION_NAME = "UNSPECIFIED_NAME"
   val DEFAULT_COORD = "0.0"
 
-  def idFromMetadata(metadata: Map[String, String]) = {
+  def idFromMetadata(metadata: Map[String, String]): String = {
     metadata.getOrElse("name", DEFAULT_INTERPRETATION_NAME)
   }
-  def centreFromMetadata(metadata: Map[String, String]) = {
+
+  def centreFromMetadata(metadata: Map[String, String]): Point = {
     val name = s"centre_of_${idFromMetadata(metadata)}"
     Point(
       name, metadata.getOrElse("centrex", DEFAULT_COORD).toDouble,
@@ -31,15 +51,15 @@ object SpatioTemporalILASPProcessor {
     )
   }
 
-  def partialInterpretations(metadataPerExample: Seq[Map[String, String]],
-                             predicatesPerExample: Seq[Seq[Predicate]]): Seq[PartialInterpretation] = {
+  def simulations(metadataPerExample: Seq[Map[String, String]],
+                  predicatesPerExample: Seq[Seq[Predicate]]): Seq[Scenario] = {
     metadataPerExample zip predicatesPerExample map { case (metadata, preds) =>
       val positions = resolveAgentPositions(positionsPerAgent(preds), pointsMap(preds))
       val walls = resolveWalls(preds, pointsMap(preds))
 
-      PartialInterpretation(
+      Scenario(
         id = idFromMetadata(metadata),
-        entities = positions ++ walls,
+        predicates = positions ++ walls,
         centre = centreFromMetadata(metadata))
     }
   }

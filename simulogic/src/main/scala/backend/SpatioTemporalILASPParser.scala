@@ -32,19 +32,6 @@ object SpatioTemporalILASPParser {
     } toMap
   }
 
-  def parseMetadataInExamples(lines: Seq[String]): Seq[Map[String, String]] = {
-    parseInterpretations(lines)(parseMetadata)
-  }
-
-  /**
-    * @param lines
-    * @return list of lists, each containing the parsed predicates of a partial interpretation
-    */
-  def parsePredicatesInExamples(lines: Seq[String]): Seq[Seq[Predicate]] = {
-    parseInterpretations(lines)(parsePredicates)
-  }
-
-
   def parseInterpretations[T](lines: Seq[String],
                            beginningPattern: Regex = partialInterpBeginning,
                            endPattern: Regex = partialInterpEnd)(parser: Seq[String] => T): Seq[T] = {

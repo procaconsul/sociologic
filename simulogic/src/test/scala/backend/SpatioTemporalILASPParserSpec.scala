@@ -69,7 +69,7 @@ class SpatioTemporalILASPParserSpec extends FlatSpec with Matchers {
       "})."
     )
 
-    val actual = parsePredicatesInExamples(lines)
+    val actual = parseInterpretations(lines)(parsePredicates)
     val expected = List(
       List(
         Wall("wall1", "p1", "p2"),
@@ -126,7 +126,7 @@ class SpatioTemporalILASPParserSpec extends FlatSpec with Matchers {
       "})."
     )
 
-    val actual = parseMetadataInExamples(lines)
+    val actual = parseInterpretations(lines)(parseMetadata)
     val expected = Seq(
       Map("name" -> "p1_2A_1", "centrex" -> "12", "centrey" -> "3.4"),
       Map("name" -> "p1_2B_1", "centrex" -> "11", "centrey" -> "2.4")

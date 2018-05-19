@@ -127,14 +127,14 @@ class SpatioTemporalILASPProcessorSpec extends FlatSpec with Matchers {
       )
     )
 
-    val actual = partialInterpretations(metadata, predicates)
+    val actual = simulations(metadata, predicates)
     val expected = Seq(
-      PartialInterpretation(
+      Scenario(
         "pi1",
         Seq(ResolvedWall("wall1", Seq(Point("p1", 1.1, 1.1), Point("p2", 2.2, 2.2)))),
         Point("centre_of_pi1", 0.0, 0.0)
       ),
-      PartialInterpretation(
+      Scenario(
           "pi2",
           Seq(
             ResolvedAgentPositions("smith", Seq(Point("p1", 1.1, 1.1, 1.1))),
