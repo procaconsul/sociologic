@@ -9,6 +9,6 @@ object Main extends App {
   val fileMetadata = parseInterpretations(bufferedSourceFile)(parseMetadata)
   val filePredicates = parseInterpretations(bufferedSourceFile)(parsePredicates)
   val scenarios = simulations(fileMetadata, filePredicates)
-  
+
 
 }

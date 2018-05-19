@@ -162,9 +162,8 @@ class Canvas extends JFXApp {
   }
 }
 
-
 object Main extends App {
-  val ui = new UI
+  val ui = new Canvas
   ui.main(null)
 }
 
@@ -177,96 +176,13 @@ object PredicateRendering {
       new Line {
         stroke = Color.web("BLACK", 0.7)
         strokeWidth = 2
-        startX = wall.points.head.x
-        startY = wall.points.head.y
-        endX = wall.points.last.x
-        endY = wall.points.last.y
+        startX = wall.points.head.x * SCALING_FACTOR
+        startY = wall.points.head.y * SCALING_FACTOR
+        endX = wall.points.last.x * SCALING_FACTOR
+        endY = wall.points.last.y * SCALING_FACTOR
       }
     }
   }
 }
 
-
-import scalafx.Includes._
-import scalafx.animation.Animation.Status
-import scalafx.animation.PathTransition.OrientationType
-import scalafx.animation.{PathTransition, Timeline}
-import scalafx.application.JFXApp
-import scalafx.application.JFXApp.PrimaryStage
-import scalafx.scene.Scene
-import scalafx.scene.control.Button
-import scalafx.scene.layout.HBox
-import scalafx.scene.paint.Color
-import scalafx.scene.shape.{Ellipse, MoveTo, Path}
-import scalafx.util.Duration
-
-object MetronomePathTransitionMain extends JFXApp {
-
-  val ellipse = new Ellipse {
-    centerX = 100
-    centerY = 50
-    radiusX = 4
-    radiusY = 8
-    fill = Color.Blue
-  }
-
-  val anim = new PathTransition {
-    duration = Duration(4000.0)
-    node = ellipse
-    path = new Path {
-      elements = List(
-        MoveTo(100, 50),
-        MoveTo(300, 50),
-        MoveTo(400, 50)
-        //        ArcTo(350, 350, 0, 300, 50, largeArcFlag = false, sweepFlag = true)
-      )
-    }
-    orientation = OrientationType.OrthogonalToTangent
-    //    interpolator = Interpolator.Linear
-    autoReverse = true
-    cycleCount = Timeline.Indefinite
-  }
-
-  stage = new PrimaryStage {
-    title = "Metronome using PathTransition"
-    scene = new Scene(400, 500) {
-      content = List(
-        ellipse,
-        new HBox {
-          layoutX = 60
-          layoutY = 420
-          spacing = 10
-          // NOTE: the `disable` bindings below compare value of a property to JavaFX constant
-          children = List(
-            new Button {
-              text = "Start"
-              onAction = handle {
-                anim.playFromStart()
-              }
-              disable <== (anim.status =!= Status.Stopped.delegate)
-            },
-            new Button {
-              text = "Pause"
-              onAction = handle {
-                anim.pause()
-              }
-              disable <== (anim.status =!= Status.Running.delegate)
-            }
-            //            ,
-            //            new Button {
-            //              text = "Resume"
-            //              onAction = handle {anim.play()}
-            //              disable <== (anim.status =!= Status.Paused.delegate)
-            //            },
-            //            new Button {
-            //              text = "Stop"
-            //              onAction = handle {anim.stop()}
-            //              disable <== (anim.status === Status.Stopped.delegate)
-            //            }
-          )
-        }
-      )
-    }
-  }
-}
 
