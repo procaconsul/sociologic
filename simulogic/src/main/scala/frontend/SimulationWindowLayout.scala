@@ -15,9 +15,7 @@ object SimulationWindowLayout {
   def buttonBar(animations: AnimationBatch): ToolBar = {
     new ToolBar {
       items = Seq(
-        new Pane {
-          hgrow = Priority.Always
-        },
+        paddingPane,
         playStopButton(animations),
         verticalSeparator,
         slider(animations),
@@ -58,7 +56,7 @@ object SimulationWindowLayout {
     orientation = Orientation.Vertical
   }
 
-  private val paddingPane = new Pane {
+  private def paddingPane = new Pane {
     hgrow = Priority.Always
   }
 

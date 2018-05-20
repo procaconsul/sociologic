@@ -24,14 +24,16 @@ class UI(model: Seq[Scenario2DRepresentation]) extends JFXApp {
   }
 
   val rightPane = tabsPane(model)
+  println(rightPane.maxWidth)
+  println(rightPane.height)
 
   val anim = animations(model)
 
   val SCREEN: Rectangle2D = Screen.primary.getBounds
 
   stage = new PrimaryStage {
-    width = SCREEN.getWidth
-    height = SCREEN.getHeight
+    width = SCENE_WIDTH
+    height = SCENE_HEIGHT
     title = TITLE
     scene = new Scene(SCENE_WIDTH, SCENE_HEIGHT) {
       fill = Color.White
@@ -46,12 +48,12 @@ class UI(model: Seq[Scenario2DRepresentation]) extends JFXApp {
 object UI {
 
   val TITLE = "Simulogic"
-  val SCENE_WIDTH = 600
-  val SCENE_HEIGHT = 400
+  val SCENE_WIDTH = 800
+  val SCENE_HEIGHT = 600
 
   def centreOfSimulationWindow: Point = {
-    val x = SCENE_WIDTH / 10 * 7
-    val y = SCENE_HEIGHT
+    val x = 250
+    val y = 250
     Point("window-centre", x, y)
   }
 }

@@ -4,11 +4,11 @@ import backend._
 import scalafx.scene.paint.Color
 import scalafx.scene.shape._
 
-case class Scenario2DRepresentation(id: String, agents: Seq[Circle], walls: Seq[Line], paths: Seq[Path])
+case class Scenario2DRepresentation(id: String, agents: Seq[Circle], walls: Seq[Line], paths: Seq[Path], centre: (Double, Double))
 
 object Scenario2DRepresentation {
 
-  final val DEFAULT_COORD = 0.0
+  final val DEFAULT_COORD = -20.0
   final val DEFAULT_RADIUS = 7
   final val STROKE_WIDTH = 2
   final val LINE_COLOUR = "BLACK"
@@ -18,7 +18,8 @@ object Scenario2DRepresentation {
     val circles = scenario.agentPositions map agent2D
     val paths = scenario.agentPositions map path
     val walls = scenario.walls map wall2D
-    Scenario2DRepresentation(scenario.id, circles, walls, paths)
+    val centre = scenario.centre
+    Scenario2DRepresentation(scenario.id, circles, walls, paths, (centre.x, centre.y))
   }
 
   private def path(agent: ResolvedAgentPositions): Path = {
@@ -31,8 +32,8 @@ object Scenario2DRepresentation {
 
   private def agent2D(resolvedAgent: ResolvedAgentPositions): Circle = {
     new Circle {
-      centerX = DEFAULT_COORD
-      centerY = DEFAULT_COORD
+      centerX = resolvedAgent.points.head.x
+      centerY = resolvedAgent.points.head.y
       radius = DEFAULT_RADIUS
       fill = if (resolvedAgent.agent == SpatioTemporalILASPLanguage.pointOfView) Color.Red else Color.DarkGray
     }

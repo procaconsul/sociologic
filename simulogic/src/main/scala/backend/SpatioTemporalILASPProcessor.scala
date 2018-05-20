@@ -4,6 +4,8 @@ trait ResolvedCompositePredicate {
   def points: Seq[Point]
 }
 
+case class Centre(x: Double, y: Double)
+
 case class ResolvedAgentPositions(agent: String, points: Seq[Point]) extends ResolvedCompositePredicate {
   def at(time: Int): Point = points(time)
 }
