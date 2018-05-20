@@ -4,22 +4,27 @@ import backend._
 import scalafx.scene.paint.Color
 import scalafx.scene.shape._
 
-case class Scenario2DRepresentation(id: String, agents: Seq[Circle], walls: Seq[Line], paths: Seq[Path], centre: (Double, Double))
+case class Scenario2DRepresentation(id: String, agents: Seq[Circle], walls: Seq[Line], paths: Seq[Path])
 
 object Scenario2DRepresentation {
 
-  final val DEFAULT_COORD = -20.0
-  final val DEFAULT_RADIUS = 7
-  final val STROKE_WIDTH = 2
-  final val LINE_COLOUR = "BLACK"
-  final val OPACITY = 0.7
+  import GUIUtils._
+
+  val DEFAULT_SCALING_F = 20
+  val DEFAULT_COORD = -20.0
+  val DEFAULT_RADIUS = 7
+  val STROKE_WIDTH = 2
+  val LINE_COLOUR = "BLACK"
+  val OPACITY = 0.7
 
   def apply(scenario: Scenario): Scenario2DRepresentation = {
-    val circles = scenario.agentPositions map agent2D
-    val paths = scenario.agentPositions map path
-    val walls = scenario.walls map wall2D
-    val centre = scenario.centre
-    Scenario2DRepresentation(scenario.id, circles, walls, paths, (centre.x, centre.y))
+
+    // TODO This should be moved completely to frontend, by adjusting the scaling on the 2DRepresentation directly
+    val adjustedScenario = adjustToCentre(scenario, SimulationWindowDynamicComponents.simulationPaneCentre, DEFAULT_SCALING_F)
+    val circles = adjustedScenario.agentPositions map agent2D
+    val paths = adjustedScenario.agentPositions map path
+    val walls = adjustedScenario.walls map wall2D
+    Scenario2DRepresentation(scenario.id, circles, walls, paths)
   }
 
   private def path(agent: ResolvedAgentPositions): Path = {
@@ -48,27 +53,6 @@ object Scenario2DRepresentation {
       startY = wall.points.head.y
       endX = wall.points.last.x
       endY = wall.points.last.y
-    }
-  }
-
-
-  /**
-    * Re-centres all the points of the entities wrt to newCentre
-    * @param newCentre
-    * @return all the entities with points adjusted to the new centre
-    */
-  def recentre(scenario: Scenario, newCentre: Point): Seq[ResolvedCompositePredicate] = {
-    if (scenario.centre.x == scenario.centre.y &&
-      scenario.centre.x == DEFAULT_COORD)
-      return scenario.predicates
-
-    scenario.predicates map {
-      case entity@ResolvedWall(wall, points) =>
-        val newPoints = entity.points map (_.move(scenario.centre, newCentre))
-        ResolvedWall(wall, newPoints)
-      case entity@ResolvedAgentPositions(agent, points) =>
-        val newPoints = entity.points map (_.move(scenario.centre, newCentre))
-        ResolvedAgentPositions(agent, newPoints)
     }
   }
 }

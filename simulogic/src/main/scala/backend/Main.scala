@@ -10,7 +10,7 @@ object Main extends App {
   val bufferedSourceFile = FileHandler.bufferSource("test-ilasp.las")
   val fileMetadata = parseInterpretations(bufferedSourceFile)(parseMetadata)
   val filePredicates = parseInterpretations(bufferedSourceFile)(parsePredicates)
-  val scenarios = simulations(fileMetadata, filePredicates, Some(centreOfSimulationWindow))
+  val scenarios = simulations(fileMetadata, filePredicates)
   val scenarioRepresentations = scenarios map(Scenario2DRepresentation(_))
   val ui = new UI(scenarioRepresentations)
   ui.main(null)

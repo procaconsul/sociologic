@@ -1,5 +1,6 @@
 package frontend
 
+import backend.Centre
 import scalafx.animation.PathTransition.OrientationType
 import scalafx.animation.{PathTransition, Timeline}
 import scalafx.geometry.Pos
@@ -10,7 +11,7 @@ import scalafx.scene.shape._
 import scalafx.util.Duration
 
 
-object ScenarioRenderer {
+object SimulationWindowDynamicComponents {
 
   val SIMULATION_PANE_DIM = 500
 
@@ -22,6 +23,12 @@ object ScenarioRenderer {
       tabs = scenarioTabs(graphicScenarios)
     }
   }
+
+  def simulationPaneCentre: Centre = {
+    val halfPaneDim = SIMULATION_PANE_DIM / 2
+    Centre(halfPaneDim, halfPaneDim)
+  }
+
 
   private def animationsPerScenario(graphicScenario: Scenario2DRepresentation): Seq[PathTransition] = {
     graphicScenario.agents zip graphicScenario.paths map { case (pt, path) => animation(pt, path) }

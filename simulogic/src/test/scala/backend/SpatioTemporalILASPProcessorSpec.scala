@@ -132,14 +132,14 @@ class SpatioTemporalILASPProcessorSpec extends FlatSpec with Matchers {
       Scenario(
         "pi1",
         Seq(ResolvedWall("wall1", Seq(Point("p1", 1.1, 1.1), Point("p2", 2.2, 2.2)))),
-        Point("centre_of_pi1", 0.0, 0.0)
+        Centre(0.0, 0.0)
       ),
       Scenario(
           "pi2",
           Seq(
             ResolvedAgentPositions("smith", Seq(Point("p1", 1.1, 1.1, 1.1))),
             ResolvedWall("wall2", Seq(Point("p4", 4.4, 4.4), Point("p5", 5.5, 5.5)))),
-          Point("centre_of_pi2", 0.0, 0.0)
+            Centre(0.0, 0.0)
       )
     )
 

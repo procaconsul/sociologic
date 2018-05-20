@@ -7,9 +7,16 @@ import scalafx.scene.control._
 import scalafx.scene.layout.{Pane, Priority}
 import scalafx.util.StringConverter
 
-object SimulationWindowLayout {
+object SimulationWindowStaticComponents {
+
+  val DIVIDER_POS = 0.30f
+  val SLIDER_WIDTH = 200
+  val SLIDER_START_VAL = 0
+  val SLIDER_END_VAL = 8000
+  val INITIAL_VALUE = 4000
 
   // API ======================================================
+
 
   // at the bottom of the main pane
   def buttonBar(animations: AnimationBatch): ToolBar = {
@@ -23,10 +30,8 @@ object SimulationWindowLayout {
       )
     }
   }
-
   def splitPane(leftPane: Control, rightPane: Control): SplitPane = {
 
-    val DIVIDER_POS = 0.30f
 
     new SplitPane {
       orientation = Orientation.Horizontal
@@ -73,19 +78,14 @@ object SimulationWindowLayout {
 
   private def slider(animations: AnimationBatch): Slider = {
 
-    val SLIDER_WIDTH = 200
-    val SLIDER_START = 0
-    val SLIDER_END = 8000
-    val INITIAL_VALUE = 4000
-
     new Slider {
       disable <== animations.status === Status.Running.delegate
       prefWidth = SLIDER_WIDTH
       showTickLabels = true
-      min = SLIDER_START
-      max = SLIDER_END
-      minorTickCount = SLIDER_START
-      majorTickUnit = SLIDER_END
+      min = SLIDER_START_VAL
+      max = SLIDER_END_VAL
+      minorTickCount = SLIDER_START_VAL
+      majorTickUnit = SLIDER_END_VAL
       value = INITIAL_VALUE
       value onChange { (_, _, newValue) =>
         animations.duration(newValue.doubleValue)

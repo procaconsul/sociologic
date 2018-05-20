@@ -14,13 +14,6 @@ case class Point(id: String, x: Double, y: Double, orientation: Option[Double] =
     if (orientation.isDefined) s"""o_point($id, \"$x\", \"$y\", \"${orientation.get}\")"""
     else s"""point($id, \"$x\", \"$y\")"""
   }
-
-  def offsetFromPoint(other: Point): (Double, Double) = (x - other.x, y - other.y)
-
-  def move(oldReferencePoint: Point, newReferencePoint: Point): Point = {
-    val (offsetX, offsetY) = offsetFromPoint(oldReferencePoint)
-    Point(id, newReferencePoint.x + offsetX * 20, newReferencePoint.y + offsetY * 20)
-  }
 }
 
 case class Wall(id: String, startPointName: String, endPointName: String) extends Predicate {

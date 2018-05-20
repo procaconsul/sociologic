@@ -14,8 +14,8 @@ import scalafx.stage.Screen
 class UI(model: Seq[Scenario2DRepresentation]) extends JFXApp {
 
 
-  import SimulationWindowLayout._
-  import ScenarioRenderer._
+  import SimulationWindowStaticComponents._
+  import SimulationWindowDynamicComponents._
   import UI._
 
 
@@ -50,10 +50,4 @@ object UI {
   val TITLE = "Simulogic"
   val SCENE_WIDTH = 800
   val SCENE_HEIGHT = 600
-
-  def centreOfSimulationWindow: Point = {
-    val x = 250
-    val y = 250
-    Point("window-centre", x, y)
-  }
 }
