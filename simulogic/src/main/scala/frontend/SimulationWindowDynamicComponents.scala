@@ -13,6 +13,7 @@ import scalafx.util.Duration
 
 object SimulationWindowDynamicComponents {
 
+  val DEFAULT_SCALING_F = 20
   val SIMULATION_PANE_DIM = 500
 
   def animations(graphicScenarios: Seq[Scenario2DRepresentation]): AnimationBatch =

@@ -1,6 +1,6 @@
 package backend
 
-import frontend.{Scenario2DRepresentation, UI}
+import frontend.{Scenario2DRepresentation, SimulationWindowDynamicComponents, UI}
 
 object Main extends App {
   import SpatioTemporalILASPParser._

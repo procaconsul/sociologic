@@ -4,13 +4,39 @@ import backend._
 import scalafx.scene.paint.Color
 import scalafx.scene.shape._
 
-case class Scenario2DRepresentation(id: String, agents: Seq[Circle], walls: Seq[Line], paths: Seq[Path])
+//case class Scenario2DRepresentation(id: String, agents: Seq[Circle], walls: Seq[Line], paths: Seq[Path])
+case class Scenario2DRepresentation(id: String, agents: Seq[Circle], walls: Seq[Line], paths: Seq[Path], centre: Centre) {
+
+  def adjustToWindow(newCentre: Centre, scaleFactor: Double): Unit = {
+
+    def offset(x: Double, y: Double) = (x - centre.x, y - centre.y)
+
+    walls foreach { l =>
+      val (offStartX, offStartY) = offset(l.startX.toDouble, l.startY.toDouble)
+      val (offEndX, offEndY) = offset(l.endX.toDouble, l.endY.toDouble)
+      l.startX = newCentre.x + offStartX * scaleFactor
+      l.startY = newCentre.y + offStartY * scaleFactor
+      l.endX = newCentre.x + offEndX * scaleFactor
+      l.endY = newCentre.y + offEndY * scaleFactor
+    }
+
+    paths foreach {
+      _.elements.toArray() foreach {
+        case e: javafx.scene.shape.MoveTo =>
+          val (offX, offY) = offset(e.getX, e.getY)
+          e.setX(newCentre.x + offX * scaleFactor)
+          e.setY(newCentre.y + offY * scaleFactor)
+        case e: javafx.scene.shape.LineTo =>
+          val (offX, offY) = offset(e.getX, e.getY)
+          e.setX(newCentre.x + offX * scaleFactor)
+          e.setY(newCentre.y + offY * scaleFactor)
+      }
+    }
+  }
+}
 
 object Scenario2DRepresentation {
 
-  import GUIUtils._
-
-  val DEFAULT_SCALING_F = 20
   val DEFAULT_COORD = -20.0
   val DEFAULT_RADIUS = 7
   val STROKE_WIDTH = 2
@@ -19,12 +45,10 @@ object Scenario2DRepresentation {
 
   def apply(scenario: Scenario): Scenario2DRepresentation = {
 
-    // TODO This should be moved completely to frontend, by adjusting the scaling on the 2DRepresentation directly
-    val adjustedScenario = adjustToCentre(scenario, SimulationWindowDynamicComponents.simulationPaneCentre, DEFAULT_SCALING_F)
-    val circles = adjustedScenario.agentPositions map agent2D
-    val paths = adjustedScenario.agentPositions map path
-    val walls = adjustedScenario.walls map wall2D
-    Scenario2DRepresentation(scenario.id, circles, walls, paths)
+    val circles = scenario.agentPositions map agent2D
+    val paths = scenario.agentPositions map path
+    val walls = scenario.walls map wall2D
+    new Scenario2DRepresentation(scenario.id, circles, walls, paths, scenario.centre)
   }
 
   private def path(agent: ResolvedAgentPositions): Path = {

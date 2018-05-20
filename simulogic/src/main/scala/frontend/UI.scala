@@ -19,6 +19,8 @@ class UI(model: Seq[Scenario2DRepresentation]) extends JFXApp {
   import UI._
 
 
+  model foreach(_.adjustToWindow(simulationPaneCentre, DEFAULT_SCALING_F))
+
   val leftPane = new ListView[String] {
       items = new ObservableBuffer[String]()
   }
