@@ -19,7 +19,7 @@ case class Point(id: String, x: Double, y: Double, orientation: Option[Double] =
 
   def move(oldReferencePoint: Point, newReferencePoint: Point): Point = {
     val (offsetX, offsetY) = offsetFromPoint(oldReferencePoint)
-    Point(id, newReferencePoint.x + offsetX, newReferencePoint.y + offsetY)
+    Point(id, newReferencePoint.x + offsetX * 20, newReferencePoint.y + offsetY * 20)
   }
 }
 

@@ -15,7 +15,9 @@ object SimulationWindowLayout {
   def buttonBar(animations: AnimationBatch): ToolBar = {
     new ToolBar {
       items = Seq(
-        paddingPane,
+        new Pane {
+          hgrow = Priority.Always
+        },
         playStopButton(animations),
         verticalSeparator,
         slider(animations),

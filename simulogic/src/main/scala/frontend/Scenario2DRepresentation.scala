@@ -15,9 +15,9 @@ object Scenario2DRepresentation {
   final val OPACITY = 0.7
 
   def apply(scenario: Scenario): Scenario2DRepresentation = {
-    val circles = scenario.retrieve[ResolvedAgentPositions]() map agent2D
-    val paths = scenario.retrieve[ResolvedAgentPositions]() map path
-    val walls = scenario.retrieve[ResolvedWall]() map wall2D
+    val circles = scenario.agentPositions map agent2D
+    val paths = scenario.agentPositions map path
+    val walls = scenario.walls map wall2D
     Scenario2DRepresentation(scenario.id, circles, walls, paths)
   }
 

@@ -11,27 +11,9 @@ case class ResolvedAgentPositions(agent: String, points: Seq[Point]) extends Res
 case class ResolvedWall(id: String, points: Seq[Point]) extends ResolvedCompositePredicate
 
 case class Scenario(id: String, predicates: Seq[ResolvedCompositePredicate], centre: Point) {
+  def walls: Seq[ResolvedWall] = predicates collect { case p: ResolvedWall => p }
+  def agentPositions: Seq[ResolvedAgentPositions] = predicates collect { case p: ResolvedAgentPositions => p }
   def retrieve[T <: ResolvedCompositePredicate](): Seq[T] = predicates collect { case p: T => p }
-
-  /**
-    * Re-centres all the points of the entities wrt to newCentre
-    * @param newCentre
-    * @return all the entities with points adjusted to the new centre
-    */
-  def recentre(newCentre: Point): Seq[ResolvedCompositePredicate] = {
-    if (centre.x == centre.y &&
-      centre.x == 0.0)
-      return predicates
-
-    predicates map {
-      case ResolvedWall(wall, points) =>
-        val newPoints = points map (_.move(centre, newCentre))
-        ResolvedWall(wall, newPoints)
-      case ResolvedAgentPositions(agent, points) =>
-        val newPoints = points map (_.move(centre, newCentre))
-        ResolvedAgentPositions(agent, newPoints)
-    }
-  }
 }
 
 object SpatioTemporalILASPProcessor {
@@ -52,17 +34,39 @@ object SpatioTemporalILASPProcessor {
   }
 
   def simulations(metadataPerExample: Seq[Map[String, String]],
-                  predicatesPerExample: Seq[Seq[Predicate]]): Seq[Scenario] = {
+                  predicatesPerExample: Seq[Seq[Predicate]],
+                  centre: Option[Point] = None): Seq[Scenario] = {
     metadataPerExample zip predicatesPerExample map { case (metadata, preds) =>
       val positions = resolveAgentPositions(positionsPerAgent(preds), pointsMap(preds))
       val walls = resolveWalls(preds, pointsMap(preds))
-
-      Scenario(
-        id = idFromMetadata(metadata),
-        predicates = positions ++ walls,
-        centre = centreFromMetadata(metadata))
+      val oldCentre = centreFromMetadata(metadata)
+      val predicates = positions ++ walls
+      if (centre.isDefined)
+        Scenario(idFromMetadata(metadata), recentre(predicates, oldCentre, centre.get), centre.get)
+      else
+        Scenario(idFromMetadata(metadata), predicates, oldCentre)
     }
   }
+
+  // TODO refactor this
+
+  /**
+    * Re-centres all the points of the entities wrt to newCentre
+    * @param newCentre
+    * @return all the entities with points adjusted to the new centre
+    */
+  def recentre(predicates: Seq[ResolvedCompositePredicate], oldCentre: Point, newCentre: Point): Seq[ResolvedCompositePredicate] = {
+
+    predicates map {
+      case ResolvedWall(wall, points) =>
+        val newPoints = points map (_.move(oldCentre, newCentre))
+        ResolvedWall(wall, newPoints)
+      case ResolvedAgentPositions(agent, points) =>
+        val newPoints = points map (_.move(oldCentre, newCentre))
+        ResolvedAgentPositions(agent, newPoints)
+    }
+  }
+
 
   def pointsMap(predicates: Seq[Predicate]): Map[String, Point] = {
     predicates collect {
