@@ -1,17 +1,46 @@
 package frontend
 
-import backend.Centre
+import java.io.File
+
+import backend.{Centre, FileNode}
 import scalafx.animation.PathTransition.OrientationType
 import scalafx.animation.{PathTransition, Timeline}
 import scalafx.geometry.Pos
-import scalafx.scene.control.{Tab, TabPane}
+import scalafx.scene.control._
+import scalafx.Includes._
 import scalafx.scene.layout.Pane
 import scalafx.scene.paint.Color
 import scalafx.scene.shape._
 import scalafx.util.Duration
 
+class FileTreeItem[T] extends TreeItem[T] {
+  var path = ""
+}
 
 object SimulationWindowDynamicComponents {
+
+  def treeView(fileNode: FileNode): TreeView[FileNode] = {
+    val tree = new TreeView[FileNode] {
+      showRoot = true
+      root = fileTreeItem(fileNode)
+
+    }
+    tree.selectionModel().selectionMode = SelectionMode.Single
+    tree.selectionModel().selectedItem.onChange { (_, _, selected) =>
+      if (selected.isLeaf) {
+        println(selected.value.value.file.getAbsolutePath)
+      }
+    }
+    tree
+  }
+
+
+  def fileTreeItem(fileNode: FileNode): TreeItem[FileNode] = {
+    new TreeItem[FileNode] {
+      value = fileNode
+      children = fileNode.children map fileTreeItem
+    }
+  }
 
   val DEFAULT_SCALING_F = 20
   val SIMULATION_PANE_DIM = 500
@@ -57,7 +86,7 @@ object SimulationWindowDynamicComponents {
       new Tab {
         text = graphicScenario.id
         content = graphicPane
-        closable = false
+        closable = true
       }
     }
   }

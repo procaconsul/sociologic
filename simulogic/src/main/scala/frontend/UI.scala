@@ -1,6 +1,6 @@
 package frontend
 
-import backend.Point
+import backend.{FileNode, Point}
 import javafx.geometry.Rectangle2D
 import scalafx.application.JFXApp
 import scalafx.application.JFXApp.PrimaryStage
@@ -11,7 +11,7 @@ import scalafx.scene.layout.{BorderPane, Pane}
 import scalafx.scene.paint.Color
 import scalafx.stage.Screen
 
-class UI(model: Seq[Scenario2DRepresentation]) extends JFXApp {
+class UI(model: Seq[Scenario2DRepresentation], fileNode: FileNode) extends JFXApp {
 
 
   import SimulationWindowStaticComponents._
@@ -21,13 +21,9 @@ class UI(model: Seq[Scenario2DRepresentation]) extends JFXApp {
 
   model foreach(_.adjustToWindow(simulationPaneCentre, DEFAULT_SCALING_F))
 
-  val leftPane = new ListView[String] {
-      items = new ObservableBuffer[String]()
-  }
+  val leftPane = treeView(fileNode)
 
   val rightPane = tabsPane(model)
-  println(rightPane.maxWidth)
-  println(rightPane.height)
 
   val anim = animations(model)
 

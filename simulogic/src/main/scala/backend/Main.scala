@@ -1,6 +1,9 @@
 package backend
 
+import java.io.File
+
 import frontend.{Scenario2DRepresentation, SimulationWindowDynamicComponents, UI}
+
 
 object Main extends App {
   import SpatioTemporalILASPParser._
@@ -12,7 +15,9 @@ object Main extends App {
   val filePredicates = parseInterpretations(bufferedSourceFile)(parsePredicates)
   val scenarios = simulations(fileMetadata, filePredicates)
   val scenarioRepresentations = scenarios map(Scenario2DRepresentation(_))
-  val ui = new UI(scenarioRepresentations)
+  val fileNode = FileHandler.fileTree(new File("contexts"))
+  val ui = new UI(scenarioRepresentations, fileNode)
   ui.main(null)
 
 }
+
