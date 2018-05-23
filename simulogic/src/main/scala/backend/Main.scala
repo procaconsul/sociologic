@@ -1,5 +1,12 @@
 package backend
 
+import java.io.File
+
+import frontend.UI
+
 object Main extends App {
-  val bufferedSourceFile = FileHandler.bufferSource("env.lp")
+  val fileNode = FileHandler.fileTree(new File("contexts"))
+  val ui = new UI(fileNode)
+  ui.main(null)
 }
+
