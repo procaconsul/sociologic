@@ -2,9 +2,9 @@ package backend
 
 import org.scalatest.{FlatSpec, Matchers}
 
-class SpatioTemporalILASPProcessorSpec extends FlatSpec with Matchers {
+class SpatioTemporalContentProcessorSpec extends FlatSpec with Matchers {
 
-  import SpatioTemporalILASPProcessor._
+  import SpatioTemporalContentProcessor._
 
   "The PredicateProcessor" should "create a mapping for all the points among the given predicates" in {
 

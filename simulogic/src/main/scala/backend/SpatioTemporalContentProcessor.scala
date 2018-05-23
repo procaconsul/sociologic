@@ -15,7 +15,7 @@ case class Scenario(id: String, predicates: Seq[ResolvedCompositePredicate], cen
   def agentPositions: Seq[ResolvedAgentPositions] = predicates collect { case p: ResolvedAgentPositions => p }
 }
 
-object SpatioTemporalILASPProcessor {
+object SpatioTemporalContentProcessor {
 
   val DEFAULT_INTERPRETATION_NAME = "UNSPECIFIED_NAME"
   val DEFAULT_COORD = "0.0"
@@ -35,24 +35,20 @@ object SpatioTemporalILASPProcessor {
                   predicatesPerExample: Seq[Seq[Predicate]]): Seq[Scenario] = {
 
     metadataPerExample zip predicatesPerExample map { case (metadata, preds) =>
-      val positions = resolveAgentPositions(positionsPerAgent(preds), pointsMap(preds))
-      val walls = resolveWalls(preds, pointsMap(preds))
+      val ptsMap = pointsMap(preds)
+      val positions = resolveAgentPositions(positionsPerAgent(preds), ptsMap)
+      val walls = resolveWalls(preds, ptsMap)
       Scenario(idFromMetadata(metadata), positions ++ walls, centreFromMetadata(metadata))
     }
   }
 
+  def pointsMap(predicates: Seq[Predicate]): Map[String, Point] =
+    predicates collect { case pt: Point => (pt.id, pt) } toMap
 
-  def pointsMap(predicates: Seq[Predicate]): Map[String, Point] = {
-    predicates collect {
-      case pt: Point => (pt.id, pt)
-    } toMap
-  }
 
-  def positionsPerAgent(predicates: Seq[Predicate]): Map[String, Seq[Pos]] = {
-    predicates collect {
-      case p: Pos => p
-    } groupBy (_.agentName)
-  }
+  def positionsPerAgent(predicates: Seq[Predicate]): Map[String, Seq[Pos]] =
+    predicates collect { case p: Pos => p } groupBy (_.agentName)
+
 
   def resolveAgentPositions(positions: Map[String, Seq[Pos]],
                             pointsMap: Map[String, Point]): Seq[ResolvedCompositePredicate] = {
@@ -79,9 +75,7 @@ object SpatioTemporalILASPProcessor {
     }
   }
 
-  def checkReferences(forPredicate: String, refs: Seq[String], refMap: Map[String, Predicate]): Unit = {
-    refs foreach { ref =>
-      if (refMap.get(ref).isEmpty) throw PredicateResolutionException(forPredicate, ref)
-    }
-  }
+  def checkReferences(forPredicate: String, refs: Seq[String], refMap: Map[String, Predicate]): Unit =
+    refs foreach { ref => if (refMap.get(ref).isEmpty) throw PredicateResolutionException(forPredicate, ref) }
+
 }

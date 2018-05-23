@@ -1,10 +1,10 @@
 package frontend
 
 import backend._
+import scalafx.collections.ObservableBuffer
 import scalafx.scene.paint.Color
 import scalafx.scene.shape._
 
-//case class Scenario2DRepresentation(id: String, agents: Seq[Circle], walls: Seq[Line], paths: Seq[Path])
 case class Scenario2DRepresentation(id: String, agents: Seq[Circle], walls: Seq[Line], paths: Seq[Path], centre: Centre) {
 
   def adjustToWindow(newCentre: Centre, scaleFactor: Double): Unit = {
@@ -19,6 +19,8 @@ case class Scenario2DRepresentation(id: String, agents: Seq[Circle], walls: Seq[
       l.endX = newCentre.x + offEndX * scaleFactor
       l.endY = newCentre.y + offEndY * scaleFactor
     }
+
+    // TODO Refactor me
 
     paths foreach {
       _.elements.toArray() foreach {
@@ -39,7 +41,7 @@ object Scenario2DRepresentation {
 
   val DEFAULT_COORD = -20.0
   val DEFAULT_RADIUS = 7
-  val STROKE_WIDTH = 2
+  val STROKE_WIDTH = 4
   val LINE_COLOUR = "BLACK"
   val OPACITY = 0.7
 
@@ -61,16 +63,18 @@ object Scenario2DRepresentation {
 
   private def agent2D(resolvedAgent: ResolvedAgentPositions): Circle = {
     new Circle {
+      id = resolvedAgent.agent
       centerX = resolvedAgent.points.head.x
       centerY = resolvedAgent.points.head.y
       radius = DEFAULT_RADIUS
-      fill = if (resolvedAgent.agent == SpatioTemporalILASPLanguage.pointOfView) Color.Red else Color.DarkGray
+      fill = if (resolvedAgent.agent == SpatioTemporalLanguage.pointOfView) Color.Red else Color.DarkGray
     }
   }
 
 
   private def wall2D(wall: ResolvedWall): Line = {
     new Line {
+      id = wall.id
       stroke = Color.web(LINE_COLOUR, OPACITY)
       strokeWidth = STROKE_WIDTH
       startX = wall.points.head.x

@@ -4,7 +4,7 @@ package backend
   * This object collects the regexes that the parser uses to extract values
   * from the predicates and metadata of ILASP Scenarios.
   */
-object SpatioTemporalILASPLanguage {
+object SpatioTemporalLanguage {
 
   // Predicates ------------------------------------------------------------------------------
   final val wallPattern  = "wall\\(([A-Za-z0-9_]+)\\,\\s+([A-Za-z0-9_]+)\\,\\s+([A-Za-z0-9_]+)\\)\\.".r

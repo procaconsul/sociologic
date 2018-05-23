@@ -2,9 +2,9 @@ package backend
 
 import org.scalatest.{FlatSpec, Matchers}
 
-class SpatioTemporalILASPParserSpec extends FlatSpec with Matchers {
+class SpatioTemporalContentParserSpec extends FlatSpec with Matchers {
 
-  import SpatioTemporalILASPParser._
+  import SpatioTemporalContentParser._
 
   "The Environment Parser" should "correctly parse simple points and walls in lp lines" in {
     val lines = List(

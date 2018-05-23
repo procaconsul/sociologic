@@ -9,7 +9,6 @@ object Point extends Predicate {
 }
 
 case class Point(id: String, x: Double, y: Double, orientation: Option[Double] = None) extends Predicate {
-
   def render: String = {
     if (orientation.isDefined) s"""o_point($id, \"$x\", \"$y\", \"${orientation.get}\")"""
     else s"""point($id, \"$x\", \"$y\")"""

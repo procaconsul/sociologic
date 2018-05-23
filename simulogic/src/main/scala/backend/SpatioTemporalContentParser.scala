@@ -2,9 +2,9 @@ package backend
 
 import scala.util.matching.Regex
 
-object SpatioTemporalILASPParser {
+object SpatioTemporalContentParser {
 
-  import SpatioTemporalILASPLanguage._
+  import SpatioTemporalLanguage._
 
   def parsePredicates(lines: Seq[String]): Seq[Predicate] = {
     lines flatMap {

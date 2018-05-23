@@ -1,33 +1,18 @@
 package frontend
 
-import backend.{FileNode, Point}
-import javafx.geometry.Rectangle2D
+import backend.FileNode
 import scalafx.application.JFXApp
 import scalafx.application.JFXApp.PrimaryStage
-import scalafx.collections.ObservableBuffer
 import scalafx.scene.Scene
-import scalafx.scene.control.ListView
-import scalafx.scene.layout.{BorderPane, Pane}
+import scalafx.scene.layout.BorderPane
 import scalafx.scene.paint.Color
-import scalafx.stage.Screen
 
-class UI(model: Seq[Scenario2DRepresentation], fileNode: FileNode) extends JFXApp {
+class UI(fileNode: FileNode) extends JFXApp {
 
 
-  import SimulationWindowStaticComponents._
-  import SimulationWindowDynamicComponents._
   import UI._
 
-
-  model foreach(_.adjustToWindow(simulationPaneCentre, DEFAULT_SCALING_F))
-
-  val leftPane = treeView(fileNode)
-
-  val rightPane = tabsPane(model)
-
-  val anim = animations(model)
-
-  val SCREEN: Rectangle2D = Screen.primary.getBounds
+  val view = new View(new Controller)
 
   stage = new PrimaryStage {
     width = SCENE_WIDTH
@@ -36,8 +21,8 @@ class UI(model: Seq[Scenario2DRepresentation], fileNode: FileNode) extends JFXAp
     scene = new Scene(SCENE_WIDTH, SCENE_HEIGHT) {
       fill = Color.White
       root = new BorderPane {
-        center = splitPane(leftPane, rightPane)
-        bottom = buttonBar(anim)
+        center = view.splitPane(fileNode)
+        bottom = view.buttonBar
       }
     }
   }
