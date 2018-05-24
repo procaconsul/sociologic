@@ -9,7 +9,7 @@ import scalafx.scene.control.{SelectionMode, TabPane, TreeView}
 import scalafx.scene.shape.{Circle, Path}
 import scalafx.util.Duration
 
-import scala.util.Try
+import scala.util.{Failure, Success, Try}
 
 class Controller {
 
@@ -27,12 +27,15 @@ class Controller {
       if (selected.isLeaf) {
         val filePath = selected.value.value.file.getAbsolutePath
         val attemptedScenario = Try(ScenarioInterpreter.interpretFrom(filePath))
-        if (attemptedScenario.isSuccess) {
-          val scenarios2d = attemptedScenario.get
-          scenarios2d foreach (_.adjustToWindow(simulationPaneCentre, DEFAULT_SCALING_F))
-          refreshScenariosWith(scenarios2d)
-          tabPane.tabs = scenarioTabs(scenarios)
-          animations.refreshWith(scenarios flatMap animationsFromScenario)
+        attemptedScenario match {
+          case Success(scenarios2d) =>
+            scenarios2d foreach (_.adjustToWindow(simulationPaneCentre, DEFAULT_SCALING_F))
+            refreshScenariosWith(scenarios2d)
+            tabPane.tabs = scenarioTabs(scenarios)
+            animations.refreshWith(scenarios flatMap animationsFromScenario)
+          case Failure(ex) =>
+            val fileName = selected.value.value.toString
+            ErrorDialog(ex, s"The attempt to parse $fileName failed.")
         }
       }
     }

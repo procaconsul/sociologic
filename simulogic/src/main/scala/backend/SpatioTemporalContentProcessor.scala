@@ -55,7 +55,7 @@ object SpatioTemporalContentProcessor {
     positions map { case (agent, agentPositions) =>
 
       // check references
-      agentPositions.foreach(pos => checkReferences(pos.id, Seq(pos.pointName), pointsMap))
+      agentPositions.foreach(pos => checkReferences(pos.render, Seq(pos.pointName), pointsMap))
 
       val points = agentPositions
         .sortBy(_.time)
@@ -67,10 +67,10 @@ object SpatioTemporalContentProcessor {
   def resolveWalls(predicates: Seq[Predicate],
                    pointsMap: Map[String, Point]): Seq[ResolvedCompositePredicate] = {
     predicates collect {
-      case Wall(wall, pt1, pt2) =>
+      case w@Wall(wall, pt1, pt2) =>
         val point1Opt = pointsMap.get(pt1)
         val point2Opt = pointsMap.get(pt2)
-        checkReferences(wall, Seq(pt1, pt2), pointsMap)
+        checkReferences(w.render, Seq(pt1, pt2), pointsMap)
         ResolvedWall(wall, Seq(point1Opt.get, point2Opt.get))
     }
   }
