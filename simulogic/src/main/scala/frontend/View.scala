@@ -9,7 +9,7 @@ import scalafx.scene.control._
 class View(controller: Controller) {
 
   import StaticViewComponents._
-  
+
   val DIVIDER_POS = 0.30f
   val SLIDER_WIDTH = 200
   val SLIDER_START_VAL = 0
@@ -50,7 +50,6 @@ class View(controller: Controller) {
       } else {
         controller.animations.stop()
         text = "Play"
-        println(s"$text button clicked")
       }
     }
   }
@@ -58,8 +57,7 @@ class View(controller: Controller) {
   private def slider: Slider = {
 
     new Slider {
-      //      disable <== (controller.animations.empty || controller.animations.status === Status.Running.delegate)
-      disable <== (controller.animations.status === Status.Running.delegate)
+      disable <== (controller.animations.empty || controller.animations.status === Status.Running.delegate)
       prefWidth = SLIDER_WIDTH
       showTickLabels = true
       min = SLIDER_START_VAL

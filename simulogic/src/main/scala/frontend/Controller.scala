@@ -46,7 +46,6 @@ class Controller {
   def animationsFromScenario(scenario: Scenario2DRepresentation): Seq[PathTransition] =
     scenario.agents zip scenario.paths map { case (pt, path) => animation(pt, path) }
 
-
   def animation(agentPoint: Circle, agentPath: Path): PathTransition = {
     new PathTransition {
       duration = Duration(DEFAULT_ANIM_DURATION)
