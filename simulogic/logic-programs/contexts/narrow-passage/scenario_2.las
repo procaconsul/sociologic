@@ -87,7 +87,7 @@ o_point(p1_12, "18.051", "11.100", "0.0").
 
 o_point(p2_1, "32.051", "11.000", "180.0").
 o_point(p2_2, "31.051", "11.000", "180.0").
-o_point(p2_3, "30.500", "11.000", "180.0"). 
+o_point(p2_3, "30.500", "11.000", "180.0").
 o_point(p2_4, "29.501", "11.000", "180.0").
 o_point(p2_5, "27.501", "11.000", "180.0").
 o_point(p2_6, "25.051", "11.000", "180.0").
@@ -149,12 +149,6 @@ pos(focus_agent, 9, p1_9).
 pos(focus_agent, 10, p1_10).
 pos(focus_agent, 11, p1_11).
 pos(focus_agent, 12, p1_12).
-pos(focus_agent, 13, p1_13).
-pos(focus_agent, 14, p1_14).
-pos(focus_agent, 15, p1_15).
-pos(focus_agent, 16, p1_16).
-pos(focus_agent, 17, p1_17).
-pos(focus_agent, 18, p1_18).
 
 pos(agent2, 1, p2_1).
 pos(agent2, 2, p2_2).
@@ -168,15 +162,9 @@ pos(agent2, 9, p2_9).
 pos(agent2, 10, p2_10).
 pos(agent2, 11, p2_11).
 pos(agent2, 12, p2_12).
-pos(agent2, 13, p2_13).
-pos(agent2, 14, p2_14).
-pos(agent2, 15, p2_15).
-pos(agent2, 16, p2_16).
-pos(agent2, 17, p2_17).
-pos(agent2, 18, p2_18).
 
 o_point(p1_1,  "20.051", "11.080", "0.0").
-o_point(p1_2,  "21.051", "11.000", "0.0"). 
+o_point(p1_2,  "21.051", "11.000", "0.0").
 o_point(p1_3,  "22.051", "11.000", "0.0").
 o_point(p1_4,  "23.051", "11.000", "0.0"). 
 o_point(p1_5,  "24.051", "11.000", "0.0").

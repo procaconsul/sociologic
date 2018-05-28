@@ -7,13 +7,15 @@ object SpatioTemporalContentParser {
   import SpatioTemporalLanguage._
 
   def parsePredicates(lines: Seq[String]): Seq[Predicate] = {
-    lines flatMap {
-      case pointPattern(name, x, y)            => Some(Point(name, x.toDouble, y.toDouble))
-      case orientedPointPattern(name, x, y, o) => Some(Point(name, x.toDouble, y.toDouble, o.toDouble))
-      case agentPattern(name)                  => Some(Agent(name))
-      case posPattern(agName, time, ptName)    => Some(Pos(agName, time.toInt, ptName))
-      case wallPattern(name, p1Name, p2Name)   => Some(Wall(name, p1Name, p2Name))
-      case _                                   => None
+    lines flatMap { line =>
+      line.trim match {
+        case pointPattern(name, x, y) => Some(Point(name, x.toDouble, y.toDouble))
+        case orientedPointPattern(name, x, y, o) => Some(Point(name, x.toDouble, y.toDouble, o.toDouble))
+        case agentPattern(name) => Some(Agent(name))
+        case posPattern(agName, time, ptName) => Some(Pos(agName, time.toInt, ptName))
+        case wallPattern(name, p1Name, p2Name) => Some(Wall(name, p1Name, p2Name))
+        case _ => None
+      }
     }
   }
 

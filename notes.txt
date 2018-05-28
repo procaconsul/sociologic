@@ -65,18 +65,65 @@ ASP -----------------
   :~ squeeze_by_wall(focus_agent, V0, V1).[1@1, 1, V0, V1]
 + scenario 2:
   :~ squeeze_by_wall(focus_agent, V0, V1).[-1@1, 1, V0, V1]
+  [:~ go_through_q(focus_agent, V1, V0).[1@1, 1, V0, V1] w/ --simple]
 + scenario 3:
   :~ squeeze_by_wall(focus_agent, V0, V1).[-1@1, 1, V0, V1]
-  :~ go_through_g(focus_agent, group, V0).[-1@1, 2, V0]
+  :~ go_through_g(focus_agent, group, V0).[1@1, 2, V0]
 + scenario 4:
   :~ go_through_g(focus_agent, group, V0).[1@1, 1, V0]
 
++ results whole context 2:
+  :~ go_behind(focus_agent, V0, V1).[-1@1, 1, V0, V1]
+
++ results whole context 3:
+  :~ go_through_g(focus_agent, group, V0).[1@2, 1, V0]                                                                                                                      
+  :~ wait(focus_agent, V0, V1).[1@2, 2, V0, V1]                                                                                                                             
+  :~ non_straight_queue(queue, V0).[-1@2, 3, V0]       
+
+
 -----------------
 
+[UPDATED]
 
++ results separately for context 1:
++ scenario 1:
+  :~ push_out(focus_agent, V0, corridor, V1).[1@2, 1, V0, V1]
+  :~ step_out_and_wait(focus_agent, V0, corridor, V1).[-1@2, 2, V0, V1]  
++ scenario 2:
+  :~ push_out(focus_agent, V0, corridor, V1).[-1@2, 1, V0, V1]
+  :~ step_out_and_wait(focus_agent, V0, corridor, V1).[1@1, 2, V0, V1]
++ scenario 3: 
+  :~ give_way(focus_agent, V0, V1, corridor).[-1@1, 1, V0, V1] (if cautious ordering. Else, below)
+  :~ step_out_and_wait(focus_agent, V0, corridor, V1).[1@1, 1, V0, V1]
++ scenario 4:
+  :~ overtake(V0, V1, V2).[-1@2, 1, V0, V1, V2]
++ scenario 5:
+  :~ step_out_and_wait(focus_agent, V0, corridor, V1).[1@1, 1, V0, V1]
+  :~ push_out(focus_agent, V0, corridor, V1).[-1@1, 2, V0, V1]
++ scenario 6:
+  :~ squeeze_between_conversation(focus_agent, V0, V1, V2).[1@1, 1, V0, V1, V2]
+  :~ wait_end_of_talk(focus_agent, V0, V1, V2, V3).[1@1, 2, V0, V1, V2, V3]
+
++ results for context 2: same as above
+
++ results separately for context 3: 
++ scenario 1:
+  :~ go_through(focus_agent, V0, V1).[-1@1, 1, V0, V1]
++ scenario 2:
+  :~ go_through(focus_agent, V0, V1).[1@1, 1, V0, V1]
++ scenario 3:
+  :~ go_through(focus_agent, V0, V1).[1@2, 1, V0, V1]
+  :~ wait(focus_agent, V0, V1).[1@2, 2, V0, V1]
++ scenario 4:
+  :~ go_through(focus_agent, V0, V1).[1@1, 1, V0, V1]
 
 + results whole context 2:
   :~ go_behind(focus_agent, V0, V1).[-1@1, 1, V0, V1]
+
++ results whole context 3:
+  :~ go_through(focus_agent, V0, V1).[1@1, 1, V0, V1]
+  :~ wait(focus_agent, V0, V1).[1@1, 2, V0, V1]
+  :~ squeeze_between_wall_and_agglomerate(focus_agent, V0, V1, V2), straight_queue(V0, V2).[1@2, 3, V0, V1, V2]
 
 
 * Use --simple
