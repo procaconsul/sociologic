@@ -23,7 +23,7 @@
 
 % METADATA
 % :name=p2_1A_1
-% :centrex=17.5
+% :centrex=22.5
 % :centrey=12.5
 
 % Option A
@@ -134,7 +134,7 @@ o_point(p2_11, "23.000",  "7.000", "270.0").
 
 % METADATA
 % :name=p2_1B_1
-% :centrex=17.5
+% :centrex=22.5
 % :centrey=12.5
 
 

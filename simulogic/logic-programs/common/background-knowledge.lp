@@ -84,6 +84,7 @@ after(T1, T2) :- pos(_, T1, _), pos(_, T2, _), T1 > T2.
 % ###########
 
 overtake(E1, E2, T1) :- behind(E1, E2, T1), 
+  not behind(E1, E2, T1+1), 
   in_front(E1, E2, T2), 
   after(T2, T1).
 

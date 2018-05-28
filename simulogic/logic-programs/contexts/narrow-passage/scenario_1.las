@@ -329,7 +329,7 @@ pos(agent2, 13, p2_13).
 pos(agent2, 14, p2_14).
 pos(agent2, 15, p2_15).
 
-% Agent 2 enters after agent 1 crosses the middle but
+% focus_agent enters after agent2 crosses the middle but
 % forces him to step out
 o_point(p1_1,  "17.051", "11.080", "0.0").
 o_point(p1_2,  "18.551", "11.000", "0.0").

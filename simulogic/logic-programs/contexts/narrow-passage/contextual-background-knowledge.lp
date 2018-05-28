@@ -6,6 +6,9 @@
 % ACTIONS
 % #############
 
+overtake_in_corridor(E1, E2, T, C) :- corridor(C, _, _),
+  overtake(E1, E2, T).
+
 squeeze_between_conversation(E1, E2, E3, T) :- not talking(E1, _, _),
   not talking(_, E1, _),
   talking(E2, E3, T),
@@ -46,6 +49,7 @@ step_out_and_wait(E1, E2, C, T) :- corridor(C, _, _),
   inside(E1, C, T1).
 
 % maybe could add that distance is short?
+% notion of behind.
 give_way(E1, E2, T, C) :- corridor(C, _, _),
   pos(E1, T, P1),
   pos(E2, T, P2),
