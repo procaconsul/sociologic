@@ -1,6 +1,7 @@
 #script (python)
 
 import math
+import clingo
 from scipy import arange
 
 
@@ -24,7 +25,7 @@ def is_behind(_x1, _y1, _o1, _x2, _y2, _o2):
 def is_behind_vals(x1, y1, o1, x2, y2, o2):
 	 
     if DEBUG:
-        warning_msg("Behind check,", [x1, y1, o1, x2, y2, o2])	
+        warning_msg('Behind check,', [x1, y1, o1, x2, y2, o2])	
 
     if (o1 != o2 and o1 not in arange(o2 - ANG_TOLERANCE, o2 + ANG_TOLERANCE)):
         return False
@@ -55,7 +56,7 @@ def is_collinear(_x1, _y1, _x2, _y2, _x3, _y3):
 def is_collinear_vals(x1, y1, x2, y2, x3, y3):
     
     if DEBUG:
-        warning_msg("Collinearity check,", [x1, y1, x2, y2, x2, y3])	
+        warning_msg('Collinearity check,', [x1, y1, x2, y2, x2, y3])	
     
     if x2 == x3 and y2 == y3:
         if x1 == x2 or y1 == y2:
@@ -161,7 +162,7 @@ def intersects_vals(x_a, y_a, x_b, y_b, x_c, y_c, x_d, y_d):
     if (x_a == x_b and y_a == y_b) or \
             (x_c == x_d and y_c == y_d):
                 if DEBUG:
-                    warning_msg("Degenerate Segment!",\
+                    warning_msg('Degenerate Segment!',\
                             [x_a, y_a, x_b, y_b, x_c, y_c, x_d, y_d])
                 return False
 
@@ -177,6 +178,42 @@ def intersects_vals(x_a, y_a, x_b, y_b, x_c, y_c, x_d, y_d):
             counter_clockwise(x_a, y_a, x_b, y_b, x_d, y_d)) 
 
 def warning_msg(msg, vals):
-    print msg + " values: " + str(map(lambda e: "%.3f" % e, vals))  
+    print msg + ' values: ' + str(map(lambda e: '%.3f' % e, vals))  
+
+def robot_pt(time_pt):
+    return clingo.Function(ROB_PT_ROOT + PT_SEP + str(time_pt))
+
+ROB_PT_ROOT = 'p1'
+PT_SEP = '_'
+
+def pt_time_indication(pt_str):
+    pt_split = pt_str.split(PT_SEP)
+    return pt_split[0], int(pt_split[1])
+
+def next_pt(_pt_name):
+    pt_name = _pt_name.name
+    root, t_indication = pt_time_indication(pt_name)
+    return clingo.Function(root + PT_SEP + str(t_indication + 1))
+    
+
+def help(v):
+    print(v.string)
+    return True
+
+def plus(_val, _const):
+    val = float(_val.string)
+    const = float(str(_const))
+    return str(val + const) 
+
+def o_plus(_val, _const):
+    val = float(_val.string)
+    const = float(str(_const))
+    new_val = val + const
+    if new_val < -45:
+        new_val += 360
+    if new_val > 360:
+        new_val -= 360
+    return str(new_val)
+
 
 #end.

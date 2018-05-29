@@ -4,8 +4,8 @@
 % Scenarios
 
 #include "contexts/crossings/scenario_1.las".
-#include "contexts/crossings/scenario_2.las".
-#include "contexts/crossings/scenario_3.las".
+% #include "contexts/crossings/scenario_2.las".
+% #include "contexts/crossings/scenario_3.las".
 
 
 %%% ORDERINGS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -14,10 +14,10 @@
 #brave_ordering(b1@44, p2_1A_1, p2_1B_1). % 44 = 63 - 19
 
 % Context 1, scenario 2
-#brave_ordering(b2@58, p2_2A_1, p2_2B_1). % 58 = 60 - 12
+% #brave_ordering(b2@58, p2_2A_1, p2_2B_1). % 58 = 60 - 12
 
 % Context 1, scenario 3
-#brave_ordering(b3@32, p2_3A_1, p2_3B_1). % 32 = 58 - 26
+% #brave_ordering(b3@32, p2_3A_1, p2_3B_1). % 32 = 58 - 26
 
 %%% Hypothesis Space %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
