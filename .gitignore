@@ -1,4 +1,6 @@
 
-.idea/
+# fs
+.DS_Store
 
+# swap
 *.swp
