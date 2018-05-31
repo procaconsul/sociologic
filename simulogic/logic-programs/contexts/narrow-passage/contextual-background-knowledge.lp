@@ -43,10 +43,14 @@ push_out(E1, E2, C, T) :- step_out_and_wait(E2, E1, C, T).
 step_out_and_wait(E1, E2, C, T) :- corridor(C, _, _),
   inside(E1, C, T),
   inside(E2, C, T),
-  not inside(E1, C, T+1),
+  pos(E1, T, P1), o_point(P1, _, _, O1),
+  pos(E1, T+1, P1_1), o_point(P1_1, _, _, O1_1),
+  @opposite_directions(O1, O1_1) == 1,
   after(T1, T+1),
-  not inside(E2, C, T1),
-  inside(E1, C, T1).
+  not inside(E1, C, T1),
+  after(T2, T1),
+  not inside(E2, C, T2),
+  inside(E1, C, T2).
 
 % maybe could add that distance is short?
 % notion of behind.

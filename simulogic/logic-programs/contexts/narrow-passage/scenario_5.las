@@ -121,6 +121,121 @@ o_point(p3_12, "8.051", "11.000", "180.0").
 
 }).
 
+% #pos(p2_5A_1, {}, {}, {
+
+% % METADATA
+% % :name=p2_5A_1
+% % :centrex=22.5
+% % :centrey=11.0
+
+% % Option A
+
+% %%%% Agents %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% agent(focus_agent).
+% agent(agent2).
+% agent(agent3).
+
+% % wall 1 
+% wall(wall1, w1_s, w1_e).
+% point(w1_s, "15.0", "12.0").
+% point(w1_e, "30.0", "12.0").
+
+% % wall 2 
+% wall(wall2, w2_s, w2_e).
+% point(w2_s, "15.0", "10.0").
+% point(w2_e, "30.0", "10.0").
+
+% corridor(corridor, wall1, wall2).
+
+% % focus_agent followed by agent2 enter the alley.
+% % agent3 then enters the alley, and focus_agent and agent2
+% % BEFORE MID
+% % go all the way back and wait for agent3 to exit
+% pos(focus_agent, 1, p1_1).
+% pos(focus_agent, 2, p1_2).
+% pos(focus_agent, 3, p1_3).
+% pos(focus_agent, 4, p1_4).
+% pos(focus_agent, 5, p1_5).
+% pos(focus_agent, 6, p1_6).
+% pos(focus_agent, 7, p1_7).
+% pos(focus_agent, 8, p1_8).
+% pos(focus_agent, 9, p1_9).
+% pos(focus_agent, 10, p1_10).
+% pos(focus_agent, 11, p1_11).
+% pos(focus_agent, 12, p1_12).
+% pos(focus_agent, 13, p1_13).
+
+% pos(agent2, 1, p2_1).
+% pos(agent2, 2, p2_2).
+% pos(agent2, 3, p2_3).
+% pos(agent2, 4, p2_4).
+% pos(agent2, 5, p2_5).
+% pos(agent2, 6, p2_6).
+% pos(agent2, 7, p2_7).
+% pos(agent2, 8, p2_8).
+% pos(agent2, 9, p2_9).
+% pos(agent2, 10, p2_10).
+% pos(agent2, 11, p2_11).
+% pos(agent2, 12, p2_12).
+% pos(agent2, 13, p2_13).
+
+% pos(agent3, 1, p3_1).
+% pos(agent3, 2, p3_2).
+% pos(agent3, 3, p3_3).
+% pos(agent3, 4, p3_4).
+% pos(agent3, 5, p3_5).
+% pos(agent3, 6, p3_6).
+% pos(agent3, 7, p3_7).
+% pos(agent3, 8, p3_8).
+% pos(agent3, 9, p3_9).
+% pos(agent3, 10, p3_10).
+% pos(agent3, 11, p3_11).
+% pos(agent3, 12, p3_12).
+% pos(agent3, 13, p3_13).
+
+% o_point(p1_1,  "15.051", "11.100", "0.0").
+% o_point(p1_2,  "17.051", "11.100", "0.0").
+% o_point(p1_3,  "19.050", "11.100", "0.0"). 
+% o_point(p1_4,  "21.501", "11.100", "180.0").
+% o_point(p1_5,  "19.501", "11.100", "180.0").
+% o_point(p1_6,  "17.051", "11.100", "140.0").
+% o_point(p1_7,  "15.051", "11.500", "140.0").
+% o_point(p1_8,  "13.051", "12.100", "-40.0").
+% o_point(p1_9,  "14.051", "11.100", "0.0").
+% o_point(p1_10, "16.051", "11.100", "0.0").
+% o_point(p1_11, "18.051", "11.100", "0.0").
+% o_point(p1_12, "20.051", "11.100", "0.0").
+% o_point(p1_13, "22.501", "11.100", "0.0").
+
+% o_point(p2_1,  "13.051", "11.100", "0.0").
+% o_point(p2_2,  "15.051", "11.100", "0.0").
+% o_point(p2_3,  "17.050", "11.100", "0.0"). 
+% o_point(p2_4,  "19.501", "11.100", "180.0").
+% o_point(p2_5,  "17.501", "11.100", "180.0").
+% o_point(p2_6,  "15.051", "11.100", "220.0").
+% o_point(p2_7,  "13.051", "9.100", "220.0").
+% o_point(p2_8,  "13.051", "9.100", "40.0").
+% o_point(p2_9,  "13.051", "11.100", "0.0").
+% o_point(p2_10, "14.051", "11.100", "0.0").
+% o_point(p2_11, "16.051", "11.100", "0.0").
+% o_point(p2_12, "18.051", "11.100", "0.0").
+% o_point(p2_13, "20.051", "11.100", "0.0").
+
+% o_point(p3_1, "30.051", "11.000", "180.0").
+% o_point(p3_2, "28.051", "11.000", "180.0").
+% o_point(p3_3, "26.500", "11.000", "180.0"). 
+% o_point(p3_4, "24.501", "11.000", "180.0").
+% o_point(p3_5, "22.501", "11.000", "180.0").
+% o_point(p3_6, "20.051", "11.000", "180.0").
+% o_point(p3_7, "18.051", "11.000", "180.0").
+% o_point(p3_8, "16.051", "11.000", "180.0").
+% o_point(p3_9, "14.051", "11.000", "180.0").
+% o_point(p3_10, "12.051", "11.000", "180.0").
+% o_point(p3_11, "10.051", "11.000", "180.0").
+% o_point(p3_12, "10.053", "11.000", "180.0").
+% o_point(p3_13, "9.053", "11.000", "180.0").
+
+% }).
 
 #pos(p1_5B_1, {}, {}, {
 

@@ -26,10 +26,16 @@
 #brave_ordering(b5@54, p1_2C_1, p1_2A_1). % 54 = 57 - 3
 #brave_ordering(b6@21, p1_2B_1, p1_2A_1). % 21 = 24 - 3
 
-#brave_ordering(p1_2A_1, p1_3A_1).
-#brave_ordering(p1_1A_1, p1_3A_1).
-#brave_ordering(p1_2A_1, p2_3A_1).
+% enforce step-out-and-wait only not past-mid and one-p-width 
+% #brave_ordering(p1_2A_1, p1_3A_1).
 #brave_ordering(p1_1A_1, p2_3A_1).
+#brave_ordering(p1_1A_1, p1_3A_1).
+% #brave_ordering(p1_1A_1, p2_3A_1).
+
+% enforce give-way only when not one-p-width
+#brave_ordering(p1_2C_1, p1_3B_1).
+#brave_ordering(p1_1A_1, p2_3B_1).
+
 
 % Context 1, scenario 3
 #brave_ordering(b7@80, p1_3B_1, p1_3A_1). % 80 = 82 - 2
@@ -47,6 +53,9 @@
 % #brave_ordering(p2_4A_1, p3_4B_1).
 % #brave_ordering(p2_4A_1, p4_4B_1).
 
+% #brave_ordering(p1_2A_1, p1_5A_1).
+% #brave_ordering(p1_5B_1, p1_2B_1).
+
 % Context 1, scenario 5
 % #brave_ordering(b9@39, p1_5C_1, p1_5A_1). % 39 = 46 - 7
 % #brave_ordering(b10@15, p1_5C_1, p1_5B_1). % 15 = 46 - 31
@@ -60,21 +69,21 @@
 %%% Hypothesis Space %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % ModeO for scenario 1/2
-#modeo(1, push_out(const(ent), var(ent), var(room), var(time))).
-#modeo(1, step_out_and_wait(const(ent), var(ent), var(room), var(time))).
-#modeo(1, squeeze_by_wall(const(ent), var(ent), var(wall), var(time))).
+% #modeo(1, push_out(const(ent), var(ent), var(room), var(time))).
+% #modeo(1, step_out_and_wait(const(ent), var(ent), var(room), var(time))).
+% #modeo(1, squeeze_by_wall(const(ent), var(ent), var(wall), var(time))).
 
 % ModeO for scenario 3
-% #modeo(1, give_way(const(ent), var(ent), var(time), var(room))).
+#modeo(1, give_way(const(ent), var(ent), var(time), var(room))).
 % #modeo(1, step_out_and_wait(const(ent), var(ent), const(room), var(time))).
 
 % ModeO for scenario 4
-#modeo(1, overtake_in_corridor(const(ent), var(ent), var(time), var(room))).
+% #modeo(1, overtake_in_corridor(const(ent), var(ent), var(time), var(room))).
 
 % ModeO for scenario 5
-% #modeo(1, push_out(const(ent), var(ent), const(room), var(time))).
-% #modeo(1, step_out_and_wait(const(ent), var(ent), const(room), var(time))).
-% #modeo(1, squeeze_by_wall(const(ent), var(ent), var(wall), var(time))).
+#modeo(1, push_out(const(ent), var(ent), var(room), var(time))).
+#modeo(1, step_out_and_wait(const(ent), var(ent), var(room), var(time))).
+#modeo(1, squeeze_by_wall(const(ent), var(ent), var(wall), var(time))).
 
 % ModeO for scenario 6
 % #modeo(1, squeeze_between_conversation(const(ent), var(ent), var(ent), var(time))).
@@ -82,6 +91,7 @@
 
 % Additional ModeO for scenarios enabled simultaneously
 % #modeo(1, behind(var(ent), const(ent), var(time))).
+% #modeo(1, behind(const(ent), var(ent), var(time))).
 #modeo(1, past_mid(const(ent), var(room), var(time))).
 #modeo(1, one_person_width(var(room))).
 % --------------
