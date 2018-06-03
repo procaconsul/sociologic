@@ -22,7 +22,7 @@
 
 line_ent(L) :- line2d(L, _, _, _, _).
 
-line2d(line(E, T), X1, Y1, X2, Y2) :- path(E, T, P1, P2, L), 
+line2d(line(E, T), X1, Y1, X2, Y2) :- path(E, T, P1, P2), 
   point(P1, X1, Y1), 
   point(P2, X2, Y2).
 
@@ -59,7 +59,7 @@ polygon(C, VS) :- corridor(C, W1, W2),
 % ######################
 
 behind(E1, E2, T) :- E1 != E2, pos(E1, T, P1), 
-  path(E2, T, P2, P3, _), 
+  path(E2, T, P2, P3), 
   o_point(P1, X1, Y1, O1), 
   o_point(P2, X2, Y2, O2), 
   point(P3, X3, Y3), 
@@ -109,7 +109,7 @@ squeeze_by_wall(E1, E2, W, T) :- E1 != E2,
 
 last_time_point(T) :- pos(_, T, _), not pos(_, T+1, _).
 
-path(E, T, P1, P2, line(E, T)) :- pos(E, T, P1), pos(E, T+1, P2).
+path(E, T, P1, P2) :- pos(E, T, P1), pos(E, T+1, P2).
 
 one_person_width(C) :- corridor(C, W1, W2),
   line_ent(line(W1)), 
@@ -124,6 +124,6 @@ one_person_width(C) :- corridor(C, W1, W2),
 :- pos(E, T, P1), pos(E, T, P2), P1 != P2.
 
 % entities cannot "go through" walls
-:- incidence(intersects, line(W), L), wall(W, _, _), path(_, _, _, _, L).
+:- incidence(intersects, line(W), line(E, T)), wall(W, _, _), path(E, T, _, _).
 
 

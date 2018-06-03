@@ -13,7 +13,7 @@ squeeze_between_conversation(E1, E2, E3, T) :- not talking(E1, _, _),
   not talking(_, E1, _),
   talking(E2, E3, T),
   talking(E2, E3, T+1),
-  path(E1, T, P1_1, P1_2, _),
+  path(E1, T, P1_1, P1_2),
   pos(E2, T, P2),
   pos(E3, T, P3),
   point(P1_1, X1_1, Y1_1),
@@ -72,7 +72,7 @@ give_way(E1, E2, T, C) :- corridor(C, _, _),
 % %%%%%%%%%%%%%%%%%
 
 % assuming corridors are made of walls of the same length
-past_mid(E, C, T) :- path(E, Tb, P1_1, P1_2, L1),
+past_mid(E, C, T) :- path(E, Tb, P1_1, P1_2),
   after(T, Tb),
   corridor(C, W1, W2),
   mid_point(mid_p(W1), X1, Y1),

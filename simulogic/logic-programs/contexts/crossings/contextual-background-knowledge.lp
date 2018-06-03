@@ -10,7 +10,7 @@ crossing(C) :- crossing(C, _, _, _, _).
 
 % should I add a constraint on the distance?
 go_behind(E1, E2, T) :- E1 != E2,
-  path(E1, T, P1_1, P1_2, L), 
+  path(E1, T, P1_1, P1_2), 
   pos(E2, T, P2),
   pos(E2, T-1, P3),
   point(P1_1, X1_1, Y1_1),
