@@ -7,7 +7,7 @@
 #include "contexts/narrow-passage/scenario_2.las".
 #include "contexts/narrow-passage/scenario_3.las".
 % #include "contexts/narrow-passage/scenario_4.las".
-% #include "contexts/narrow-passage/scenario_5.las".
+#include "contexts/narrow-passage/scenario_5.las".
 % #include "contexts/narrow-passage/scenario_6.las".
 
 
@@ -27,15 +27,15 @@
 #brave_ordering(b6@21, p1_2B_1, p1_2A_1). % 21 = 24 - 3
 
 % enforce step-out-and-wait only not past-mid and one-p-width 
-% #brave_ordering(p1_2A_1, p1_3A_1).
 #brave_ordering(p1_1A_1, p2_3A_1).
 #brave_ordering(p1_1A_1, p1_3A_1).
-% #brave_ordering(p1_1A_1, p2_3A_1).
 
-% enforce give-way only when not one-p-width
+% [block2] enforce give-way only when not one-p-width
 #brave_ordering(p1_2C_1, p1_3B_1).
+#brave_ordering(p1_2C_1, p2_3B_1).
+% ---------------
+#brave_ordering(p1_1A_1, p1_3B_1).
 #brave_ordering(p1_1A_1, p2_3B_1).
-
 
 % Context 1, scenario 3
 #brave_ordering(b7@80, p1_3B_1, p1_3A_1). % 80 = 82 - 2
@@ -53,15 +53,15 @@
 % #brave_ordering(p2_4A_1, p3_4B_1).
 % #brave_ordering(p2_4A_1, p4_4B_1).
 
-% #brave_ordering(p1_2A_1, p1_5A_1).
-% #brave_ordering(p1_5B_1, p1_2B_1).
+#brave_ordering(p1_2A_1, p1_5A_1).
+#brave_ordering(p1_5B_1, p1_2B_1).
 
 % Context 1, scenario 5
-% #brave_ordering(b9@39, p1_5C_1, p1_5A_1). % 39 = 46 - 7
-% #brave_ordering(b10@15, p1_5C_1, p1_5B_1). % 15 = 46 - 31
-% #brave_ordering(b11@24, p1_5B_1, p1_5A_1). % 24 = 31 - 7
+#brave_ordering(b9@39, p1_5C_1, p1_5A_1). % 39 = 46 - 7
+#brave_ordering(b10@15, p1_5C_1, p1_5B_1). % 15 = 46 - 31
+#brave_ordering(b11@24, p1_5B_1, p1_5A_1). % 24 = 31 - 7
 
-% % Context 1, scenario 6
+% Context 1, scenario 6
 % #brave_ordering(b12@53, p1_6C_1, p1_6A_1). % 53 = 55 - 2
 % #brave_ordering(b13@28, p1_6C_1, p1_6B_1). % 28 = 55 - 27
 % #brave_ordering(b14@25, p1_6B_1, p1_6A_1). % 25 = 27 - 2
@@ -74,7 +74,7 @@
 % #modeo(1, squeeze_by_wall(const(ent), var(ent), var(wall), var(time))).
 
 % ModeO for scenario 3
-#modeo(1, give_way(const(ent), var(ent), var(time), var(room))).
+% #modeo(1, give_way(const(ent), var(ent), var(time), var(room))).
 % #modeo(1, step_out_and_wait(const(ent), var(ent), const(room), var(time))).
 
 % ModeO for scenario 4
@@ -90,23 +90,21 @@
 % #modeo(1, wait_end_of_talk(const(ent), var(ent), var(ent), var(time), var(time))).
 
 % Additional ModeO for scenarios enabled simultaneously
-% #modeo(1, behind(var(ent), const(ent), var(time))).
+#modeo(1, behind(const(ent2), const(ent), var(time))).
 % #modeo(1, behind(const(ent), var(ent), var(time))).
 #modeo(1, past_mid(const(ent), var(room), var(time))).
 #modeo(1, one_person_width(var(room))).
 % --------------
 % #modeo(1, invades_personal_space(var(ent), var(ent), var(time))).
 
-% #bias(":- body(past_mid(focus_agent, corridor, _)), not alone.").
-% #bias(":- body(one_person_width(_)), not not_alone.").
-% #bias(":- body(past_mid(_, _, _), one_person_width(_)), not not_alone.").
-% #bias("alone :- body(X), X != past_mid(_, _, _).").
-% #bias("not_alone :- body(X), X != one_person_width(_)").
-% #bias("not_alone :- body(X, Y), X != one_person_width(_), Y !=").
+% #bias(":- body(past_mid(focus_agent, _, _)), not not_alone.").
+% #bias("not_alone(X) :- body(X), not not_not_alone(X).").
+% #bias("not_not_alone(past_mid(focus_agent, X, Y)) :- body(past_mid(focus_agent, X,Y)).").
 
 #maxp(2).
 #maxv(3).
 #constant(ent, focus_agent).
+#constant(ent2, agent2).
 % #constant(room, corridor).
 #weight(-1).
 #weight(1).

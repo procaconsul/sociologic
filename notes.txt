@@ -143,6 +143,15 @@ ASP -----------------
   :~ step_out_and_wait(focus_agent, V0, V1, V2), not past_mid(focus_agent, V1, V2), one_person_width(V1).[-1@2, 7, V0, V1, V2]
 
 
+same as before with block2 reinforcement
+:~ push_out(focus_agent, V0, V1, V2).[1@2, 1, V0, V1, V2]
+:~ step_out_and_wait(focus_agent, V0, V1, V2).[1@1, 2, V0, V1, V2]
+:~ past_mid(focus_agent, V0, V1).[-1@1, 3, V0, V1]
+:~ step_out_and_wait(focus_agent, V0, V1, V2), past_mid(focus_agent, V1, V2).[1@2, 4, V0, V1, V2]
+:~ step_out_and_wait(focus_agent, V0, V1, V2), not past_mid(focus_agent, V1, V2), one_person_width(V1).[-1@2, 5, V0, V1, V2]
+Pre-processing  : 0.219s
+Solve time      : 2677.77s
+Total           : 2677.99s
 
 
 * Use --simple

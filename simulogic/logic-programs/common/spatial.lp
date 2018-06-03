@@ -63,11 +63,6 @@ o_distance(System, Distance, Point, Line) :-
   Distance = @mult_(@orientation_sign_(X1,Y1,X2,Y2,X3,Y3), @distance2d_point_line_(X1,Y1,X2,Y2,X3,Y3)).
 
 %%%%%%%%%%%%
-%%% POINT 3D %%%
-%%%%%%%%%%%%
-
-
-%%%%%%%%%%%%
 %%% LINE 2D %%%
 %%%%%%%%%%%%
 
@@ -77,11 +72,9 @@ sgn_distance(System, Distance, Line1, Line2) :-
   spatial_system(System, line2d(Line2, X3, Y3, X4, Y4)),
   Distance = @distance2d_segment_segment_(X1,Y1,X2,Y2,X3,Y3,X4,Y4).
 
-
 %%%%%%%%%%%%
 %%% CIRCLES %%%
 %%%%%%%%%%%%
-
 
 extent(System, Extent, Circle) :-
   spatial_system(System, circle(Circle, _, _, Radius)),
@@ -101,7 +94,6 @@ o_distance(System, Distance, Circle, Line) :-
   Distance = @mult_(@orientation_sign_(X1,Y1,X2,Y2,X3,Y3),
                                  @max_("0", @subtract_(@distance2d_point_line_(X1,Y1,X2,Y2,X3,Y3), Radius))).
   
-
 sgn_distance(System, Distance, Point, Circle) :-
   spatial_system(System, spatial(_,Point,Circle)), 
   spatial_system(System, point2d(Point, X1, Y1)),
@@ -115,11 +107,9 @@ minkowski_sum_diff_distance(System, SumDistance, DiffDistance, Circle1, Circle2)
   SumDistance = @subtract_(@distance2d_(X1,Y1,X2,Y2), @add_(R1,R2)),
   DiffDistance = @subtract_(@distance2d_(X1,Y1,X2,Y2), @abs_subtract_(R1,R2)).
 
-
 %%%%%%%%%%%%
 %%% SPHERES %%%
 %%%%%%%%%%%%
-
 
 extent(System, Radius, Sphere) :-
   spatial_system(System, sphere(Sphere, _, _, _, Radius)),
@@ -138,24 +128,19 @@ minkowski_sum_diff_distance(System, SumDistance, DiffDistance, Sphere1, Sphere2)
   SumDistance = @subtract_(@distance3d_(X1,Y1,Z1,X2,Y2,Z2), @add_(R1,R2)),
   DiffDistance = @subtract_(@distance3d_(X1,Y1,Z1,X2,Y2,Z2), @abs_subtract_(R1,R2)).
 
-
-
 %%%%%%%%%%%
 %%% BOX 2D %%%
 %%%%%%%%%%%
 
-
 extent(System, Extent, Box) :-
   spatial_system(System, box2d(Box, _, _, Width, Height)),
   Extent = @mult_(Width, Height).
-
 
 sgn_distance(System, Distance, Point, Box) :-
   spatial_system(System, spatial(_,Point,Box)), 
   spatial_system(System, point2d(Point, X1, Y1)),
   spatial_system(System, box2d(Box, X2,Y2, Width, Height)),
   Distance = @manhattan_distance2d_(X1,Y1,X2,Y2,Width,Height).
-
 
 minkowski_sum_diff_distance(System, SumDistance, DiffDistance, Box1,Box2) :-
   spatial_system(System, spatial(_,Box1,Box2)), 
@@ -164,24 +149,19 @@ minkowski_sum_diff_distance(System, SumDistance, DiffDistance, Box1,Box2) :-
   SumDistance = @manhattan_distance2d_(X1,Y1,X2,Y2,@add_(Width1,Width2),@add_(Height1,Height2)),
   DiffDistance = @manhattan_distance2d_(X1,Y1,X2,Y2,@abs_subtract_(Width1,Width2),@abs_subtract_(Height1,Height2)).
 
-
-
 %%%%%%%%%%%
 %%% BOX 3D %%%
 %%%%%%%%%%%
 
-
 extent(System, Extent, Box) :-
   spatial_system(System, box3d(Box, _, _, _, Width, Height, Depth)),
   Extent = @mult3_(Width, Height, Depth).
-
 
 sgn_distance(System, Distance, Point, Box) :-
   spatial_system(System, spatial(_,Point,Box)), 
   spatial_system(System, point3d(Point, X1, Y1, Z1)),
   spatial_system(System, box3d(Box, X2,Y2, Z2, Width, Height, Depth)),
   Distance = @manhattan_distance3d_(X1,Y1,Z1,X2,Y2,Z2,Width,Height,Depth).
-
 
 minkowski_sum_diff_distance(System, SumDistance, DiffDistance, Box1,Box2) :-
   spatial_system(System, spatial(_,Box1,Box2)), 
@@ -190,11 +170,9 @@ minkowski_sum_diff_distance(System, SumDistance, DiffDistance, Box1,Box2) :-
   SumDistance = @manhattan_distance3d_(X1,Y1,Z1,X2,Y2,Z2,@add_(Width1,Width2),@add_(Height1,Height2),@add_(Depth1,Depth2)),
   DiffDistance = @manhattan_distance3d_(X1,Y1,Z1,X2,Y2,Z2,@abs_subtract_(Width1,Width2),@abs_subtract_(Height1,Height2),@abs_subtract_(Depth1,Depth2)).
 
-
 %%%%%%%%%%%%%
 %%% POLYGONS %%%
 %%%%%%%%%%%%%
-
 
 extent(System, Extent, Polygon) :-
   spatial_system(System, polygon(Polygon,Vertices)),
@@ -220,18 +198,13 @@ minkowski_sum_diff_distance(System, SumDistance, DiffDistance, Polygon1,Polygon2
   spatial_system(System, polygon(Polygon2, V2)),
   (SumDistance, DiffDistance) = @poly_minkow_sum_diff_distance_(V1,V2).
 
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% /// Spatial Relations /// %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-
-
-
 %%%%%%%%%%%%%%%%%%
 %%% REGION-REGION SIZE %%%
 %%%%%%%%%v%%%%%%%%%
-
 
 spatial_system(S, size(smaller, A, B))  :-  spatial_system(S, spatial(size, A, B)), extent(S, Ae, A), extent(S, Be, B), 1 == @lt_(Ae, Be).
 -spatial_system(S, size(smaller, A, B)) :-   spatial_system(S, spatial(size, A, B)), extent(S,Ae, A), extent(S,Be, B), 1 == @leq_(Be, Ae).
@@ -242,11 +215,9 @@ spatial_system(S, size(equi_size, A, B))  :-   spatial_system(S,spatial(size, A,
 spatial_system(S, size(larger, A, B))  :-   spatial_system(S,spatial(size, A, B)), extent(S,Ae, A), extent(S,Be, B), 1 == @lt_(Be, Ae).
 -spatial_system(S, size(larger, A, B)) :-   spatial_system(S,spatial(size, A, B)), extent(S,Ae, A), extent(S,Be, B), 1 == @leq_(Ae, Be).
 
-
 %%%%%%%%%%%%%%%%%%%%%
 %%% ENTITY-ENTITY INCIDENCE %%%
 %%%%%%%%%%%%%%%%%%%%%
-
 
 spatial_system(S,incidence(interior, A, B))  :-  spatial_system(S,spatial(incidence, A, B)), type(region,B), sgn_distance(S, D, A, B), 1 == @lt_(D, "0").
 -spatial_system(S,incidence(interior, A, B))  :-  spatial_system(S,spatial(incidence, A, B)), type(region,B), sgn_distance(S, D, A, B), 1 == @leq_("0", D).
@@ -308,13 +279,11 @@ spatial_system(S,topology(tpp, A, B)) :- spatial_system(S,spatial(topology, A, B
 -spatial_system(S,topology(tpp, A, B)) :- spatial_system(S,spatial(topology, A, B)), minkowski_sum_diff_distance(S,_,D,A,B), 1 == @not_eq_(D, "0").
 
 spatial_system(S,topology(ntpp, A, B)) :- minkowski_sum_diff_distance(S,_,D,A,B).
-% spatial_system(S,topology(ntpp, A, B)) :- spatial_system(S,spatial(topology, A, B)), spatial_system(S,topology(pp, A, B)), minkowski_sum_diff_distance(S,_,D,A,B), 1 == @lt_(D, "0").
-% -spatial_system(S,topology(ntpp, A, B)) :- spatial_system(S,spatial(topology, A, B)), -spatial_system(S,topology(pp, A, B)).
-% -spatial_system(S,topology(ntpp, A, B)) :- spatial_system(S,spatial(topology, A, B)), minkowski_sum_diff_distance(S,_,D,A,B), 1 == @leq_("0", D).
+spatial_system(S,topology(ntpp, A, B)) :- spatial_system(S,spatial(topology, A, B)), spatial_system(S,topology(pp, A, B)), minkowski_sum_diff_distance(S,_,D,A,B), 1 == @lt_(D, "0").
+-spatial_system(S,topology(ntpp, A, B)) :- spatial_system(S,spatial(topology, A, B)), -spatial_system(S,topology(pp, A, B)).
+-spatial_system(S,topology(ntpp, A, B)) :- spatial_system(S,spatial(topology, A, B)), minkowski_sum_diff_distance(S,_,D,A,B), 1 == @leq_("0", D).
 
 spatial_system(S,topology(po, A, B)) :- spatial_system(S,spatial(topology, A, B)), spatial_system(S,topology(o, A, B)), minkowski_sum_diff_distance(S,_,D,A,B), 1 == @lt_("0", D).
-
-
 
 %%%%%%%%%%%%%
 %%% ASP-Python interface %%%
