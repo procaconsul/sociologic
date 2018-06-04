@@ -91,15 +91,22 @@
 
 % Additional ModeO for scenarios enabled simultaneously
 #modeo(1, behind(const(ent2), const(ent), var(time))).
-% #modeo(1, behind(const(ent), var(ent), var(time))).
 #modeo(1, past_mid(const(ent), var(room), var(time))).
 #modeo(1, one_person_width(var(room))).
 % --------------
 % #modeo(1, invades_personal_space(var(ent), var(ent), var(time))).
 
+
+% Reduce search space by pruning the meaningless weak constraints
 #bias(":- body(past_mid(focus_agent, _, _)), not not_alone.").
+#bias(":- body(one_person_width(_)), not not_alone.").
+#bias(":- body(behind(_, focus_agent, _)), not not_alone.").
+
 #bias("not_alone :- body(X), not not_not_alone(X).").
+
 #bias("not_not_alone(past_mid(focus_agent, Y, Z)) :- body(past_mid(focus_agent, Y, Z)).").
+#bias("not_not_alone(one_person_width(C)) :- body(one_person_width(C)).").
+#bias("not_not_alone(behind(X, focus_agent, Z)) :- body(behind(X, focus_agent, Z)).").
 
 #maxp(2).
 #maxv(3).
