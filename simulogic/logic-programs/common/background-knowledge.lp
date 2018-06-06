@@ -7,13 +7,13 @@
 %                                        #
 % 120cm is the proxemic boundary         #
 % of the personal space                  # 
-#const personal_distance = "1.200".      
-#const squeezing_threshold = "0.100".  
-
+#const personal_distance = "1.200".      %
+#const squeezing_threshold = "0.100".    %
+%                                        #
 % indicative width of space for          #
 % two people to walk side by side        #
-#const two_people_width = "2.1".                                       
-#const mid_length_tolerance = "2.0".
+#const two_people_width = "2.1".         %                             
+% #const mid_length_tolerance = "2.0".     %
 %#########################################
 
 % #####################
@@ -68,7 +68,8 @@ behind(E1, E2, T) :- E1 != E2, pos(E1, T, P1),
 
 in_front(E1, E2, T) :- behind(E2, E1, T).
 
-distance(P1, P2, D) :- point(P1, X1, Y1), 
+distance(P1, P2, D) :- P1 != P2,
+  point(P1, X1, Y1), 
   point(P2, X2, Y2), 
   D = @distance2d_(X1, Y1, X2, Y2).
 
@@ -110,13 +111,6 @@ squeeze_by_wall(E1, E2, W, T) :- E1 != E2,
 last_time_point(T) :- pos(_, T, _), not pos(_, T+1, _).
 
 path(E, T, P1, P2) :- pos(E, T, P1), pos(E, T+1, P2).
-
-one_person_width(C) :- corridor(C, W1, W2),
-  line_ent(line(W1)), 
-  line_ent(line(W2)), 
-  sgn_distance(id(default), D, line(W1), line(W2)), 
-  @lt_(D, two_people_width) == 1,
-  W1 != W2.
 
 %%% Constraints %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 

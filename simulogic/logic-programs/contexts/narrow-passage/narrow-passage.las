@@ -7,7 +7,7 @@
 #include "contexts/narrow-passage/scenario_2.las".
 #include "contexts/narrow-passage/scenario_3.las".
 % #include "contexts/narrow-passage/scenario_4.las".
-#include "contexts/narrow-passage/scenario_5.las".
+% #include "contexts/narrow-passage/scenario_5.las".
 % #include "contexts/narrow-passage/scenario_6.las".
 
 
@@ -53,13 +53,13 @@
 % #brave_ordering(p2_4A_1, p3_4B_1).
 % #brave_ordering(p2_4A_1, p4_4B_1).
 
-#brave_ordering(p1_2A_1, p1_5A_1).
-#brave_ordering(p1_5B_1, p1_2B_1).
+% #brave_ordering(p1_2A_1, p1_5A_1).
+% #brave_ordering(p1_5B_1, p1_2B_1).
 
 % Context 1, scenario 5
-#brave_ordering(b9@39, p1_5C_1, p1_5A_1). % 39 = 46 - 7
-#brave_ordering(b10@15, p1_5C_1, p1_5B_1). % 15 = 46 - 31
-#brave_ordering(b11@24, p1_5B_1, p1_5A_1). % 24 = 31 - 7
+% #brave_ordering(b9@39, p1_5C_1, p1_5A_1). % 39 = 46 - 7
+% #brave_ordering(b10@15, p1_5C_1, p1_5B_1). % 15 = 46 - 31
+% #brave_ordering(b11@24, p1_5B_1, p1_5A_1). % 24 = 31 - 7
 
 % Context 1, scenario 6
 % #brave_ordering(b12@53, p1_6C_1, p1_6A_1). % 53 = 55 - 2
@@ -90,7 +90,7 @@
 % #modeo(1, wait_end_of_talk(const(ent), var(ent), var(ent), var(time), var(time))).
 
 % Additional ModeO for scenarios enabled simultaneously
-#modeo(1, behind(const(ent2), const(ent), var(time))).
+% #modeo(1, behind(const(ent2), const(ent), var(time))).
 #modeo(1, past_mid(const(ent), var(room), var(time))).
 #modeo(1, one_person_width(var(room))).
 % --------------

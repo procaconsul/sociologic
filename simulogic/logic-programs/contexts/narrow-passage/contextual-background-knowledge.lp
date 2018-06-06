@@ -71,6 +71,14 @@ give_way(E1, E2, T, C) :- corridor(C, _, _),
 % OTHERS
 % %%%%%%%%%%%%%%%%%
 
+one_person_width(C) :- corridor(C, W1, W2),
+  line_ent(line(W1)), 
+  line_ent(line(W2)), 
+  sgn_distance(id(default), D, line(W1), line(W2)), 
+  @lt_(D, two_people_width) == 1,
+  W1 != W2.
+
+
 % assuming corridors are made of walls of the same length
 past_mid(E, C, T) :- path(E, Tb, P1_1, P1_2),
   after(T, Tb),

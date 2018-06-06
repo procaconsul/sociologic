@@ -1,0 +1,20 @@
+
+narro pass - 1, 2 - 
+:~ squeeze_by_wall(focus_agent, V0, V1, V2).[-1@1, 1, V0, V1, V2]
+:~ push_out(focus_agent, V0, V1, V2), past_mid(focus_agent, V1, V2).[-1@2, 2,
+V0, V1, V2]
+:~ step_out_and_wait(focus_agent, V0, V1, V2), not past_mid(focus_agent, V1,
+V2).[-1@2, 3, V0, V1, V2]
+Pre-processing  : 0.441s
+Solve time      : 1454.91s
+Total           : 1455.35s
+
+narro pass - 1, 2 - --simple
+:~ squeeze_by_wall(focus_agent, V0, V1, V2).[-1@1, 1, V0, V1, V2]
+:~ push_out(focus_agent, V0, V1, V2), past_mid(focus_agent, V1, V2).[-1@2, 2,
+V0, V1, V2]
+:~ step_out_and_wait(focus_agent, V0, V1, V2), not past_mid(focus_agent, V1,
+V2).[-1@2, 3, V0, V1, V2]
+Pre-processing  : 0.457s
+Solve time      : 372.985s
+Total           : 373.442s
