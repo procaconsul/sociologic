@@ -18,3 +18,23 @@ V2).[-1@2, 3, V0, V1, V2]
 Pre-processing  : 0.457s
 Solve time      : 372.985s
 Total           : 373.442s
+
+narro pass - 1, 3 - --simple
+:~ give_way(focus_agent, V0, V1, V2).[-1@1, 1, V0, V1, V2]
+:~ push_out(focus_agent, V0, V1, V2).[1@2, 2, V0, V1, V2]
+:~ step_out_and_wait(focus_agent, V0, V1, V2), one_person_width(V1).[-1@1, 3,
+V0, V1, V2]
+Pre-processing  : 0.501s
+Solve time      : 404.885s
+Total           : 405.387s
+
+narro pass - 1, 2, 3 - --simple
+:~ push_out(focus_agent, V0, V1, V2).[1@1, 1, V0, V1, V2]
+:~ step_out_and_wait(focus_agent, V0, V1, V2).[1@1, 2, V0, V1, V2]
+:~ push_out(focus_agent, V0, V1, V2), past_mid(focus_agent, V1, V2).[-1@2, 3,
+V0, V1, V2]
+:~ step_out_and_wait(focus_agent, V0, V1, V2), not past_mid(focus_agent, V1,
+V2), one_person_width(V1).[-1@2, 4, V0, V1, V2]
+Pre-processing  : 0.574s
+Solve time      : 2915.74s
+Total           : 2916.32s

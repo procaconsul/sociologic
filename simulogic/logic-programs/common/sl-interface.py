@@ -9,8 +9,6 @@ DEBUG = False
 ANG_TOLERANCE = 20
 
 def is_behind(_x1, _y1, _o1, _x2, _y2, _o2):
-    # Returns 1 if oriented point (x1, y1, o1) is behind 
-    # (x2, y2, o2); -1 otherwise.
 
     # following the convention in spatial.lp
     x1 = float(_x1.string)
@@ -139,6 +137,7 @@ def opposite_directions(_o1, _o2):
 def opposite_directions_vals(o1, o2):
     OPPOSITE = 180
     diff =  abs(o1 - o2)
+    
     return diff <= (OPPOSITE + ANG_TOLERANCE) and \
             diff >= (OPPOSITE - ANG_TOLERANCE)
 
