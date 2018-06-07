@@ -4,9 +4,9 @@
 % Scenarios
 
 #include "contexts/queues-and-groups/scenario_1.las".
-#include "contexts/queues-and-groups/scenario_2.las".
-#include "contexts/queues-and-groups/scenario_3.las".
-#include "contexts/queues-and-groups/scenario_4.las".
+% #include "contexts/queues-and-groups/scenario_2.las".
+% #include "contexts/queues-and-groups/scenario_3.las".
+% #include "contexts/queues-and-groups/scenario_4.las".
 
 
 %%% ORDERINGS W-EXPLICIT %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -15,26 +15,26 @@
 #brave_ordering(b1@48, p1_1A_3, p1_1B_3). 
 #brave_ordering(b1_1@35, p1_1B_3, p1_1A_3).
 
-#brave_ordering(p1_1A_3, p1_2A_3).
-#brave_ordering(p1_2B_3, p1_1B_3).
+% #brave_ordering(p1_1A_3, p1_2A_3).
+% #brave_ordering(p1_2B_3, p1_1B_3).
 
 % Context 3, scenario 2
-#brave_ordering(b2@71, p1_2B_3, p1_2A_3). 
-#brave_ordering(b2_1@12, p1_2A_3, p1_2B_3). 
+% #brave_ordering(b2@71, p1_2B_3, p1_2A_3). 
+% #brave_ordering(b2_1@12, p1_2A_3, p1_2B_3). 
 
 % Context 3, scenario 3
-#brave_ordering(b3@70, p1_3B_3, p1_3A_3). 
-#brave_ordering(b3_1@11, p1_3A_3, p1_3B_3).
+% #brave_ordering(b3@70, p1_3B_3, p1_3A_3). 
+% #brave_ordering(b3_1@11, p1_3A_3, p1_3B_3).
 
-#brave_ordering(b4@70, p1_3B_3, p1_3C_3). 
-#brave_ordering(b4_1@3, p1_3C_3, p1_3B_3).
+% #brave_ordering(b4@70, p1_3B_3, p1_3C_3). 
+% #brave_ordering(b4_1@3, p1_3C_3, p1_3B_3).
 
-#brave_ordering(b5@11, p1_3A_3, p1_3C_3). 
-#brave_ordering(b5_1@2, p1_3C_3, p1_3A_3).
+% #brave_ordering(b5@11, p1_3A_3, p1_3C_3). 
+% #brave_ordering(b5_1@2, p1_3C_3, p1_3A_3).
 
 % Context 3, scenario 4
-#brave_ordering(b6@62, p1_4B_3, p1_4A_3). 
-#brave_ordering(b6_1@21, p1_4A_3, p1_4B_3). 
+% #brave_ordering(b6@62, p1_4B_3, p1_4A_3). 
+% #brave_ordering(b6_1@21, p1_4A_3, p1_4B_3). 
 
 % %%% ORDERINGS W-COMBINED %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
