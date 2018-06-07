@@ -21,13 +21,3 @@ go_behind(E1, E2, T) :- E1 != E2,
 
 go_in_front(E1, E2, T) :- go_behind(E2, E1, T).
 
-% wait(E, T1, T2) :- T1 != T2, 
-  % after(T2, T1),
-  % pos(E, T1, P1),
-  % pos(E, T2-1, P2),
-  % distance(P1, P2, D1),
-  % @eq_(D1, "0") == 1,
-  % pos(E, T2, P3),
-  % distance(P1, P3, D2),
-  % @not_eq_(D2, "0") == 1.
-

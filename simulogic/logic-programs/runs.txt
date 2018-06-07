@@ -38,3 +38,47 @@ V2), one_person_width(V1).[-1@2, 4, V0, V1, V2]
 Pre-processing  : 0.574s
 Solve time      : 2915.74s
 Total           : 2916.32s
+
+
+narro pass - 4 - --simple
+:~ overtake_in_corridor(focus_agent, V0, V1, V2).[1@1, 1, V0, V1, V2]
+:~ overtake_in_corridor(focus_agent, V0, V1, V2), not
+one_person_width(V2).[-1@2, 2, V0, V1, V2]
+Pre-processing  : 0.26s
+Solve time      : 67.868s
+Total           : 68.127s
+
+narro pass - 1, 2, 4 - --simple
+:~ squeeze_between_conversation(focus_agent, V0, V1, V2).[-1@1, 1, V0, V1, V2]
+:~ squeeze_by_wall(focus_agent, V0, V1, V2).[-1@2, 2, V0, V1, V2]
+:~ squeeze_by_wall(focus_agent, V0, V1, V2).[1@1, 3, V0, V1, V2]
+:~ step_out_and_wait(focus_agent, V0, V1, V2), not past_mid(focus_agent, V1, V2).[-1@2, 4, V0, V1, V2]
+:~ push_out(focus_agent, V0, V1, V2), past_mid(focus_agent, V1, V2).[-1@2, 5, V0, V1, V2]
+Pre-processing  : 0.492s
+Solve time      : 1316.77s
+Total           : 1317.26s
+
+
+---------------------------------------------------------
+cross - all - --simple
+:~ go_behind(focus_agent, V0, V1).[-1@1, 1, V0, V1]
+Pre-processing  : 0.198s
+Solve time      : 11.802s
+Total           : 12s
+
+cross - all - 
+:~ go_behind(focus_agent, V0, V1).[-1@2, 1, V0, V1]
+Pre-processing  : 0.243s
+Solve time      : 13.629s
+Total           : 13.872s
+
+---------------------------------------------------------
+queues - all - --simple
+:~ go_through(focus_agent, V0, V1).[1@1, 1, V0, V1]
+:~ wait(focus_agent, V0, V1).[1@2, 2, V0, V1]
+:~ squeeze_between_wall_and_agglomerate(focus_agent, V0, V1, V2),
+straight_queue(V0, V2).[1@2, 3, V0, V1, V2]
+Pre-processing  : 2.196s
+Solve time      : 1843.03s
+Total           : 1845.22s
+

@@ -12,7 +12,7 @@
 % +--------------------+
 % wall2
  
-#pos(p3_2A_1, {}, {}, {
+#pos(p3_2A_3, {}, {}, {
 
 % METADATA
 % :name=p3_2A_1
@@ -38,6 +38,8 @@ agent(agent12).
 agent(agent13).
 agent(agent14).
 agent(agent15).
+
+time(1..14).
 
 % wall 1 
 wall(wall1, w1_s, w1_e).
@@ -397,7 +399,7 @@ o_point(p15_10, "29.500", "11.000", "90.0").
 
 }).
 
-#pos(p3_2B_1, {}, {}, {
+#pos(p3_2B_3, {}, {}, {
 
 % METADATA
 % :name=p3_2B_1
@@ -423,6 +425,8 @@ agent(agent12).
 agent(agent13).
 agent(agent14).
 agent(agent15).
+
+time(1..15).
 
 % wall 1 
 wall(wall1, w1_s, w1_e).

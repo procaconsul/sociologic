@@ -26,6 +26,8 @@ agent(focus_agent).
 agent(agent2).
 agent(agent3).
 
+time(1..12).
+
 % wall 1 
 wall(wall1, w1_s, w1_e).
 point(w1_s, "15.0", "12.0").
@@ -252,6 +254,8 @@ agent(focus_agent).
 agent(agent2).
 agent(agent3).
 
+time(1..8).
+
 % wall 1 
 wall(wall1, w1_s, w1_e).
 point(w1_s, "15.0", "12.0").
@@ -337,6 +341,8 @@ o_point(p3_8, "21.051", "11.100", "180.0").
 agent(focus_agent).
 agent(agent2).
 agent(agent3).
+
+time(1..9).
 
 % wall 1 
 wall(wall1, w1_s, w1_e).

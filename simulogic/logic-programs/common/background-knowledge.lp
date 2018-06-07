@@ -13,12 +13,13 @@
 % indicative width of space for          #
 % two people to walk side by side        #
 #const two_people_width = "2.1".         %                             
-% #const mid_length_tolerance = "2.0".     %
 %#########################################
 
 % #####################
 % GEOMETRICAL ENTITIES
 %######################
+
+path(E, T, P1, P2) :- pos(E, T, P1), pos(E, T+1, P2).
 
 line_ent(L) :- line2d(L, _, _, _, _).
 
@@ -30,12 +31,10 @@ line2d(line(E), X1, Y1, X2, Y2) :- wall(E, P1, P2),
   point(P1, X1, Y1), 
   point(P2, X2, Y2).
 
-
 spatial(incidence, L1, L2) :- line_ent(L1), line_ent(L2).
 incidence(INC, L1, L2) :- spatial_system(id(default), incidence(INC, L1, L2)).
 
-
-mid_point(mid_p(W), X, Y) :- wall(W, P1, P2),
+point(mid_p(W), X, Y) :- wall(W, P1, P2),
   point(P1, X1, Y1),
   point(P2, X2, Y2),
   X = @mid_point_x(X1, X2),
@@ -43,16 +42,6 @@ mid_point(mid_p(W), X, Y) :- wall(W, P1, P2),
   
 point(P, X, Y) :- o_point(P, X, Y, _).
 point2d(P, X, Y) :- point(P, X, Y).
-
-% Vertices are stored in clockwise order.
-polygon(C, VS) :- corridor(C, W1, W2),
-  wall(W1, P1, P2),
-  wall(W2, P3, P4),
-  point(P1, X1, Y1),
-  point(P2, X2, Y2),
-  point(P3, X3, Y3),
-  point(P4, X4, Y4),
-  VS = vs(X1, Y1, X2, Y2, X4, Y4, X3, Y3).
 
 % ######################
 % POSITIONAL AND TEMPORAL RELATIONS
@@ -78,7 +67,7 @@ inside(E, C, T) :- pos(E, T, P),
   polygon(C, VS),
   @point_inside_polygon(X, Y, VS) == 1.
 
-after(T1, T2) :- pos(_, T1, _), pos(_, T2, _), T1 > T2.
+after(T1, T2) :- time(T1), time(T2), T1 > T2.
 
 % ###########
 % ACTIONS
@@ -108,9 +97,7 @@ squeeze_by_wall(E1, E2, W, T) :- E1 != E2,
 % OTHERS
 % ############
 
-last_time_point(T) :- pos(_, T, _), not pos(_, T+1, _).
-
-path(E, T, P1, P2) :- pos(E, T, P1), pos(E, T+1, P2).
+last_time_point(T) :- time(T), not time(T+1).
 
 %%% Constraints %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -120,4 +107,6 @@ path(E, T, P1, P2) :- pos(E, T, P1), pos(E, T+1, P2).
 % entities cannot "go through" walls
 :- incidence(intersects, line(W), line(E, T)), wall(W, _, _), path(E, T, _, _).
 
-
+% integrity constraints
+:- pos(_, T, _), not time(T).
+:- o_point(P, _, _, _), not pos(_, _, P).

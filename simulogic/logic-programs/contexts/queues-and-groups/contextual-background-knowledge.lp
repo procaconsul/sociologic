@@ -11,7 +11,7 @@ agglomerate_size(F, S, T) :- agglomerate(F, S, T, _),
 % see if appropriate to introduce time() predicate in scenarios
 % to have positive pred with T1.
 straight_queue(Q, T1) :-
-  T2 <= T1, 
+  not after(T2, T1), 
   straight_queue_on_time(Q, T2),
   after(T3, T1),
   straight_queue_on_time(Q, T3).
@@ -38,7 +38,7 @@ squeeze_between_wall_and_agglomerate(E1, A, W, T) :-
   squeeze_by_wall(E1, E2, W, T),
   agglomerate(A, _, T, E2).
 
-go_through(E1, G, T) :- not group(G, _, T, E1),
+go_through_agglomerate(E1, G, T) :- not group(G, _, T, E1),
   path(E1, T, P1_1, P1_2),
   E2 != E3,
   group(G, _, T, E2),
@@ -51,7 +51,7 @@ go_through(E1, G, T) :- not group(G, _, T, E1),
   point(P3, X3, Y3),
   @intersects(X1_1, Y1_1, X1_2, Y1_2, X2, Y2, X3, Y3) == 1.
 
-go_through(E1, Q, T) :- not queue(Q, _, T, E1),
+go_through_agglomerate(E1, Q, T) :- not queue(Q, _, T, E1),
   path(E1, T, P1_1, P1_2),
   E2 != E3,
   queue(Q, I, T, E2),
@@ -64,7 +64,7 @@ go_through(E1, Q, T) :- not queue(Q, _, T, E1),
   point(P3, X3, Y3),
   @intersects(X1_1, Y1_1, X1_2, Y1_2, X2, Y2, X3, Y3) == 1.
 
-wait(E, From, For) :- pos(E, From, P1),
+wait_agglomerate_dispersion(E, From, For) :- pos(E, From, P1),
   after(T, From), 
   pos(E, T-1, P2),
   pos(E, T, P3), 

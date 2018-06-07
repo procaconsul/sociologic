@@ -71,6 +71,16 @@ give_way(E1, E2, T, C) :- corridor(C, _, _),
 % OTHERS
 % %%%%%%%%%%%%%%%%%
 
+% Vertices are stored in clockwise order.
+polygon(C, VS) :- corridor(C, W1, W2),
+  wall(W1, P1, P2),
+  wall(W2, P3, P4),
+  point(P1, X1, Y1),
+  point(P2, X2, Y2),
+  point(P3, X3, Y3),
+  point(P4, X4, Y4),
+  VS = vs(X1, Y1, X2, Y2, X4, Y4, X3, Y3).
+
 one_person_width(C) :- corridor(C, W1, W2),
   line_ent(line(W1)), 
   line_ent(line(W2)), 
@@ -83,8 +93,8 @@ one_person_width(C) :- corridor(C, W1, W2),
 past_mid(E, C, T) :- path(E, Tb, P1_1, P1_2),
   after(T, Tb),
   corridor(C, W1, W2),
-  mid_point(mid_p(W1), X1, Y1),
-  mid_point(mid_p(W2), X2, Y2), 
+  point(mid_p(W1), X1, Y1),
+  point(mid_p(W2), X2, Y2), 
   point(P1_1, X1_1, Y1_1),
   point(P1_2, X1_2, Y1_2),
   @intersects(X1_1, Y1_1, X1_2, Y1_2, X1, Y1, X2, Y2) == 1.

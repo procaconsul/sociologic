@@ -19,7 +19,7 @@
 %      wall7|      |wall8
 %           +      +
 
-#pos(p2_2A_1, {}, {}, {
+#pos(p2_2A_2, {}, {}, {
 
 % METADATA
 % :name=p2_2A_1
@@ -32,6 +32,8 @@
 %%%% Agents %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 agent(focus_agent).
 agent(agent2).
+
+time(1..11).
 
 % wall 1 
 wall(wall1, w1_s, w1_e).
@@ -131,7 +133,7 @@ o_point(p2_11, "23.000", "17.000", "90.0").
 
 }).
 
-#pos(p2_2B_1, {}, {}, {
+#pos(p2_2B_2, {}, {}, {
 
 % METADATA
 % :name=p2_2B_1
@@ -144,6 +146,8 @@ o_point(p2_11, "23.000", "17.000", "90.0").
 %%%% Agents %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 agent(focus_agent).
 agent(agent2).
+
+time(1..11).
 
 % wall 1 
 wall(wall1, w1_s, w1_e).
