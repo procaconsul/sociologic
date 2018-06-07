@@ -19,7 +19,6 @@
 % :centrex=27.5
 % :centrey=11.5
 
-
 % Option A
 
 %%%% Agents %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -33,6 +32,8 @@ agent(agent7).
 agent(agent8).
 agent(agent9).
 agent(agent10).
+
+time(1..10).
 
 % wall 1 
 wall(wall1, w1_s, w1_e).
@@ -138,6 +139,28 @@ pos(agent8, 7,  p8_7).
 pos(agent8, 8,  p8_8).
 pos(agent8, 9,  p8_9).
 pos(agent8, 10, p8_10).
+
+pos(agent9, 1,  p9_1).
+pos(agent9, 2,  p9_2).
+pos(agent9, 3,  p9_3).
+pos(agent9, 4,  p9_4).
+pos(agent9, 5,  p9_5).
+pos(agent9, 6,  p9_6).
+pos(agent9, 7,  p9_7).
+pos(agent9, 8,  p9_8).
+pos(agent9, 9,  p9_9).
+pos(agent9, 10, p9_10).
+
+pos(agent10, 1,  p10_1).
+pos(agent10, 2,  p10_2).
+pos(agent10, 3,  p10_3).
+pos(agent10, 4,  p10_4).
+pos(agent10, 5,  p10_5).
+pos(agent10, 6,  p10_6).
+pos(agent10, 7,  p10_7).
+pos(agent10, 8,  p10_8).
+pos(agent10, 9,  p10_9).
+pos(agent10, 10, p10_10).
 
 o_point(p1_1,  "21.000", "11.500", "0.0").
 o_point(p1_2,  "23.000", "11.500", "0.0"). 
@@ -274,6 +297,8 @@ agent(agent8).
 agent(agent9).
 agent(agent10).
 
+time(1..10).
+
 % wall 1 
 wall(wall1, w1_s, w1_e).
 point(w1_s, "26.0", "13.0").
@@ -378,6 +403,29 @@ pos(agent8, 7,  p8_7).
 pos(agent8, 8,  p8_8).
 pos(agent8, 9,  p8_9).
 pos(agent8, 10, p8_10).
+
+pos(agent7, 1,  p7_1).
+pos(agent7, 2,  p7_2).
+pos(agent7, 3,  p7_3).
+pos(agent7, 4,  p7_4).
+pos(agent7, 5,  p7_5).
+pos(agent7, 6,  p7_6).
+pos(agent7, 7,  p7_7).
+pos(agent7, 8,  p7_8).
+pos(agent7, 9,  p7_9).
+pos(agent7, 10, p7_10).
+
+pos(agent8, 1,  p8_1).
+pos(agent8, 2,  p8_2).
+pos(agent8, 3,  p8_3).
+pos(agent8, 4,  p8_4).
+pos(agent8, 5,  p8_5).
+pos(agent8, 6,  p8_6).
+pos(agent8, 7,  p8_7).
+pos(agent8, 8,  p8_8).
+pos(agent8, 9,  p8_9).
+pos(agent8, 10, p8_10).
+
 
 o_point(p1_1,  "22.000", "11.500", "0.0").
 o_point(p1_2,  "24.000", "11.500", "0.0"). 

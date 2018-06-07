@@ -39,7 +39,7 @@ agent(agent13).
 agent(agent14).
 agent(agent15).
 
-time(1..14).
+time(1..10).
 
 % wall 1 
 wall(wall1, w1_s, w1_e).
@@ -426,7 +426,7 @@ agent(agent13).
 agent(agent14).
 agent(agent15).
 
-time(1..15).
+time(1..14).
 
 % wall 1 
 wall(wall1, w1_s, w1_e).

@@ -110,7 +110,8 @@ def point_inside_polygon(_x, _y, vertices):
     return point_inside_polygon_vals(x, y, v_xs, v_ys)
 
 def point_inside_polygon_vals(x, y, v_xs, v_ys):
-    
+    # adapted from ray casting algorithm 
+
     assert len(v_xs) == len(v_ys)
     vs_n = len(v_xs)
 

@@ -109,4 +109,4 @@ last_time_point(T) :- time(T), not time(T+1).
 
 % integrity constraints
 :- pos(_, T, _), not time(T).
-:- o_point(P, _, _, _), not pos(_, _, P).
+:- pos(_, _, P), not o_point(P, _, _, _).
