@@ -52,15 +52,13 @@ maxp=1 makes all cases result into the go_in_front
 | Queues
 +---------
 
-
-(a) queues - all 
-:~ go_through(focus_agent, V0, V1).[1@1, 1, V0, V1]
-:~ wait(focus_agent, V0, V1).[1@2, 2, V0, V1]
-:~ squeeze_between_wall_and_agglomerate(focus_agent, V0, V1, V2),
-straight_queue(V0, V2).[1@2, 3, V0, V1, V2]
-Pre-processing  : 2.196s
-Solve time      : 1843.03s
-Total           : 1845.22s
+(a)
+:~ wait_agglomerate_dispersion(focus_agent, V0, V1, V2).[1@1, 1, V0, V1, V2]
+:~ go_through_agglomerate(focus_agent, V0, V1).[1@1, 2, V0, V1]
+:~ squeeze_between_wall_and_agglomerate(focus_agent, V0, V1, V2), straight_queue(V0, V2).[1@2, 3, V0, V1, V2]
+Pre-processing  : 2.439s
+Solve time      : 1534.54s
+Total           : 1536.98s
 
 
 clearly unsat with maxv=1
