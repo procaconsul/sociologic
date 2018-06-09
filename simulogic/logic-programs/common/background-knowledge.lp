@@ -110,3 +110,6 @@ last_time_point(T) :- time(T), not time(T+1).
 % integrity constraints
 :- pos(_, T, _), not time(T).
 :- pos(_, _, P), not o_point(P, _, _, _).
+
+% collision avoidance
+:- pos(E1, T, P1), pos(E2, T, P2), E1 != E2, point(P1, X, Y), point(P2, X, Y).
