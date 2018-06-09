@@ -55,13 +55,48 @@ maxp=1 makes all cases result into the go_in_front
 
 (a) queues - all 
 :~ go_through(focus_agent, V0, V1).[1@1, 1, V0, V1]
-:~ wait(focus_agent, V0, V1).[1@2, 2, V0, V1]
+:~ wait_agglomerate_dispersion(focus_agent, V0, V1, V2).[1@2, 2, V0, V1]
 :~ squeeze_between_wall_and_agglomerate(focus_agent, V0, V1, V2),
 straight_queue(V0, V2).[1@2, 3, V0, V1, V2]
 Pre-processing  : 2.196s
 Solve time      : 1843.03s
 Total           : 1845.22s
 
+(b)
+:~ squeeze_between_wall_and_agglomerate(focus_agent, V0, V1, V2).[-1@1, 1, V0,V1, V2]
+:~ go_through_agglomerate(focus_agent, V0, V1).[1@1, 2, V0, V1]
+:~ wait_agglomerate_dispersion(focus_agent, V0, V1, V2).[1@1, 3, V0, V1, V2]
+:~ go_through_agglomerate(focus_agent, V0, V1), straight_queue(V0, V2).[-1@1, 4,V0, V1, V2]
+Pre-processing  : 4.537s
+Solve time      : 2875.19s
+Total           : 2879.73s
+
+(c)
+:~ go_through_agglomerate(focus_agent, V0, V1).[1@1, 1, V0, V1]
+:~ wait_agglomerate_dispersion(focus_agent, V0, V1, V2).[2@1, 2, V0, V1, V2]
+:~ squeeze_between_wall_and_agglomerate(focus_agent, V0, V1, V2),
+straight_queue(V0, V2).[2@1, 3, V0, V1, V2]
+Pre-processing  : 4.134s
+Solve time      : 2791.42s
+Total           : 2795.55s
+
+(d)
+:~ go_through_agglomerate(focus_agent, V0, V1).[1@1, 1, V0, V1]
+:~ wait_agglomerate_dispersion(focus_agent, V0, V1, V2).[1@1, 2, V0, V1, V2]
+:~ squeeze_between_wall_and_agglomerate(focus_agent, V0, V1, V2),
+straight_queue(V0, V2).[2@2, 3, V0, V1, V2]
+Pre-processing  : 4.599s
+Solve time      : 3110.48s
+Total           : 3115.07s
+
+(e)
+:~ go_through_agglomerate(focus_agent, V0, V1).[2@1, 1, V0, V1]
+:~ wait_agglomerate_dispersion(focus_agent, V0, V1, V2).[1@3, 2, V0, V1, V2]
+:~ squeeze_between_wall_and_agglomerate(focus_agent, V0, V1, V2),
+straight_queue(V0, V2).[1@3, 3, V0, V1, V2]
+Pre-processing  : 4.347s
+Solve time      : 2683.46s
+Total           : 2687.81s
 
 clearly unsat with maxv=1
 
@@ -70,7 +105,7 @@ clearly unsat with maxv=1
 |  1,-1           |  2   |  1   | (U)
 |  1,-1           |  2   |  2   | (U)
 |  1,-1           |  2   |  3   | (U)
-|  1,-1           |  3   |  1   | ( )
+|  1,-1           |  3   |  1   | (b)
 |  1,-1           |  3   |  2   | (a)
 |  1,-1           |  3   |  3   | ( )
 |  1, 2           |  2   |  1   | ( )
@@ -79,18 +114,13 @@ clearly unsat with maxv=1
 |  1, 2           |  3   |  1   | ( )
 |  1, 2           |  3   |  2   | ( )
 |  1, 2           |  3   |  3   | ( )
-|  1,-1,2         |  2   |  1   | (U)
-|  1,-1,2         |  2   |  2   | (U)
 |  1,-1,2         |  2   |  3   | (U)
 |  1,-1,2         |  2   |  1   | (U)
 |  1,-1,2         |  2   |  2   | (U)
 |  1,-1,2         |  2   |  3   | (U)
-|  1,-1,2         |  3   |  1   | ( )
-|  1,-1,2         |  3   |  2   | ( )
-|  1,-1,2         |  3   |  3   | ( )
-|  1,-1,2         |  3   |  1   | ( )
-|  1,-1,2         |  3   |  2   | ( )
-|  1,-1,2         |  3   |  3   | ( )
+|  1,-1,2         |  3   |  1   | (c)
+|  1,-1,2         |  3   |  2   | (d)
+|  1,-1,2         |  3   |  3   | (e)
 
 
 

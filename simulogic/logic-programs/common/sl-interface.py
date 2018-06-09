@@ -110,8 +110,7 @@ def point_inside_polygon(_x, _y, vertices):
     return point_inside_polygon_vals(x, y, v_xs, v_ys)
 
 def point_inside_polygon_vals(x, y, v_xs, v_ys):
-    # adapted from ray casting algorithm 
-
+    
     assert len(v_xs) == len(v_ys)
     vs_n = len(v_xs)
 
@@ -128,6 +127,18 @@ def point_inside_polygon_vals(x, y, v_xs, v_ys):
                     c = not c
         j = i
     return c
+
+def perpendicular_directions(_o1, _o2):
+    o1 = float(_o1.string)
+    o2 = float(_o2.string)
+
+    return perpendicular_directions_vals(o1, o2)
+
+def perpendicular_directions_vals(o1, o2):
+    diff =  abs(o1 - o2)
+     
+    return diff % 90 <= ANG_TOLERANCE
+
 
 def opposite_directions(_o1, _o2):
     o1 = float(_o1.string)

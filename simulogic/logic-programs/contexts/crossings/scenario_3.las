@@ -19,10 +19,10 @@
 %      wall7|      |wall8
 %           +      +
 
-#pos(p2_3A_2, {}, {}, {
+#pos(p1_3A_2, {}, {}, {
 
 % METADATA
-% :name=p2_3A_1
+% :name=p1_3A_1
 % :centrex=22.5
 % :centrey=12.5
 
@@ -82,7 +82,7 @@ corridor(corridor_4, wall7, wall8).
 
 crossing(crossing, corridor_1, corridor_2, corridor_3, corridor_4).
 
-pushes_object(agent2, 1..11).
+pushes_object(agent2, 1..11, obj1).
 object(obj1, "1.0"). % object(name, length)
 
 % focus_agent passes behind agent 2 
@@ -136,10 +136,10 @@ o_point(p2_11, "23.000",  "9.000", "270.0").
 
 }).
 
-#pos(p2_3B_2, {}, {}, {
+#pos(p1_3B_2, {}, {}, {
 
 % METADATA
-% :name=p2_3B_1
+% :name=p1_3B_1
 % :centrex=22.5
 % :centrey=12.5
 

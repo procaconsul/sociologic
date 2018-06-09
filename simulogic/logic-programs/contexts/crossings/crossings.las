@@ -25,13 +25,13 @@
 %%% ORDERINGS W-COMBINED %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % Context 1, scenario 1
-#brave_ordering(b1@44, p2_1A_2, p2_1B_2). % 44 = 63 - 19
+#brave_ordering(b1@44, p1_1A_2, p1_1B_2). % 44 = 63 - 19
 
 % Context 1, scenario 2
-#brave_ordering(b2@58, p2_2A_2, p2_2B_2). % 58 = 60 - 12
+#brave_ordering(b2@58, p1_2A_2, p1_2B_2). % 58 = 60 - 12
 
 % Context 1, scenario 3
-#brave_ordering(b3@32, p2_3A_2, p2_3B_2). % 32 = 58 - 26
+#brave_ordering(b3@32, p1_3A_2, p1_3B_2). % 32 = 58 - 26
 
 %%% Hypothesis Space %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 

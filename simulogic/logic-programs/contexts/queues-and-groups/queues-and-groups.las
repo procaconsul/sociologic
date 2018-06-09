@@ -79,12 +79,12 @@
 #bias("not_not_alone(family(X)) :- body(family(X)).").
 #bias("not_not_alone(straight_queue(X, Y)) :- body(straight_queue(X, Y)).").
 
-#maxp(2).
+#maxp(3).
 #maxv(3).
 #constant(ent, focus_agent).
 #constant(ent_agglomerate, group).
 #constant(ent_agglomerate, queue).
 #weight(-1).
 #weight(1).
-% #weight(2).
+#weight(2).
 

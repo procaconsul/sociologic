@@ -19,10 +19,10 @@
 %      wall7|      |wall8
 %           +      +
 
-#pos(p2_2A_2, {}, {}, {
+#pos(p1_2A_2, {}, {}, {
 
 % METADATA
-% :name=p2_2A_1
+% :name=p1_2A_1
 % :centrex=22.5
 % :centrey=12.5
 
@@ -133,10 +133,10 @@ o_point(p2_11, "23.000", "17.000", "90.0").
 
 }).
 
-#pos(p2_2B_2, {}, {}, {
+#pos(p1_2B_2, {}, {}, {
 
 % METADATA
-% :name=p2_2B_1
+% :name=p1_2B_1
 % :centrex=22.5
 % :centrey=12.5
 
