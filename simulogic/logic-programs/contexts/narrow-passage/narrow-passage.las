@@ -8,9 +8,9 @@
 #include "contexts/narrow-passage/scenario_3.las".
 % #include "contexts/narrow-passage/scenario_4.las".
 #include "contexts/narrow-passage/scenario_5.las".
-% #include "contexts/narrow-passage/scenario_6.las".
+#include "contexts/narrow-passage/scenario_6.las".
 
-% with 1,2,3,5 ok
+% with 1,2,3,5, 6 ok
 
 %%% ORDERINGS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -45,12 +45,11 @@
 % #brave_ordering(p1_4B_1, p2_4A_1).
 % #brave_ordering(p2_4B_1, p2_4A_1).
 % #brave_ordering(p2_4A_1, p3_4B_1).
-% #brave_ordering(p2_4A_1, p4_4B_1).
 
-% #brave_ordering(p1_1A_1, p1_5A_1).
-% #brave_ordering(p1_1A_1, p2_5A_1).
-% #brave_ordering(p1_5C_1, p1_2C_1).
-% #brave_ordering(p2_5C_1, p1_2C_1).
+#brave_ordering(p1_1A_1, p1_5A_1).
+#brave_ordering(p1_1A_1, p2_5A_1).
+#brave_ordering(p1_5C_1, p3_5C_1).
+#brave_ordering(p2_5C_1, p4_5C_1).
 
 % Context 1, scenario 5
 #brave_ordering(b9@39, p1_5C_1, p1_5A_1). % 39 = 46 - 7
@@ -60,10 +59,10 @@
 #brave_ordering(b11@24, p2_5B_1, p1_5A_1). % 24 = 31 - 7
 #brave_ordering(b11_1@24, p1_5B_1, p2_5A_1). % 24 = 31 - 7
 
-% % Context 1, scenario 6 
-% #brave_ordering(b12@53, p1_6C_1, p1_6A_1). % 53 = 55 - 2
-% #brave_ordering(b13@28, p1_6C_1, p1_6B_1). % 28 = 55 - 27
-% #brave_ordering(b14@25, p1_6B_1, p1_6A_1). % 25 = 27 - 2
+% Context 1, scenario 6 
+#brave_ordering(b12@53, p1_6C_1, p1_6A_1). % 53 = 55 - 2
+#brave_ordering(b13@28, p1_6C_1, p1_6B_1). % 28 = 55 - 27
+#brave_ordering(b14@25, p1_6B_1, p1_6A_1). % 25 = 27 - 2
 
 %%% Hypothesis Space %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -73,16 +72,16 @@
 % #modeo(1, squeeze_by_wall(const(ent), var(ent), var(wall), var(time))).
 
 % ModeO for scenario 3
-#modeo(1, give_way(const(ent), var(ent), var(time), var(room))).
+#modeo(1, give_way(const(ent), var(ent), var(time), var(room)), (positive)).
 % #modeo(1, step_out_and_wait(const(ent), var(ent), const(room), var(time))).
 
 % ModeO for scenario 4
-#modeo(1, overtake_in_corridor(const(ent), var(ent), var(time), var(room))).
+#modeo(1, overtake_in_corridor(const(ent), var(ent), var(time), var(room)), (positive)).
 
 % ModeO for scenario 5
-#modeo(1, push_out(const(ent), var(ent), var(room), var(time))).
-#modeo(1, step_out_and_wait(const(ent), var(ent), var(room), var(time))).
-#modeo(1, squeeze_by_wall(const(ent), var(ent), var(wall), var(time))).
+#modeo(1, push_out(const(ent), var(ent), var(room), var(time)), (positive)).
+#modeo(1, step_out_and_wait(const(ent), var(ent), var(room), var(time)), (positive)).
+#modeo(1, squeeze_by_wall(const(ent), var(ent), var(wall), var(time)), (positive)).
 
 % ModeO for scenario 6
 #modeo(1, squeeze_between_conversation(const(ent), var(ent), var(ent), var(time)), (positive)).

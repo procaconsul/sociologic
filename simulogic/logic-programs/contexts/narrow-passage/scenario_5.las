@@ -99,9 +99,9 @@ o_point(p2_1, "14.051", "11.100", "0.0").
 o_point(p2_2, "16.051", "11.100", "0.0").
 o_point(p2_3, "18.050", "11.100", "0.0"). 
 o_point(p2_4, "20.501", "11.100", "0.0").
-o_point(p2_5, "18.501", "11.100", "180.0").
-o_point(p2_6, "16.051", "11.100", "180.0").
-o_point(p2_7, "14.051", "11.100", "220.0").
+o_point(p2_5, "18.501", "11.000", "180.0").
+o_point(p2_6, "16.051", "11.000", "180.0").
+o_point(p2_7, "14.051", "11.000", "220.0").
 o_point(p2_8, "14.051", "9.100", "220.0").
 o_point(p2_9, "14.051", "9.100", "40.0").
 o_point(p2_10, "14.051", "11.100", "0.0").
@@ -600,4 +600,188 @@ o_point(p3_9, "27.051", "11.000", "180.0").
 
 }).
 
+
+#pos(p3_5C_1, {}, {}, {
+
+% METADATA
+% :name=p3_5C_1
+% :centrex=22.5
+% :centrey=12.0
+
+% Option C
+
+%%%% Agents %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+agent(focus_agent).
+agent(agent2).
+agent(agent3).
+
+time(1..9).
+
+% wall 1 
+wall(wall1, w1_s, w1_e).
+point(w1_s, "15.0", "14.0").
+point(w1_e, "30.0", "14.0").
+
+% wall 2 
+wall(wall2, w2_s, w2_e).
+point(w2_s, "15.0", "10.0").
+point(w2_e, "30.0", "10.0").
+
+corridor(corridor, wall1, wall2).
+
+% agent 1 passes the mid and forces agent 2 (just entering)
+% to step out and wait (wide passage) 
+pos(focus_agent, 1, p1_1).
+pos(focus_agent, 2, p1_2).
+pos(focus_agent, 3, p1_3).
+pos(focus_agent, 4, p1_4).
+pos(focus_agent, 5, p1_5).
+pos(focus_agent, 6, p1_6).
+pos(focus_agent, 7, p1_7).
+pos(focus_agent, 8, p1_8).
+pos(focus_agent, 9, p1_9).
+
+pos(agent2, 1, p2_1).
+pos(agent2, 2, p2_2).
+pos(agent2, 3, p2_3).
+pos(agent2, 4, p2_4).
+pos(agent2, 5, p2_5).
+pos(agent2, 6, p2_6).
+pos(agent2, 7, p2_7).
+pos(agent2, 8, p2_8).
+pos(agent2, 9, p2_9).
+
+pos(agent3, 1, p3_1).
+pos(agent3, 2, p3_2).
+pos(agent3, 3, p3_3).
+pos(agent3, 4, p3_4).
+pos(agent3, 5, p3_5).
+pos(agent3, 6, p3_6).
+pos(agent3, 7, p3_7).
+pos(agent3, 8, p3_8).
+pos(agent3, 9, p3_9).
+
+o_point(p1_1, "17.551", "11.100", "0.0").
+o_point(p1_2, "19.640", "11.100", "0.0").
+o_point(p1_3, "21.553", "11.100", "0.0"). 
+o_point(p1_4, "23.000", "11.100", "0.0").
+o_point(p1_5, "27.000", "11.100", "0.0").
+o_point(p1_6, "29.000", "11.100", "0.0").
+o_point(p1_7, "31.000", "11.100", "0.0").
+o_point(p1_8, "33.000", "11.100", "0.0").
+o_point(p1_9, "35.000", "11.100", "0.0").
+
+o_point(p2_1, "15.551", "11.100", "0.0").
+o_point(p2_2, "17.640", "11.100", "0.0").
+o_point(p2_3, "19.553", "11.100", "0.0"). 
+o_point(p2_4, "21.000", "11.100", "0.0").
+o_point(p2_5, "25.000", "11.100", "0.0").
+o_point(p2_6, "27.000", "11.100", "0.0").
+o_point(p2_7, "29.000", "11.100", "0.0").
+o_point(p2_8, "31.000", "11.100", "0.0").
+o_point(p2_9, "33.000", "11.100", "0.0").
+
+o_point(p3_1, "35.051", "12.880", "180.0").
+o_point(p3_2, "33.051", "12.000", "180.0"). 
+o_point(p3_3, "31.051", "11.000", "180.0").
+o_point(p3_4, "29.051", "11.000", "180.0"). 
+o_point(p3_5, "31.051", "11.500", "20.0").
+o_point(p3_6, "31.051", "12.200", "220.0").
+o_point(p3_7, "31.051", "12.200", "220.0").
+o_point(p3_8, "29.051", "11.000", "180.0").
+o_point(p3_9, "27.051", "11.000", "180.0").
+
+}).
+
+#pos(p4_5C_1, {}, {}, {
+
+% METADATA
+% :name=p4_5C_1
+% :centrex=22.5
+% :centrey=12.0
+
+% Option C
+
+%%%% Agents %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+agent(focus_agent).
+agent(agent2).
+agent(agent3).
+
+time(1..9).
+
+% wall 1 
+wall(wall1, w1_s, w1_e).
+point(w1_s, "15.0", "14.0").
+point(w1_e, "30.0", "14.0").
+
+% wall 2 
+wall(wall2, w2_s, w2_e).
+point(w2_s, "15.0", "10.0").
+point(w2_e, "30.0", "10.0").
+
+corridor(corridor, wall1, wall2).
+
+% agent 1 BEFORE the mid forces agent 2 (just entering)
+% to step out and wait (WIDE PASSAGE) 
+pos(focus_agent, 1, p1_1).
+pos(focus_agent, 2, p1_2).
+pos(focus_agent, 3, p1_3).
+pos(focus_agent, 4, p1_4).
+pos(focus_agent, 5, p1_5).
+pos(focus_agent, 6, p1_6).
+pos(focus_agent, 7, p1_7).
+pos(focus_agent, 8, p1_8).
+pos(focus_agent, 9, p1_9).
+
+pos(agent2, 1, p2_1).
+pos(agent2, 2, p2_2).
+pos(agent2, 3, p2_3).
+pos(agent2, 4, p2_4).
+pos(agent2, 5, p2_5).
+pos(agent2, 6, p2_6).
+pos(agent2, 7, p2_7).
+pos(agent2, 8, p2_8).
+pos(agent2, 9, p2_9).
+
+pos(agent3, 1, p3_1).
+pos(agent3, 2, p3_2).
+pos(agent3, 3, p3_3).
+pos(agent3, 4, p3_4).
+pos(agent3, 5, p3_5).
+pos(agent3, 6, p3_6).
+pos(agent3, 7, p3_7).
+pos(agent3, 8, p3_8).
+pos(agent3, 9, p3_9).
+
+o_point(p1_1, "15.551", "11.100", "0.0").
+o_point(p1_2, "17.640", "11.100", "0.0").
+o_point(p1_3, "19.553", "11.100", "0.0"). 
+o_point(p1_4, "21.000", "11.100", "0.0").
+o_point(p1_5, "25.000", "11.100", "0.0").
+o_point(p1_6, "27.000", "11.100", "0.0").
+o_point(p1_7, "29.000", "11.100", "0.0").
+o_point(p1_8, "31.000", "11.100", "0.0").
+o_point(p1_9, "33.000", "11.100", "0.0").
+
+o_point(p2_1, "13.551", "11.100", "0.0").
+o_point(p2_2, "15.640", "11.100", "0.0").
+o_point(p2_3, "17.553", "11.100", "0.0"). 
+o_point(p2_4, "19.000", "11.100", "0.0").
+o_point(p2_5, "23.000", "11.100", "0.0").
+o_point(p2_6, "25.000", "11.100", "0.0").
+o_point(p2_7, "27.000", "11.100", "0.0").
+o_point(p2_8, "29.000", "11.100", "0.0").
+o_point(p2_9, "31.000", "11.100", "0.0").
+
+o_point(p3_1, "35.051", "12.880", "180.0").
+o_point(p3_2, "33.051", "12.000", "180.0"). 
+o_point(p3_3, "31.051", "11.000", "180.0").
+o_point(p3_4, "29.051", "11.000", "180.0"). 
+o_point(p3_5, "31.051", "11.500", "20.0").
+o_point(p3_6, "31.051", "12.200", "220.0").
+o_point(p3_7, "31.051", "12.200", "220.0").
+o_point(p3_8, "29.051", "11.000", "180.0").
+o_point(p3_9, "27.051", "11.000", "180.0").
+
+}).
 
