@@ -37,14 +37,11 @@
 #brave_ordering(b7_2@80, p2_3B_1, p2_3A_1). % 80 = 82 - 2
 #brave_ordering(b7_3@80, p2_3B_1, p1_3A_1). % 80 = 82 - 2
 
-% % Context 1, scenario 4
-% #brave_ordering(b8@46, p1_4B_1, p1_4A_1). % 46 = 65 - 19
-% #brave_ordering(b8_bis@46, p2_4B_1, p1_4A_1). % 46 = 65 - 19
-% #brave_ordering(p1_4B_1, p3_4B_1).
-% #brave_ordering(p2_4B_1, p3_4B_1).
-% #brave_ordering(p1_4B_1, p2_4A_1).
-% #brave_ordering(p2_4B_1, p2_4A_1).
-% #brave_ordering(p2_4A_1, p3_4B_1).
+% Context 1, scenario 4
+#brave_ordering(b8@46, p1_4B_1, p1_4A_1). % 46 = 65 - 19
+#brave_ordering(b8_bis@46, p2_4B_1, p1_4A_1). % 46 = 65 - 19
+#brave_ordering(p1_4B_1, p3_4B_1).
+#brave_ordering(p2_4B_1, p3_4B_1).
 
 #brave_ordering(p1_1A_1, p1_5A_1).
 #brave_ordering(p1_1A_1, p2_5A_1).
