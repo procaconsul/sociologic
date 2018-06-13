@@ -8,8 +8,6 @@ agglomerate(F, I, T, E) :- queue(F, I, T, E).
 agglomerate_size(F, S, T) :- agglomerate(F, S, T, _),
   not agglomerate(F, S+1, T, _).
 
-% see if appropriate to introduce time() predicate in scenarios
-% to have positive pred with T1.
 straight_queue(Q, T1) :-
   not after(T2, T1), 
   straight_queue_on_time(Q, T2),

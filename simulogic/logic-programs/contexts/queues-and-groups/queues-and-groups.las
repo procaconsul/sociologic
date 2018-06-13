@@ -12,48 +12,48 @@
 %%% ORDERINGS W-EXPLICIT %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % Context 3, scenario 1
-% #brave_ordering(b1@48, p1_1A_3, p1_1B_3). 
-% #brave_ordering(b1_1@35, p1_1B_3, p1_1A_3).
-
-% #brave_ordering(p1_1A_3, p1_2A_3).
-% #brave_ordering(p1_2B_3, p1_1B_3).
-
-% Context 3, scenario 2
-% #brave_ordering(b2@71, p1_2B_3, p1_2A_3). 
-% #brave_ordering(b2_1@12, p1_2A_3, p1_2B_3). 
-
-% Context 3, scenario 3
-% #brave_ordering(b3@70, p1_3B_3, p1_3A_3). 
-% #brave_ordering(b3_1@11, p1_3A_3, p1_3B_3).
-
-% #brave_ordering(b4@70, p1_3B_3, p1_3C_3). 
-% #brave_ordering(b4_1@3, p1_3C_3, p1_3B_3).
-
-% #brave_ordering(b5@11, p1_3A_3, p1_3C_3). 
-% #brave_ordering(b5_1@2, p1_3C_3, p1_3A_3).
-
-% Context 3, scenario 4
-% #brave_ordering(b6@62, p1_4B_3, p1_4A_3). 
-% #brave_ordering(b6_1@21, p1_4A_3, p1_4B_3). 
-
-%%% ORDERINGS W-COMBINED %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-% Context 3, scenario 1
-#brave_ordering(b1@13, p1_1A_3, p1_1B_3). % 13 = 48 - 35
+#brave_ordering(b1@48, p1_1A_3, p1_1B_3). 
+#brave_ordering(b1_1@35, p1_1B_3, p1_1A_3).
 
 #brave_ordering(p1_1A_3, p1_2A_3).
 #brave_ordering(p1_2B_3, p1_1B_3).
 
 % Context 3, scenario 2
-#brave_ordering(b2@59, p1_2B_3, p1_2A_3). % 59 = 71 - 12
+#brave_ordering(b2@71, p1_2B_3, p1_2A_3). 
+#brave_ordering(b2_1@12, p1_2A_3, p1_2B_3). 
 
 % Context 3, scenario 3
-#brave_ordering(b3@59, p1_3B_3, p1_3A_3). % 59 = 70 - 11
-#brave_ordering(b4@67, p1_3B_3, p1_3C_3). % 67 = 70 - 3
-#brave_ordering(b5@8, p1_3A_3, p1_3C_3). % 8 = 11 - 3
+#brave_ordering(b3@70, p1_3B_3, p1_3A_3). 
+#brave_ordering(b3_1@11, p1_3A_3, p1_3B_3).
+
+#brave_ordering(b4@70, p1_3B_3, p1_3C_3). 
+#brave_ordering(b4_1@3, p1_3C_3, p1_3B_3).
+
+#brave_ordering(b5@11, p1_3A_3, p1_3C_3). 
+#brave_ordering(b5_1@2, p1_3C_3, p1_3A_3).
 
 % Context 3, scenario 4
-#brave_ordering(b6@41, p1_4B_3, p1_4A_3). % 41 = 62 - 21
+#brave_ordering(b6@62, p1_4B_3, p1_4A_3). 
+#brave_ordering(b6_1@21, p1_4A_3, p1_4B_3). 
+
+%%% ORDERINGS W-COMBINED %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% % Context 3, scenario 1
+% #brave_ordering(b1@13, p1_1A_3, p1_1B_3). % 13 = 48 - 35
+
+% #brave_ordering(p1_1A_3, p1_2A_3).
+% #brave_ordering(p1_2B_3, p1_1B_3).
+
+% % Context 3, scenario 2
+% #brave_ordering(b2@59, p1_2B_3, p1_2A_3). % 59 = 71 - 12
+
+% % Context 3, scenario 3
+% #brave_ordering(b3@59, p1_3B_3, p1_3A_3). % 59 = 70 - 11
+% #brave_ordering(b4@67, p1_3B_3, p1_3C_3). % 67 = 70 - 3
+% #brave_ordering(b5@8, p1_3A_3, p1_3C_3). % 8 = 11 - 3
+
+% % Context 3, scenario 4
+% #brave_ordering(b6@41, p1_4B_3, p1_4A_3). % 41 = 62 - 21
 
 %%% Hypothesis Space %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -79,12 +79,10 @@
 #bias("not_not_alone(family(X)) :- body(family(X)).").
 #bias("not_not_alone(straight_queue(X, Y)) :- body(straight_queue(X, Y)).").
 
-#maxp(3).
+#maxp(2).
 #maxv(3).
 #constant(ent, focus_agent).
-#constant(ent_agglomerate, group).
-#constant(ent_agglomerate, queue).
-#weight(-1).
+% #weight(-1).
 #weight(1).
 #weight(2).
 

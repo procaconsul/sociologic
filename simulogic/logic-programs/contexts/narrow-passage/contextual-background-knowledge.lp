@@ -67,6 +67,12 @@ give_way(E1, E2, T, C) :- corridor(C, _, _),
   @is_collinear(X1, Y1, X2, Y2, X4, Y4) == 1,
   @is_collinear(X3, Y3, X2, Y2, X4, Y4) == 0.
 
+following(E1, E2, T1) :- E1 != E2, 
+  behind(E1, E2, T1),
+  before(T2, T1),
+  behind(E1, E2, T2),
+  not behind(E1, E2, T2-1).
+
 % %%%%%%%%%%%%%%%%%
 % OTHERS
 % %%%%%%%%%%%%%%%%%

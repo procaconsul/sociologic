@@ -47,13 +47,33 @@ point2d(P, X, Y) :- point(P, X, Y).
 % POSITIONAL AND TEMPORAL RELATIONS
 % ######################
 
-behind(E1, E2, T) :- E1 != E2, pos(E1, T, P1), 
+behind(E1, E2, T) :- E1 != E2, 
+  pos(E1, T, P1), 
+  path(E2, T-1, P2, P3), 
+  o_point(P1, X1, Y1, O1), 
+  o_point(P2, X2, Y2, O2), 
+  point(P3, X3, Y3), 
+  @is_behind(X1, Y1, O1, X2, Y2, O2) == 1, 
+  @is_collinear(X1, Y1, X2, Y2, X3, Y3) == 1. 
+
+
+behind(E1, E2, T) :- E1 != E2, 
+  pos(E1, T, P1), 
   path(E2, T, P2, P3), 
   o_point(P1, X1, Y1, O1), 
   o_point(P2, X2, Y2, O2), 
   point(P3, X3, Y3), 
   @is_behind(X1, Y1, O1, X2, Y2, O2) == 1, 
   @is_collinear(X1, Y1, X2, Y2, X3, Y3) == 1. 
+
+% behind(E1, E2, T) :- E1 != E2, 
+  % pos(E1, T, P1), 
+  % path(E2, T-1..T, P2, P3), 
+  % o_point(P1, X1, Y1, O1), 
+  % o_point(P2, X2, Y2, O2), 
+  % point(P3, X3, Y3), 
+  % @is_behind(X1, Y1, O1, X2, Y2, O2) == 1, 
+  % @is_collinear(X1, Y1, X2, Y2, X3, Y3) == 1. 
 
 in_front(E1, E2, T) :- behind(E2, E1, T).
 
@@ -68,6 +88,7 @@ inside(E, C, T) :- pos(E, T, P),
   @point_inside_polygon(X, Y, VS) == 1.
 
 after(T1, T2) :- time(T1), time(T2), T1 > T2.
+before(T1, T2) :- time(T1), time(T2), T1 < T2.
 
 % ###########
 % ACTIONS
