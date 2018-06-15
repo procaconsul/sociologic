@@ -222,7 +222,7 @@ def o_plus(_val, _const):
     new_val = val + const
     if new_val < -45:
         new_val += 360
-    if new_val > 360:
+    if new_val >= 360:
         new_val -= 360
     return str(new_val)
 
