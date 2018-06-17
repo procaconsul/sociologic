@@ -130,14 +130,113 @@ clearly unsat with maxv=1, and a maxv >= 4 produces (a)
 |  1,-1,2         |  3   |  3   | (e)
 
 
++
+| NARROW
++----------------
+
+(a)
+:~ give_way(focus_agent, V0, V1, V2).[-1@1, 1, V0, V1, V2]
+:~ squeeze_by_wall(focus_agent, V0, V1, V2).[-1@1, 2, V0, V1, V2]
+:~ wait_end_of_talk(focus_agent, V0, V1, V2, V3).[1@1, 3, V0, V1, V2, V3]
+:~ push_out(focus_agent, V0, V1, V2), past_mid(focus_agent, V3, V2).[-1@2, 4, V0, V1, V2, V3]
+:~ step_out_and_wait(focus_agent, V0, V1, V2), following(V3, focus_agent, V2).[1@2, 5, V0, V1, V2, V3]
+:~ push_out(focus_agent, V0, V1, V2), following(V3, focus_agent, V2), one_person_width(V1).[-1@2, 6, V0, V1, V2, V3]
+:~ step_out_and_wait(focus_agent, V0, V1, V2), not past_mid(focus_agent, V1, V2), one_person_width(V3).[-1@2, 7, V0, V1, V2, V3]
+:~ overtake_in_corridor(focus_agent, V0, V1, V2), not one_person_width(V2).[-1@1, 1, V0, V1, V2]
+Pre-processing  : 3.756s
+Solve time      : 34.938s
+Total           : 38.695s
+
+(b)
+:~ step_out_and_wait(focus_agent, V0, V1, V2).[1@3, 1, V0, V1, V2]
+:~ squeeze_by_wall(focus_agent, V0, V1, V2).[-1@1, 2, V0, V1, V2]
+:~ wait_end_of_talk(focus_agent, V0, V1, V2, V3).[1@3, 3, V0, V1, V2, V3]
+:~ push_out(focus_agent, V0, V1, V2), following(V3, focus_agent, V2).[-1@2, 4,
+V0, V1, V2, V3]
+:~ push_out(focus_agent, V0, V1, V2), not past_mid(focus_agent, V1, V2).[1@3, 5,
+V0, V1, V2]
+:~ step_out_and_wait(focus_agent, V0, V1, V2), not past_mid(focus_agent, V1,
+V2).[-1@2, 6, V0, V1, V2]
+:~ squeeze_by_wall(focus_agent, V0, V1, V2), one_person_width(V3).[1@3, 7, V0,
+V1, V2, V3]
+:~ past_mid(focus_agent, V0, V1), not one_person_width(V0).[1@2, 8, V0, V1]
+
+
+(c)
+:~ give_way(focus_agent, V0, V1, V2).[-1@4, 1, V0, V1, V2]
+:~ squeeze_by_wall(focus_agent, V0, V1, V2).[-1@2, 2, V0, V1, V2]
+:~ wait_end_of_talk(focus_agent, V0, V1, V2, V3).[1@1, 3, V0, V1, V2, V3]
+:~ push_out(focus_agent, V0, V1, V2), past_mid(focus_agent, V3, V2).[-1@4, 4,
+V0, V1, V2, V3]
+:~ step_out_and_wait(focus_agent, V0, V1, V2), following(V3, focus_agent,
+V2).[1@4, 5, V0, V1, V2, V3]
+:~ push_out(focus_agent, V0, V1, V2), following(V3, focus_agent, V2),
+one_person_width(V1).[-1@4, 6, V0, V1, V2, V3]
+:~ step_out_and_wait(focus_agent, V0, V1, V2), not past_mid(focus_agent, V3,
+V2), one_person_width(V3).[-1@3, 7, V0, V1, V2, V3]
+:~ overtake_in_corridor(focus_agent, V0, V1, V2), not
+one_person_width(V2).[-1@3, 1, V0, V1, V2]
+
+(d)
+:~ squeeze_by_wall(focus_agent, V0, V1, V2).[-1@1, 1, V0, V1, V2]
+:~ wait_end_of_talk(focus_agent, V0, V1, V2, V3).[2@3, 2, V0, V1, V2, V3]
+:~ push_out(focus_agent, V0, V1, V2), past_mid(focus_agent, V1, V2).[-1@3, 3,
+V0, V1, V2]
+:~ step_out_and_wait(focus_agent, V0, V1, V2), following(V0, focus_agent,
+V3).[2@4, 4, V0, V1, V2, V3]
+:~ step_out_and_wait(focus_agent, V0, V1, V2), not past_mid(focus_agent, V1,
+V2).[-1@4, 5, V0, V1, V2]
+:~ step_out_and_wait(focus_agent, V0, V1, V2), not one_person_width(V1).[2@4, 6,
+V0, V1, V2]
+:~ following(V0, focus_agent, V1), not past_mid(focus_agent, V2, V1),
+one_person_width(V2).[-1@3, 7, V0, V1, V2]
+
+Pre-processing  : 8.546s
+Solve time      : 247.626s
+Total           : 256.172s
+
+
+(e)
+:~ step_out_and_wait(focus_agent, V0, V1, V2).[2@1, 1, V0, V1, V2]
+:~ squeeze_by_wall(focus_agent, V0, V1, V2).[-1@1, 2, V0, V1, V2]
+:~ wait_end_of_talk(focus_agent, V0, V1, V2, V3).[2@3, 3, V0, V1, V2, V3]
+:~ push_out(focus_agent, V0, V1, V2), past_mid(focus_agent, V3, V2).[-1@2, 4,
+V0, V1, V2, V3]
+:~ step_out_and_wait(focus_agent, V0, V1, V2), following(V0, focus_agent,
+V2).[2@3, 5, V0, V1, V2]
+:~ push_out(focus_agent, V0, V1, V2), following(V3, focus_agent, V2),
+one_person_width(V1).[-1@2, 6, V0, V1, V2, V3]
+:~ step_out_and_wait(focus_agent, V0, V1, V2), not past_mid(focus_agent, V1,
+V2), one_person_width(V1).[-1@3, 7, V0, V1, V2]
+:~ overtake_in_corridor(focus_agent, V0, V1, V2), not
+one_person_width(V2).[-1@1, 1, V0, V1, V2]
+
+
+Pre-processing  : 4.932s
+Solve time      : 48.839s
+Total           : 53.771s
 
 
 
-
-
-
-
-
-
+| weights enabled | maxv | maxp | result
+|  1,-1           |  4   |  1   | (U)
+|  1,-1           |  4   |  2   | (a)
+|  1,-1           |  4   |  3   | (b)
+|  1,-1           |  4   |  4   | (c)
+| -1, 2           |  4   |  1   | ( )
+| -1, 2           |  4   |  2   | ( )
+| -1, 2           |  4   |  3   | (e)
+| -1, 2           |  4   |  4   | ( )
+|  1, 2           |  4   |  1   | ( )
+|  1, 2           |  4   |  2   | ( )
+|  1, 2           |  4   |  3   | ( )
+|  1, 2           |  4   |  4   | ( )
+|  1,-1,2         |  4   |  1   | ( )
+|  1,-1,2         |  4   |  2   | ( )
+|  1,-1,2         |  4   |  3   | (~)
+|  1,-1,2         |  4   |  4   | (d)
+|  1,-1,2,3       |  4   |  1   | ( )
+|  1,-1,2,3       |  4   |  2   | ( )
+|  1,-1,2,3       |  4   |  3   | ( )
 
 
