@@ -1,7 +1,6 @@
 
 
 % NARROW PASSAGE
-% 1, 2, 3, 6
 :~ give_way(focus_agent, V0, V1, V2).[-1@1, 1, V0, V1, V2]
 :~ squeeze_by_wall(focus_agent, V0, V1, V2).[-1@1, 2, V0, V1, V2]
 :~ wait_end_of_talk(focus_agent, V0, V1, V2, V3).[1@1, 3, V0, V1, V2, V3]

@@ -68,12 +68,13 @@ object StaticViewComponents {
       minWidth = SIMULATION_PANE_DIM
       minHeight = SIMULATION_PANE_DIM
       alignmentInParent = Pos.Center
-      children = scenario.agents ++ scenario.walls ++ Seq(new Circle {
-        centerX = 250
-        centerY = 250
-        radius = 2
-        fill = Color.Green
-      })
+      children = scenario.agents ++ scenario.walls
+//      ++ Seq(new Circle {
+//        centerX = 250
+//        centerY = 250
+//        radius = 2
+//        fill = Color.Green
+//      })
     }
   }
 

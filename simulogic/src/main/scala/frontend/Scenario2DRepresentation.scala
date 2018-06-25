@@ -40,10 +40,10 @@ case class Scenario2DRepresentation(id: String, agents: Seq[Circle], walls: Seq[
 object Scenario2DRepresentation {
 
   val DEFAULT_COORD = -20.0
-  val DEFAULT_RADIUS = 7
-  val STROKE_WIDTH = 4
+  val DEFAULT_RADIUS = 8
+  val STROKE_WIDTH = 6
   val LINE_COLOUR = "BLACK"
-  val OPACITY = 0.7
+  val OPACITY = 1
 
   def apply(scenario: Scenario): Scenario2DRepresentation = {
 
@@ -67,7 +67,8 @@ object Scenario2DRepresentation {
       centerX = resolvedAgent.points.head.x
       centerY = resolvedAgent.points.head.y
       radius = DEFAULT_RADIUS
-      fill = if (resolvedAgent.agent == SpatioTemporalLanguage.pointOfView) Color.Red else Color.DarkGray
+      opacity = OPACITY
+      fill = if (resolvedAgent.agent == SpatioTemporalLanguage.pointOfView) Color.DarkGray else Color.Red
     }
   }
 
